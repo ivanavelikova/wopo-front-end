@@ -1,0 +1,20 @@
+<nav class="navbar navbar-fixed-top navbar-light bg-faded">
+  <a class="navbar-brand" href="#">wopo</a>
+  <ul class="nav navbar-nav pull-xs-right">
+    <li class="nav-item">  
+      {{#link-to "index" class="nav-link"}}{{fa-icon "dashboard"}}Панел{{/link-to}}
+    </li>
+    <li class="nav-item">
+      {{#link-to "article" class="nav-link"}}{{fa-icon "newspaper-o"}}Статии{{/link-to}}
+    </li>
+    <li class="nav-item">
+      {{#link-to "search" class="nav-link"}}{{fa-icon "search"}}Търси{{/link-to}}
+    </li>
+    <li class="nav-item">
+      {{#link-to "profile" class="nav-link"}}{{fa-icon "user"}}Профил{{/link-to}}
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  {{outlet}}
+</div>

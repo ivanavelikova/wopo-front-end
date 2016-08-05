@@ -6,6 +6,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('article');
+  this.route('profile');
+  this.route('search');
 });
 
 export default Router;

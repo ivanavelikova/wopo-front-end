@@ -1,0 +1,40 @@
+.navbar
+  background: #55585d
+  line-height: 55px
+  padding: 0 15px
+
+  .navbar-brand
+    color: #fff
+    padding: 0
+
+    &:hover
+      color: $gray-light
+
+    &:focus
+      color: #fff
+
+  .nav-item + .nav-item
+    margin: 0
+
+  .nav-item
+    .nav-link
+      padding: 0 12px
+      color: $gray-light
+
+      &:hover
+        color: $gray-lighter
+
+      &:focus
+        color: $gray-lighter
+        
+      &.active
+        color: #fff
+        pointer-events: none
+        background: #4d5256
+        
+        &:focus
+          color: #fff
+          background: #4d5256
+
+    .fa
+      padding-right: 8px
