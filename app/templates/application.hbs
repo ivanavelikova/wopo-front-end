@@ -1,17 +1,29 @@
 <nav class="navbar navbar-fixed-top navbar-light bg-faded">
   <a class="navbar-brand" href="#">wopo</a>
-  <ul class="nav navbar-nav pull-xs-right">
+  <ul class="nav navbar-nav pull-sm-right">
     <li class="nav-item">  
-      {{#link-to "index" class="nav-link"}}{{fa-icon "dashboard"}}Панел{{/link-to}}
+      {{#link-to "index" class="nav-link"}}
+        {{fa-icon "dashboard"}}
+        <span class="nav-link-text">Панел</span>
+      {{/link-to}}
     </li>
     <li class="nav-item">
-      {{#link-to "article" class="nav-link"}}{{fa-icon "newspaper-o"}}Статии{{/link-to}}
+      {{#link-to "article" class="nav-link"}}
+        {{fa-icon "newspaper-o"}}
+        <span class="nav-link-text">Статии</span>
+      {{/link-to}}
     </li>
     <li class="nav-item">
-      {{#link-to "search" class="nav-link"}}{{fa-icon "search"}}Търси{{/link-to}}
+      {{#link-to "search" class="nav-link"}}
+        {{fa-icon "search"}}
+        <span class="nav-link-text">Търси</span>
+      {{/link-to}}
     </li>
     <li class="nav-item">
-      {{#link-to "profile" class="nav-link"}}{{fa-icon "user"}}Профил{{/link-to}}
+      {{#link-to "profile" class="nav-link"}}
+        {{fa-icon "user"}}
+        <span class="nav-link-text">Профил</span>
+      {{/link-to}}
     </li>
   </ul>
 </nav>

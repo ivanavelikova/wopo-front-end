@@ -1,6 +1,6 @@
 .navbar
   background: #55585d
-  line-height: 55px
+  line-height: 50px
   padding: 0 15px
 
   .navbar-brand
@@ -37,4 +37,19 @@
           background: #4d5256
 
     .fa
-      padding-right: 8px
+      padding-right: 3px
+
+@include media-breakpoint-only(xs)
+  .navbar-brand,
+  .nav-link-text
+    display: none
+
+  .navbar-nav
+    text-align: center
+
+    .nav-item
+      display: inline-block
+      float: none
+
+      .fa
+        font-size: 20px
