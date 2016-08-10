@@ -17,6 +17,38 @@
     margin: 0
 
   .nav-item
+    .dropdown-toggle
+      padding: 0 12px
+      color: $gray-light
+      text-decoration: none
+      border: none
+      vertical-align: baseline
+
+
+      &:hover
+        color: $gray-lighter
+
+      &:focus
+        color: $gray-lighter
+
+      &::after
+        margin: 0
+        content: none
+
+    .dropdown-menu-right
+      padding: 10px
+      line-height: 20px
+
+      a
+        color: $gray-dark
+        text-decoration: none
+
+        &:hover
+          color: $gray
+
+        &:focus
+          color: $gray
+
     .nav-link
       padding: 0 12px
       color: $gray-light

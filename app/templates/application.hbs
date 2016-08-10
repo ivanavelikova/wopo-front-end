@@ -22,11 +22,48 @@
     <li class="nav-item">
       {{#link-to "profile" class="nav-link"}}
         {{fa-icon "user"}}
-        <span class="nav-link-text">Профил</span>
+        <span class="nav-link-text">Ивана Великова</span>
       {{/link-to}}
+    </li>
+    <li class="dropdown nav-item">
+      <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{fa-icon "bell"}}
+        <span class="nav-link-text">
+          Известия
+        </span>
+      </button>
+      <li class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        {{#link-to "index"}}
+          <span>
+            Тати хареса снимката ти.
+          </span>
+        {{/link-to}}
+        <div class="dropdown-divider"></div>
+        {{#link-to "index"}}
+          <span>
+            Мама хареса снимката ти.
+          </span>
+        {{/link-to}}
+      </li>
+    </li>
+    <li class="dropdown nav-item">
+      <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{fa-icon "caret-down"}}
+      </button>
+      <li class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        {{#link-to "index"}}
+          {{fa-icon "gears"}}
+          <span>Настройки на профила</span>
+        {{/link-to}}
+        <div class="dropdown-divider"></div>
+        {{#link-to "index"}}
+          {{fa-icon "sign-out"}}
+          <span>Изход</span>
+        {{/link-to}}
+      </li>
     </li>
   </ul>
 </nav>
 <div class="container">
   {{outlet}}
-</div>
+</div>  
