@@ -1,6 +1,6 @@
 <nav class="navbar navbar-fixed-top navbar-light bg-faded">
   <a class="navbar-brand" href="#">wopo</a>
-  <ul class="nav navbar-nav pull-sm-right">
+  <ul class="nav navbar-nav pull-md-right">
     <li class="nav-item">  
       {{#link-to "index" class="nav-link"}}
         {{fa-icon "dashboard"}}
@@ -19,13 +19,12 @@
         <span class="nav-link-text">Търси</span>
       {{/link-to}}
     </li>
-    <li class="nav-item">
-      {{#link-to "profile" class="nav-link"}}
-        {{fa-icon "user"}}
-        <span class="nav-link-text">Ивана Великова</span>
+    <li class="nav-item notifications-mobile">
+      {{#link-to "notifications" class="nav-link"}}
+        {{fa-icon "bell"}}
       {{/link-to}}
     </li>
-    <li class="dropdown nav-item">
+    <li class="dropdown nav-item notifications-desktop">
       <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{fa-icon "bell"}}
         <span class="nav-link-text">
@@ -46,12 +45,18 @@
         {{/link-to}}
       </li>
     </li>
-    <li class="dropdown nav-item">
+    <li class="nav-item">
+      {{#link-to "profile" class="nav-link"}}
+        {{fa-icon "user"}}
+        <span class="nav-link-text">Ивана Великова</span>
+      {{/link-to}}
+    </li>
+    <li class="dropdown nav-item options">
       <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{fa-icon "caret-down"}}
       </button>
       <li class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        {{#link-to "index"}}
+        {{#link-to "settings"}}
           {{fa-icon "gears"}}
           <span>Настройки на профила</span>
         {{/link-to}}

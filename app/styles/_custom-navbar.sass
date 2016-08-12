@@ -24,7 +24,6 @@
       border: none
       vertical-align: baseline
 
-
       &:hover
         color: $gray-lighter
 
@@ -71,9 +70,11 @@
     .fa
       padding-right: 3px
 
-@include media-breakpoint-only(xs)
+@include media-breakpoint-down(sm)
   .navbar-brand,
-  .nav-link-text
+  .dropdown.nav-item.options,
+  .dropdown.nav-item.notifications-desktop,
+  .nav-link-text,
     display: none
 
   .navbar-nav
@@ -82,6 +83,9 @@
     .nav-item
       display: inline-block
       float: none
-
       .fa
         font-size: 20px
+
+@include media-breakpoint-up(md)
+  .notifications-mobile
+    display: none
