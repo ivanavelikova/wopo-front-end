@@ -1,6 +1,7 @@
 .notification
   display: block
   padding: 10px
+  @include clearfix()
   
   &:not(:last-child)
     border-bottom: 1px solid $gray-lighter
@@ -8,10 +9,15 @@
   &:hover, &:focus
     text-decoration: none
     background: #f5f5f5
+  
+  &-picture
+    width: 45px
 
   &-text
     color: $gray
     font-size: 15px
+    overflow: hidden
+    padding-left: 10px
 
     strong
       color: $gray-dark
