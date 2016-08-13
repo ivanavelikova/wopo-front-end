@@ -18,6 +18,7 @@
 
   .nav-item
     .dropdown-toggle
+      line-height: 50px
       padding: 0 12px
       color: $gray-light
       text-decoration: none
@@ -34,19 +35,30 @@
         margin: 0
         content: none
 
-    .dropdown-menu-right
-      padding: 10px
-      line-height: 20px
+    &.notifications-desktop .dropdown-menu-right
+      min-width: 260px
+      padding: 0
 
-      a
-        color: $gray-dark
+      .ps-content
+        height: 200px
+        position: relative
+        overflow: hidden
+
+    .dropdown-menu-right
+      line-height: initial
+      padding: 0.5rem 0
+
+      .dropdown-item
+        padding: 7px 20px
+        display: block
         text-decoration: none
 
-        &:hover
-          color: $gray
+        &.active
+          background: none
+          color: $gray-dark
 
-        &:focus
-          color: $gray
+          &:hover
+            background: #f5f5f5
 
     .nav-link
       padding: 0 12px
