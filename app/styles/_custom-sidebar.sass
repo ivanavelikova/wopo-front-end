@@ -1,0 +1,27 @@
+.sidebar
+  background: $gray-lightest
+  position: fixed
+  top: 50px
+  left: 0
+  bottom: 0
+
+  .nav-item
+    text-align: center
+
+    .nav-link
+      width: 110px
+      padding: 15px
+      color: $gray
+      
+      &:hover, &:focus
+        color: $gray-dark
+        background: $gray-lighter
+
+      &.active
+        color: #fff
+        pointer-events: none
+        background: #4a92ff
+
+    .fa
+      display: block
+      font-size: 40px

@@ -11,6 +11,9 @@ Router.map(function() {
   this.route('search');
   this.route('settings');
   this.route('notifications');
+  this.route('statistics');
+  this.route('projects');
+  this.route('articles');
 });
 
 export default Router;
