@@ -11,7 +11,6 @@ Router.map(function() {
   this.route('search');
   this.route('settings');
   this.route('notifications');
-  this.route('notifications-mobile');
 });
 
 export default Router;
