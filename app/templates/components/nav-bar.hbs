@@ -5,14 +5,20 @@
     <span class="tag tag-default">alpha</span>
   {{/link-to}}
   <ul class="nav navbar-nav pull-md-right">
-    <li class="nav-item">  
-      {{#link-to "index" class="nav-link"}}
+    <li class="nav-item panel-desktop">  
+      {{#link-to "panel.statistics" currentWhen="panel" class="nav-link"}}
+        {{fa-icon "dashboard"}}
+        <span class="nav-link-text">Панел</span>
+      {{/link-to}}
+    </li>    
+    <li class="nav-item panel-mobile">  
+      {{#link-to "panel" currentWhen="panel.index" class="nav-link"}}
         {{fa-icon "dashboard"}}
         <span class="nav-link-text">Панел</span>
       {{/link-to}}
     </li>
     <li class="nav-item">
-      {{#link-to "article" class="nav-link"}}
+      {{#link-to "articles" class="nav-link"}}
         {{fa-icon "newspaper-o"}}
         <span class="nav-link-text">Статии</span>
       {{/link-to}}
@@ -42,7 +48,7 @@
       </div>
     </li>
     <li class="nav-item">
-      {{#link-to "profile" class="nav-link"}}
+      {{#link-to "portfolio" class="nav-link"}}
         {{fa-icon "user"}}
         <span class="nav-link-text">Моето портфолио</span>
       {{/link-to}}

@@ -77,12 +77,6 @@
       padding-right: 3px
 
 @include media-breakpoint-down(sm)
-  .navbar-brand,
-  .dropdown.nav-item.options,
-  .dropdown.nav-item.notifications-desktop,
-  .nav-link-text,
-    display: none
-
   .navbar-nav
     text-align: center
 
@@ -91,7 +85,16 @@
       float: none
       .fa
         font-size: 20px
+        
+  .navbar-brand,
+  .dropdown.nav-item.options,
+  .dropdown.nav-item.notifications-desktop,
+  .nav-item.panel-desktop,
+  .nav-link-text
+    display: none
+
 
 @include media-breakpoint-up(md)
-  .notifications-mobile
+  .notifications-mobile,
+  .panel-mobile
     display: none
