@@ -6,13 +6,13 @@
   {{/link-to}}
   <ul class="nav navbar-nav pull-md-right">
     <li class="nav-item panel-desktop">  
-      {{#link-to "panel.statistics" currentWhen="panel" class="nav-link"}}
+      {{#link-to "panel.statistics" current-when="panel.articles panel.projects panel.statistics" class="nav-link"}}
         {{fa-icon "dashboard"}}
         <span class="nav-link-text">Панел</span>
       {{/link-to}}
     </li>    
     <li class="nav-item panel-mobile">  
-      {{#link-to "panel" currentWhen="panel.index" class="nav-link"}}
+      {{#link-to "panel" current-when="panel.index" class="nav-link"}}
         {{fa-icon "dashboard"}}
         <span class="nav-link-text">Панел</span>
       {{/link-to}}
