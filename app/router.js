@@ -16,6 +16,7 @@ Router.map(function() {
     this.route('statistics');
     this.route('articles');
     this.route('projects');
+    this.route('jobs');
   });
 });
 
