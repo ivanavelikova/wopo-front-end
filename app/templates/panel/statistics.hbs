@@ -4,50 +4,44 @@
     <h2>Моите статистики</h2>
     <hr>
     <div class="card-deck-wrapper">
-  <div class="card-deck">
-    <div class="card statistics">
-      <div class="card-block">
-        {{fa-icon "user"}}
-        <div class="card-text pull-xs-right">
-          <h1>
-            23
-          </h1> 
-          <p>
-            последователя
-          </p>
+      <div class="card-deck">
+        <div class="card card-primary statistics">
+          <div class="card-block">
+            {{fa-icon "user"}}
+            <div class="details">
+              <h1>140</h1>
+              <span>последователя</span>
+            </div>
+          </div>
         </div>
-        <div class="card-footer">
-          {{#link-to "panel.statistics" class="btn btn-secondary btn-block"}}
-            Виж повече
-          {{/link-to}}
+        <div class="card card-success statistics">
+          <div class="card-block">
+            {{fa-icon "pencil"}}
+            <div class="details">
+              <h1>10</h1>
+              <span>статии</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="card statistics">
-      <div class="card-block">
-        <p class="card-text">
-          
-        </p>
-        <div class="card-footer">
-          {{#link-to "panel.statistics" class="btn btn-secondary btn-block"}}
-            Виж повече
-          {{/link-to}}
-        </div>
-      </div>
-    </div>
-    <div class="card statistics">
-      <div class="card-block">
-        <p class="card-text">
-          
-        </p>
-        <div class="card-footer">
-          {{#link-to "panel.statistics" class="btn btn-secondary btn-block"}}
-            Виж повече
-          {{/link-to}}
+        <div class="card card-warning statistics">
+          <div class="card-block">
+            {{fa-icon "briefcase"}}
+            <div class="details">
+              <h1>5</h1>
+              <span>проекта</span>
+            </div>
+          </div>
+        </div>        
+        <div class="card card-danger statistics">
+          <div class="card-block">
+            {{fa-icon "user"}}
+            <div class="details">
+              <h1>3</h1>
+              <span>работи</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
   </div>
 </div>
