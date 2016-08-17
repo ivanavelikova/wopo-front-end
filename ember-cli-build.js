@@ -25,6 +25,8 @@ module.exports = function(defaults) {
   if (!process.env.EMBER_CLI_FASTBOOT) {
     app.import(app.bowerDirectory + '/tether/dist/js/tether.min.js');
     app.import(app.bowerDirectory + '/bootstrap/dist/js/bootstrap.min.js');
+    app.import(app.bowerDirectory + '/perfect-scrollbar/css/perfect-scrollbar.min.css');
+    app.import(app.bowerDirectory + '/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js');
   }
 
   return app.toTree();
