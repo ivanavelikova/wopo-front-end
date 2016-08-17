@@ -3,8 +3,8 @@
   <div class="container">
     <h2>Моите статистики</h2>
     <hr>
-    <div class="card-deck-wrapper">
-      <div class="card-deck">
+    <div class="row">
+      <div class="col-xl-3 col-md-6">
         <div class="card card-primary statistics">
           <div class="card-block">
             {{fa-icon "user"}}
@@ -14,6 +14,8 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
         <div class="card card-success statistics">
           <div class="card-block">
             {{fa-icon "pencil"}}
@@ -23,6 +25,8 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
         <div class="card card-warning statistics">
           <div class="card-block">
             {{fa-icon "briefcase"}}
@@ -31,10 +35,12 @@
               <span>проекта</span>
             </div>
           </div>
-        </div>        
+        </div>    
+      </div>
+      <div class="col-xl-3 col-md-6">
         <div class="card card-danger statistics">
           <div class="card-block">
-            {{fa-icon "user"}}
+            {{fa-icon "laptop"}}
             <div class="details">
               <h1>3</h1>
               <span>работи</span>
