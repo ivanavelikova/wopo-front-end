@@ -27,6 +27,7 @@ module.exports = function(defaults) {
     app.import(app.bowerDirectory + '/bootstrap/dist/js/bootstrap.min.js');
     app.import(app.bowerDirectory + '/perfect-scrollbar/css/perfect-scrollbar.min.css');
     app.import(app.bowerDirectory + '/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js');
+    app.import(app.bowerDirectory + '/chart.js/dist/Chart.min.js');
   }
 
   return app.toTree();
