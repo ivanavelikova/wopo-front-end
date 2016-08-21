@@ -2,18 +2,18 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   didInsertElement () {
-    let userCountChart = new Chart(this.$('#userCountChart'), {
+    let attendanceCountChart = new Chart(this.$('#attendanceCountChart'), {
       type: 'line',
       data: {
         labels: ["8.08.", "15.08.", "22.08.", "29.08.", "5.09.", "12.09."],
         datasets: [{
-          label: 'Последователи',
+          label: 'Посещения на портфолиото',
           data: [1, 5, 14, 20, 35, 30],
           backgroundColor: [
-            'rgba(103, 128, 159, 0.2)'
+            'rgba(249, 148, 62, 0.2)'
           ],
           borderColor: [
-            'rgba(103, 128, 159, 1)'
+            'rgba(249, 148, 62, 1)'
           ],
           borderWidth: 1
         }]
@@ -32,6 +32,6 @@ export default Ember.Component.extend({
       }
     });
 
-    this.set('userCountChart', userCountChart);
+    this.set('attendanceCountChart', attendanceCountChart);
   }
 });
