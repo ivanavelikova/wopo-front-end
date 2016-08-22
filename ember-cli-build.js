@@ -29,14 +29,14 @@ module.exports = function(defaults) {
     app.import(app.bowerDirectory + '/perfect-scrollbar/css/perfect-scrollbar.min.css');
     app.import(app.bowerDirectory + '/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js');
     app.import(app.bowerDirectory + '/chart.js/dist/Chart.bundle.min.js');
-    app.import(app.bowerDirectory + '/tinymce/tinymce.min.js', {destDir: 'assets/tinymce'});
-    app.import(app.bowerDirectory + '/tinymce/jquery.tinymce.min.js', {destDir: 'assets/tinymce'});
-    var tinymceAssets = new Funnel(app.bowerDirectory + '/tinymce/', {
+    app.import(app.bowerDirectory + '/summernote/dist/summernote.min.js');
+    app.import(app.bowerDirectory + '/summernote/dist/summernote.css');
+    var summernoteAssets = new Funnel(app.bowerDirectory + '/summernote/dist/', {
       srcDir: '/',
-      include: ['**/*.js', '**/*.css', '**/*.eot', '**/*.svg', '**/*.gif', '**/*.woff', '**/*.ttf'],
+      include: ['**/*.js', '**/*.eot', '**/*.woff', '**/*.ttf'],
       destDir: '/assets'
     });
   }
 
-  return app.toTree(tinymceAssets);
+  return app.toTree(summernoteAssets);
 };

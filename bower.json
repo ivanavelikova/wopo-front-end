@@ -8,6 +8,7 @@
     "bootstrap": "v4.0.0-alpha.3",
     "font-awesome": "~4.5.0",
     "perfect-scrollbar": "^0.6.12",
-    "chart.js": "npm:chart.js#^2.2.1"
+    "chart.js": "npm:chart.js#^2.2.1",
+    "summernote": "^0.8.2"
   }
 }

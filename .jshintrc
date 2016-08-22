@@ -3,8 +3,7 @@
     "document",
     "window",
     "-Promise",
-    "Chart",
-    "tinymce"
+    "Chart"
   ],
   "browser": true,
   "boss": true,
