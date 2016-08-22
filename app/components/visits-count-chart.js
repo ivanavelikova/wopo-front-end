@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   didInsertElement () {
-    let attendanceCountChart = new Chart(this.$('#attendanceCountChart'), {
+    let visitsCountChart = new Chart(this.$('#visitsCountChart'), {
       type: 'line',
       data: {
         labels: ["8.08.", "15.08.", "22.08.", "29.08.", "5.09.", "12.09."],
@@ -32,6 +32,10 @@ export default Ember.Component.extend({
       }
     });
 
-    this.set('attendanceCountChart', attendanceCountChart);
+    this.set('visitsCountChart', visitsCountChart);
+  },
+
+  willDestroyElement () {
+    this.get('visitsCountChart').destroy();
   }
 });

@@ -1,6 +1,7 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var Funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
@@ -28,7 +29,14 @@ module.exports = function(defaults) {
     app.import(app.bowerDirectory + '/perfect-scrollbar/css/perfect-scrollbar.min.css');
     app.import(app.bowerDirectory + '/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js');
     app.import(app.bowerDirectory + '/chart.js/dist/Chart.bundle.min.js');
+    app.import(app.bowerDirectory + '/tinymce/tinymce.min.js', {destDir: 'assets/tinymce'});
+    app.import(app.bowerDirectory + '/tinymce/jquery.tinymce.min.js', {destDir: 'assets/tinymce'});
+    var tinymceAssets = new Funnel(app.bowerDirectory + '/tinymce/', {
+      srcDir: '/',
+      include: ['**/*.js', '**/*.css', '**/*.eot', '**/*.svg', '**/*.gif', '**/*.woff', '**/*.ttf'],
+      destDir: '/assets'
+    });
   }
 
-  return app.toTree();
+  return app.toTree(tinymceAssets);
 };
