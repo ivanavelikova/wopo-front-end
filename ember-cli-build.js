@@ -7,6 +7,9 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     sassOptions: {
       extension: 'sass'
+    },
+    fingerprint: {
+      extensions: ['js', 'css', 'map']
     }
   });
 
