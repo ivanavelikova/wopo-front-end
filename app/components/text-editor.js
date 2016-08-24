@@ -5,6 +5,16 @@ export default Ember.Component.extend({
     const editor = this.$('.summernote');
     editor.summernote({
       height: 200,
+      toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['height', ['height']],
+        ['color', ['color']],
+        ['para', ['style', 'ul', 'ol', 'paragraph', 'heigth']],
+        ['insert', ['picture', 'link', 'video', 'table', 'hr']],
+        ['misc', ['help']]
+      ],
       popover: {
         image: [],
         link: [],

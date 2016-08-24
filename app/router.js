@@ -14,7 +14,9 @@ Router.map(function() {
   this.route('portfolio');
   this.route('panel', function() {
     this.route('statistics');
-    this.route('articles');
+    this.route('articles', function() {
+      this.route('new');
+    });
     this.route('projects');
     this.route('jobs');
   });
