@@ -1,0 +1,28 @@
+.error-top
+  min-width: 131px
+  background: $brand-danger
+  color: #fff
+  text-align: center
+  display: flex
+  align-items: center
+  height: 60vh
+  min-height: 200px
+
+.error-code
+  font-size: 60px
+
+.error-bottom
+  min-width: 131px
+  height: 40vh
+  min-height: 100px
+  display: flex
+  align-items: center
+  justify-content: center
+
+@include media-breakpoint-up(sm)
+  .error-code
+    font-size: 100px
+
+@include media-breakpoint-up(md)
+  .error-code
+    font-size: 120px
