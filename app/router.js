@@ -22,6 +22,7 @@ Router.map(function() {
   });
   this.route('registration');
   this.route('login');
+  this.route('forgot-password');
 });
 
 export default Router;
