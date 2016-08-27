@@ -1,0 +1,19 @@
+<div class="page-wrapper login">
+  <div class="container login">
+    <div class="login-form">
+      <h2 class="text-xs-center">Вход</h2>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" placeholder="E-mail">
+      </div>
+      <div class="form-group">
+        <label for="password">Парола</label>
+        <input type="password" class="form-control" id="password" placeholder="Парола">
+      </div>
+      {{#link-to "index" class="btn btn-success btn-block"}}Вход{{/link-to}}
+    </div>
+    <p class="no-registration text-xs-center">
+      Нямате профил? {{#link-to "registration"}}<b>Регистрация</b>{{/link-to}}
+    </p>
+  </div>
+</div>

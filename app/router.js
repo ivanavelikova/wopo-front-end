@@ -20,6 +20,8 @@ Router.map(function() {
     this.route('projects');
     this.route('jobs');
   });
+  this.route('registration');
+  this.route('login');
 });
 
 export default Router;

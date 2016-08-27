@@ -1,15 +1,12 @@
-hr
-  height: 3px
+.page-wrapper:not(.registration, .login)
+  margin-left: 110px
 
-pre
-  border-radius: 5px
-  background: $gray-lighter
-  padding: 5px 10px
-  margin-bottom: 0.5rem
-  color: #000
+.registration, .login
+  background: #3687c0
 
-blockquote
-  @extend .blockquote
+.container:not(.registration, .login)
+  margin-top: 70px
+  margin-bottom: 20px
 
 .page-title
   @include clearfix()
@@ -23,15 +20,21 @@ blockquote
   &:focus
     outline: none
 
-.page-wrapper
-  margin-left: 110px
-
-.container
-  margin-top: 70px
-  margin-bottom: 20px
-
 .btn-group-title
   margin-top: 20px
+
+hr
+  height: 3px
+
+pre
+  border-radius: 5px
+  background: $gray-lighter
+  padding: 5px 10px
+  margin-bottom: 0.5rem
+  color: #000
+
+blockquote
+  @extend .blockquote
 
 @include media-breakpoint-down(sm)
   .page-wrapper

@@ -1,0 +1,26 @@
+<div class="page-wrapper registration">
+  <div class="container registration">
+    <div class="registration-form">
+      <h2 class="text-xs-center">Регистрация</h2>
+      <div class="form-group">
+        <label for="name">Име</label>
+        <input type="text" class="form-control" id="name" placeholder="Име">
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="E-mail">
+      </div>
+      <div class="form-group">
+        <label for="password">Парола</label>
+        <input type="password" class="form-control" id="password" placeholder="Парола">
+      </div>
+      <p class="terms text-xs-center">
+        С регистрацията Вие се съгласявате с нашите {{#link-to "index"}}Условия на ползване{{/link-to}}.
+      </p>
+      {{#link-to "index" class="btn btn-success btn-block"}}Регистрация{{/link-to}}
+    </div>
+    <p class="no-login text-xs-center">
+      Вече имате профил? {{#link-to "login"}}<b>Вход</b>{{/link-to}}
+    </p>
+  </div>
+</div>
