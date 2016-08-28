@@ -1,18 +1,20 @@
 <div class="auth-wrapper">
-  <div class="auth-form">
-    <h2 class="text-xs-center">Вход</h2>
-    <div class="form-group">
-      <label for="email">E-mail</label>
-      <input type="email" class="form-control" id="email" placeholder="E-mail">
+  <section class="auth-content">
+    <div class="auth-form">
+      <h2 class="text-xs-center">Вход</h2>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" placeholder="Напиши е-mail адреса си">
+      </div>
+      <div class="form-group">
+        <label for="password">Парола</label>
+        <input type="password" class="form-control" id="password" placeholder="Напиши паролата си">
+      </div>
+      {{#link-to "index" class="btn btn-success btn-block"}}Вход{{/link-to}}
     </div>
-    <div class="form-group">
-      <label for="password">Парола</label>
-      <input type="password" class="form-control" id="password" placeholder="Парола">
+    <div class="auth-bottom"> 
+      <p>Нямате профил? {{#link-to "registration"}}Регистрация{{/link-to}}</p>
+      {{#link-to "forgot-password"}}Забравена парола?{{/link-to}}
     </div>
-    {{#link-to "index" class="btn btn-success btn-block"}}Вход{{/link-to}}
-  </div>
-  <div class="auth-bottom"> 
-    <p>Нямате профил? {{#link-to "registration"}}Регистрация{{/link-to}}</p>
-    {{#link-to "forgot-password"}}Забравена парола?{{/link-to}}
-  </div>
+  </section>
 </div>
