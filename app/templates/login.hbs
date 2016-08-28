@@ -1,22 +1,18 @@
-<div class="page-wrapper login">
-  <div class="container login">
-    <div class="login-form">
-      <h2 class="text-xs-center">Вход</h2>
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" class="form-control" id="email" placeholder="E-mail">
-      </div>
-      <div class="form-group">
-        <label for="password">Парола</label>
-        <input type="password" class="form-control" id="password" placeholder="Парола">
-      </div>
-      {{#link-to "index" class="btn btn-success btn-block"}}Вход{{/link-to}}
+<div class="auth-wrapper">
+  <div class="auth-form">
+    <h2 class="text-xs-center">Вход</h2>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" class="form-control" id="email" placeholder="E-mail">
     </div>
-    <p class="no-registration text-xs-center">
-      Нямате профил? {{#link-to "registration"}}<b>Регистрация</b>{{/link-to}}
-    </p>
-    <p class="no-password text-xs-center">
-      {{#link-to "forgot-password"}}Забравена парола?{{/link-to}}
-    </p>
+    <div class="form-group">
+      <label for="password">Парола</label>
+      <input type="password" class="form-control" id="password" placeholder="Парола">
+    </div>
+    {{#link-to "index" class="btn btn-success btn-block"}}Вход{{/link-to}}
+  </div>
+  <div class="auth-bottom"> 
+    <p>Нямате профил? {{#link-to "registration"}}Регистрация{{/link-to}}</p>
+    {{#link-to "forgot-password"}}Забравена парола?{{/link-to}}
   </div>
 </div>

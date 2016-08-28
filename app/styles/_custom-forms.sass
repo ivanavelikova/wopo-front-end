@@ -1,29 +1,30 @@
-.registration-form, .login-form, .password-form
+.auth-form
   margin: 0 auto
   padding: 30px
-  width: 400px
+  width: 100%
+  max-width: 400px
   border-radius: 5px
   background: #fff
 
-  .terms
-    a
-      color: $gray
+  .terms a
+    border-bottom: 2px solid #fff
 
-.no-registration, .no-login
+.auth-bottom
   color: #fff
-  margin-top: 10px
-  margin-bottom: 0
+  padding: 10px
+  text-align: center
+
+  p
+    margin-bottom: 5px
   
   a
-    text-decoration: underline
+    border-bottom: 2px solid #fff
     color: #fff
+    text-decoration: none
 
     &:hover
       color: $gray-lightest
-
-.no-password
-  a
-    color: #fff
+      border-color: $gray-lightest
 
 .form-control
   color: $gray-dark

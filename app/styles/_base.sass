@@ -1,12 +1,15 @@
-.page-wrapper:not(.registration, .login, .password)
+.auth-wrapper
+  min-height: 100vh
+  background: #3687c0
+  padding: 10px
+  box-sizing: border-box
+
+.page-wrapper
   margin-left: 110px
 
-.registration, .login, .password
-  background: #3687c0
-
-.container:not(.registration, .login, .password)
+.container
   margin-top: 70px
-  margin-bottom: 20px
+  margin-bottom: 20px    
 
 .page-title
   @include clearfix()
