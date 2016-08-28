@@ -4,14 +4,26 @@
   padding: 0 15px
 
   .navbar-brand
-    color: #fff
-    padding: 0
+    @include clearfix()
+    height: 50px
+    padding: 13.5px 0
 
-    &:hover
-      color: $gray-light
+    .logo-symbol
+      float: left
+      height: 23px
 
-    &:focus
-      color: #fff
+      svg
+        height: 23px
+        vertical-align: top
+
+    .logo-text
+      float: left
+      height: 23px
+      margin-left: 7px
+
+      svg
+        height: 23px
+        vertical-align: top
 
   .nav-item + .nav-item
     margin: 0
@@ -101,7 +113,6 @@
   .nav-item.panel-desktop,
   .nav-link-text
     display: none
-
 
 @include media-breakpoint-up(md)
   .notifications-mobile,
