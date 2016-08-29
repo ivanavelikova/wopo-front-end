@@ -14,7 +14,7 @@
         <label for="password">Парола</label>
         <input type="password" class="form-control" id="password" placeholder="Напиши паролата си">
       </div>
-      {{#link-to "index" class="btn btn-success btn-block"}}Вход{{/link-to}}
+      <button class="btn btn-success btn-block" {{action "login"}}>Вход</button>
     </div>
     <div class="auth-bottom"> 
       <p>Нямате профил? {{#link-to "registration"}}Регистрация{{/link-to}}</p>
