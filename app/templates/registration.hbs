@@ -6,22 +6,33 @@
     {{/link-to}}
     <div class="auth-form">
       <h2 class="text-xs-center">Регистрация</h2>
-      <div class="form-group">
-        <label for="name">Име</label>
-        {{input type="text" class="form-control" id="name" placeholder="Напиши името си" value=name}}
-      </div>
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        {{input type="email" class="form-control" id="email" placeholder="Напиши е-mail адреса си" value=email}}
-      </div>
-      <div class="form-group">
-        <label for="password">Парола</label>
-        {{input type="password" class="form-control" id="password" placeholder="Напиши паролата си" value=password}}
-      </div>
+      {{validated-input model=model
+        label="Име"
+        value=name
+        valuePath="name"
+        type="text"
+        placeholder="Напиши името си"
+        autocomplete="off"
+      }}
+      {{validated-input model=model
+        label="E-mail"
+        value=email
+        valuePath="email"
+        type="email"
+        placeholder='Напиши е-mail адреса си'
+        autocomplete="off"
+      }}
+      {{validated-input model=model
+        label="Парола"
+        value=password
+        valuePath='password'
+        type="password"
+        placeholder='Напиши паролата си'
+      }}
       <p class="terms text-xs-center">
         С регистрацията Вие се съгласявате с нашите {{#link-to "index"}}Условия на ползване{{/link-to}}.
       </p>
-      <button class="btn btn-success btn-block" {{action "register"}}>Регистрация</button>
+      <button class="btn btn-success btn-block" disabled={{v-get model 'isInvalid'}} {{action "register"}}>Регистрация</button>
     </div>
     <div class="auth-bottom"> 
       <p>Вече имате профил? {{#link-to "login"}}Вход{{/link-to}}</p>
