@@ -17,8 +17,12 @@ Router.map(function() {
     this.route('articles', function() {
       this.route('new');
     });
-    this.route('projects');
-    this.route('jobs');
+    this.route('projects', function() {
+      this.route('new');
+    });
+    this.route('jobs', function() {
+      this.route('new');
+    });
   });
   this.route('registration');
   this.route('login');

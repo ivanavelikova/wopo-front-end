@@ -39,6 +39,9 @@ module.exports = function(defaults) {
       include: ['**/*.js', '**/*.eot', '**/*.woff', '**/*.ttf'],
       destDir: '/assets'
     });
+    app.import(app.bowerDirectory + '/moment/min/moment.min.js');
+    app.import(app.bowerDirectory + '/bootstrap-daterangepicker/daterangepicker-bs3.css');
+    app.import(app.bowerDirectory + '/bootstrap-daterangepicker/daterangepicker.js');
   }
 
   return app.toTree(summernoteAssets);
