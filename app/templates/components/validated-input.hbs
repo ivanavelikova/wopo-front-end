@@ -1,29 +1,18 @@
-<div class="form-group">
+<div class="form-group {{if isValid "has-success" (if showErrorMessage "has-danger")}}">
   <label for={{valuePath}}>{{label}}</label>
   {{input
     type=type
     value=value
     placeholder=placeholder
-    class="form-control"
+    class=(concat "form-control" " " (if isValid "form-control-success" (if showErrorMessage "form-control-danger")))
     name=valuePath
     id=valuePath
     autocomplete=autocomplete
   }}
-  {{#if isValid}}
-    <span class="valid-input fa fa-check"></span>
-  {{/if}}
 
-  <div class="input-error">
+  <div class="form-control-feedback">
     {{#if showErrorMessage}}
-      <div class="error">
         {{v-get model valuePath 'message'}}
-      </div>
-    {{/if}}
-
-    {{#if showWarningMessage}}
-      <div class="warning">
-        {{v-get model valuePath 'warningMessage'}}
-      </div>
     {{/if}}
   </div>
 </div>
