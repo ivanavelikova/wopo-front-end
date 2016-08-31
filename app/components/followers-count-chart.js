@@ -9,12 +9,8 @@ export default Ember.Component.extend({
         datasets: [{
           label: 'Последователи',
           data: [1, 5, 14, 20, 35, 30],
-          backgroundColor: [
-            'rgba(103, 128, 159, 0.2)'
-          ],
-          borderColor: [
-            'rgba(103, 128, 159, 1)'
-          ],
+          backgroundColor: 'rgba(103, 128, 159, 0.2)',
+          borderColor: 'rgba(103, 128, 159, 1)',
           borderWidth: 1
         }]
       },

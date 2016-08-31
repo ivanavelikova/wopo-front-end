@@ -7,7 +7,7 @@ export default Ember.Component.extend({
       height: 200,
       toolbar: [
         ['style', ['bold', 'italic', 'underline', 'clear']],
-        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['font', ['fontname' , 'strikethrough', 'superscript', 'subscript']],
         ['fontsize', ['fontsize']],
         ['height', ['height']],
         ['color', ['color']],

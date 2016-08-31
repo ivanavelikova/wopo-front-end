@@ -9,12 +9,8 @@ export default Ember.Component.extend({
         datasets: [{
           label: 'Посещения на портфолиото',
           data: [1, 5, 14, 20, 35, 30],
-          backgroundColor: [
-            'rgba(249, 148, 62, 0.2)'
-          ],
-          borderColor: [
-            'rgba(249, 148, 62, 1)'
-          ],
+          backgroundColor: 'rgba(249, 148, 62, 0.2)',
+          borderColor: 'rgba(249, 148, 62, 1)',
           borderWidth: 1
         }]
       },

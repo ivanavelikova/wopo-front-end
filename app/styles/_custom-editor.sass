@@ -2,7 +2,10 @@
   .panel-heading.note-toolbar
     background: #ddd
 
-    .note-para .dropdown-menu
+    .note-para .dropdown-menu,
+    .dropdown-fontname,
+    .dropdown-fontsize, 
+    .dropdown-line-height
       width: 185px
       margin: 0
       padding: 0
@@ -15,16 +18,17 @@
           display: block
           color: $gray-dark
           padding: 5px
-          
+            
+          &.checked
+            background: $gray-lighter
+            pointer-events: none
+
           &:hover
             text-decoration: none
 
           p, pre
             margin: 0
 
-      .dropdown-fontname
-        font-size: 14px
-    
   .note-btn.dropdown-toggle::after
     display: none
 
