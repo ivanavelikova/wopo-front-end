@@ -4,8 +4,21 @@
       {{logo-symbol class="logo-symbol"}}
       {{logo-text class="logo-text"}}
     {{/link-to}}
-    <div class="auth-form">
+    <form {{action "register" on="submit"}} class="auth-form">
       <h2 class="text-xs-center">Регистрация</h2>
+      
+      {{#if showSuccessAlert}}
+        <div class="alert alert-success" role="alert">
+          {{alerts.success}}
+        </div>
+      {{/if}}
+      
+      {{#if showDangerAlert}}
+        <div class="alert alert-danger" role="alert">
+          {{alerts.danger}}
+        </div>
+      {{/if}}
+
       {{validated-input model=model
         label="Име"
         value=name
@@ -13,6 +26,7 @@
         type="text"
         placeholder="Напиши името си"
         autocomplete="off"
+        disabled=disableForm
       }}
       {{validated-input model=model
         label="E-mail"
@@ -21,6 +35,7 @@
         type="email"
         placeholder='Напиши е-mail адреса си'
         autocomplete="off"
+        disabled=disableForm
       }}
       {{validated-input model=model
         label="Парола"
@@ -28,12 +43,13 @@
         valuePath='password'
         type="password"
         placeholder='Напиши паролата си'
+        disabled=disableForm
       }}
       <p class="terms text-xs-center">
         С регистрацията Вие се съгласявате с нашите {{#link-to "index"}}Условия на ползване{{/link-to}}.
       </p>
-      <button class="btn btn-success btn-block" disabled={{v-get model 'isInvalid'}} {{action "register"}}>Регистрация</button>
-    </div>
+      <button role="submit" class="btn btn-success btn-block" disabled={{disableForm}}>Регистрация</button>
+    </form>
     <div class="auth-bottom"> 
       <p>Вече имате профил? {{#link-to "login"}}Вход{{/link-to}}</p>
     </div>

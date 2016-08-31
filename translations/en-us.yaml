@@ -31,3 +31,7 @@ errors:
   email: "{description} must be a valid email address"
   phone: "{description} must be a valid phone number"
   url: "{description} must be a valid url"
+  fill: "Please fill all inputs and try submitting again."
+  serverFail: "There is an error with server. Please try again later."
+success:
+  registration: "Please verify your email address using link which we sent to {email}."

@@ -3,7 +3,8 @@
     "document",
     "window",
     "-Promise",
-    "Chart"
+    "Chart",
+    "$"
   ],
   "browser": true,
   "boss": true,
