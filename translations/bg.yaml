@@ -4,7 +4,7 @@ errors:
   exclusion: "{description} е резервиран"
   invalid: "{description} е невалиден"
   confirmation: "{description} не съвпада с {on}"
-  # accepted: "{description} must be accepted"
+  accepted: "{description} must be accepted"
   empty: "{description} не може да се остави празно"
   blank: "{description} не може да се остави празно"
   present: "{description} трябва да е празно"
