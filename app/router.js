@@ -23,6 +23,9 @@ Router.map(function() {
     this.route('jobs', function() {
       this.route('new');
     });
+    this.route('theme', function() {
+      this.route('store');
+    });
   });
   this.route('registration');
   this.route('login');
