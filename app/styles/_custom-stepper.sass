@@ -1,0 +1,43 @@
+.stepper
+  height: 450px
+  background: $gray-lighter
+  
+  .steps
+    height: 72px
+    background: #fff
+    position: relative
+    display: flex
+    justify-content: space-between
+    
+    .divider
+      display: inline-block
+      border: 1px solid $gray
+      position: absolute
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+      margin: auto
+      height: 2px
+
+    .btn-link
+      background: #fff
+      line-height: 54px
+      text-decoration: none
+      outline: none
+      z-index: 1
+      position: relative
+      display: block
+
+      &:active, &:hover, &:focus
+        background: $gray-lightest
+
+      .tag
+        width: 25px
+        height: 25px
+        line-height: 25px
+        padding: 0
+
+      .title
+        font-size: 16px
+        margin-left: 5px

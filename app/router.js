@@ -30,6 +30,7 @@ Router.map(function() {
   this.route('registration');
   this.route('login');
   this.route('forgot-password');
+  this.route('firststeps');
 });
 
 export default Router;

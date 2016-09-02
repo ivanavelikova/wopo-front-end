@@ -1,15 +1,25 @@
-.auth-wrapper
+.center-wrapper
   min-height: 100vh
-  background: #3687c0
   padding: 10px
   box-sizing: border-box
   display: flex
-  -webkit-align-items: center
+  align-items: center
 
-.auth-content
+  &--auth
+    background: #3687c0
+  
+  &--stepper
+    background: $gray-lighter
+
+.center-content
   margin: auto
   width: 100%
-  max-width: 400px
+
+  &--auth
+    max-width: 400px
+
+  &--stepper
+    max-width: 960px
 
 .page-wrapper
   margin-left: 110px
