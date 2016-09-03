@@ -1,24 +1,23 @@
 .stepper
-  height: 450px
   background: $gray-lighter
   
-  .steps
+  .stepper-top
     height: 72px
     background: #fff
     position: relative
     display: flex
     justify-content: space-between
-    
+
     .divider
       display: inline-block
-      border: 1px solid $gray
+      border-top: 1px solid $gray-lighter
       position: absolute
       left: 0
       right: 0
       top: 0
       bottom: 0
       margin: auto
-      height: 2px
+      height: 1px
 
     .btn-link
       background: #fff
@@ -31,6 +30,18 @@
 
       &:active, &:hover, &:focus
         background: $gray-lightest
+      
+      &.done
+        color: $brand-success
+
+        .tag
+          background: $brand-success
+
+      &.locked
+        color: $gray
+
+        .tag
+          background: $gray
 
       .tag
         width: 25px
@@ -41,3 +52,8 @@
       .title
         font-size: 16px
         margin-left: 5px
+  
+  .stepper-content
+    width: 100%
+    padding: 30px
+    background: pink
