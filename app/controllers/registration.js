@@ -18,6 +18,8 @@ export default Ember.Controller.extend({
 
   actions: {
     register() {
+      const intl = this.get('intl');
+
       // ------
       // Validation fail
       // ------
@@ -26,7 +28,7 @@ export default Ember.Controller.extend({
         $('html, body').animate({ scrollTop: 0 });
 
         this.set('alerts.success', null);
-        this.set('alerts.danger', this.get('intl').t('errors.fill'));
+        this.set('alerts.danger', intl.t('errors.fill'));
         return;
       }
 
@@ -49,18 +51,13 @@ export default Ember.Controller.extend({
         registerAction.set('disableForm', false);
         $('html, body').animate({ scrollTop: 0 });
 
-        registerAction
-          .set('alerts.success', registerAction.get('intl').t('success.registration', {
-            email: registerAction.get('email')
-          }));
+        registerAction.set('alerts.success', intl.t('success.registration'));
 
-        // Reset form
         $('input').blur();
         registerAction.set('name', null);
         registerAction.set('email', null);
         registerAction.set('password', null);
         registerAction.set('didValidate', false);
-        registerAction.send('dismissAlert');
       }
 
       function failure(reason) {
@@ -69,15 +66,15 @@ export default Ember.Controller.extend({
 
         registerAction.set('alerts.success', null);
         
-        if (!reason.errors[0].detail) {
-          registerAction.set('alerts.danger', registerAction.get('intl').t('errors.serverFail'));
+        if (!reason.errors || !reason.errors[0].detail) {
+          registerAction.set('alerts.danger', intl.t('errors.serverFail'));
           return;
         }
 
         registerAction.set('alerts.danger', reason.errors[0].detail);
       }
 
-      user.save().then(showSuccessAlert).catch(failure);
+      user.save().then(showSuccessAlert, failure).catch(failure);
     }
   }
 });
