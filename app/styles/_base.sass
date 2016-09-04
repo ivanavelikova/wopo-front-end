@@ -21,12 +21,14 @@
   &--stepper
     max-width: 960px
 
-.page-wrapper
-  margin-left: 110px
-
 .container
   margin-top: 70px
-  margin-bottom: 20px    
+  margin-bottom: 20px
+
+.page-tabs
+  margin: 20px
+  display: flex
+  justify-content: center
 
 .page-title
   @include clearfix()
@@ -55,7 +57,3 @@ pre
 
 blockquote
   @extend .blockquote
-
-@include media-breakpoint-down(sm)
-  .page-wrapper
-    margin-left: 0
