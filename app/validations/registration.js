@@ -5,7 +5,7 @@ const Validations = buildValidations({
     validator('presence', true),
     validator('length', {
       min: 2,
-      max: 128
+      max: 255
     })
   ],
   email: [
@@ -19,7 +19,7 @@ const Validations = buildValidations({
     validator('presence', true),
     validator('length', {
       min: 8,
-      max: 128
+      max: 255
     })
   ]
 }, {
