@@ -34,4 +34,4 @@ errors:
   fill: "Please fill all inputs and try submitting again."
   serverFail: "There is an error with server. Please try again later."
 success:
-  registration: "Please verify your email address using link which we sent to {email}."
+  registration: "Please verify your account using link which we sent to your email."
