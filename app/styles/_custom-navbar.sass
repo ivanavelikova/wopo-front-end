@@ -25,6 +25,9 @@
         height: 23px
         vertical-align: top
 
+  .navbar-nav.pull-sm-right
+    text-align: right
+
   .nav-item + .nav-item
     margin: 0
 
@@ -99,25 +102,33 @@
     .fa
       padding-right: 3px
 
-@include media-breakpoint-down(sm)
+@include media-breakpoint-down(xs)
   .navbar-nav
     text-align: center
 
     .nav-item
       display: inline-block
       float: none
+
       .fa
         font-size: 20px
         padding: 0
-        
-  .navbar-brand,
+
+@include media-breakpoint-down(sm)
   .dropdown.nav-item.options,
-  .dropdown.nav-item.notifications-desktop,
-  .nav-item.panel-desktop,
-  .nav-link-text
+  .dropdown.nav-item.notifications-desktop
     display: none
+
+@include media-breakpoint-down(md)
+  .navbar .nav-item
+    .fa
+      font-size: 20px
+      padding: 0
+
+    .nav-link-text
+      display: none
 
 @include media-breakpoint-up(md)
   .notifications-mobile,
-  .panel-mobile
+  .settings-mobile
     display: none

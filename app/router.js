@@ -8,7 +8,6 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('settings');
   this.route('notifications');
-  this.route('statistics');
   this.route('articles');
   this.route('portfolio');
   this.route('registration');
@@ -31,6 +30,7 @@ Router.map(function() {
   this.route('theme', function() {
     this.route('store');
   });
+  this.route('dashboard');
 });
 
 export default Router;
