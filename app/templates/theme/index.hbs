@@ -1,1 +1,31 @@
 {{nav-bar}}
+<div class="container">
+  <div class="page-title">
+    <h2 class="pull-xs-left">Инсталирани теми</h2>
+    {{#link-to "theme.store" class="btn btn-success pull-xs-right"}}
+      {{fa-icon "shopping-cart"}} Магазин
+    {{/link-to}}
+  </div>
+  <div class="card-columns">
+    <div class="card card-block">
+      <h4 class="card-title">Alive</h4>
+      <hr>
+      <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
+      <p class="card-text">Alive is a theme with space colours...</p>
+      <hr>
+      {{#link-to "content.articles.index" class="card-link"}}Посети{{/link-to}}
+      {{#link-to "content.articles.index" class="card-link"}}Редактирай{{/link-to}}
+      {{#link-to "content.articles.index" class="card-link"}}Изтрий{{/link-to}}
+    </div>
+    <div class="card card-block">
+      <h4 class="card-title">Illuminate</h4>
+      <hr>
+      <img class="img-fluid m-x-auto d-block" src="http://goo.gl/IVBfOQ" alt="Irises">
+      <p class="card-text">Illuminate is a theme with pale colours...</p>
+      <hr>
+      {{#link-to "content.articles.index" class="card-link"}}Посети{{/link-to}}
+      {{#link-to "content.articles.index" class="card-link"}}Редактирай{{/link-to}}
+      {{#link-to "content.articles.index" class="card-link"}}Изтрий{{/link-to}}
+    </div>
+  </div>
+</div>
