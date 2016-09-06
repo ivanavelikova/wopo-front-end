@@ -31,9 +31,43 @@
     margin-top: 120px
 
 .page-tabs
-  margin: 20px
-  display: flex
-  justify-content: center
+  margin: 20px 0
+  position: relative
+
+  &.fade-left:before
+    content: ""
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .3) 0%, rgba(0, 0, 0, .1), rgba(51, 51, 51, 0) 10%) !important
+    width: 100%
+    height: 38px
+    top: 0
+    position: absolute
+    z-index: 3
+    pointer-events: none
+
+  &.fade-right:after
+    content: ""
+    background-image: linear-gradient(to right, rgba(51, 51, 51, 0) 90%, rgba(0, 0, 0, .1), rgba(0, 0, 0, .3) 100%) !important
+    width: 100%
+    height: 38px
+    top: 0
+    position: absolute
+    z-index: 3
+    pointer-events: none
+
+  .page-tabs-scroll
+    overflow: hidden
+    height: 45px
+    overflow-x: auto!important
+    overflow-y: hidden!important
+    white-space: nowrap!important
+    -webkit-overflow-scrolling: touch!important
+    -ms-overflow-style: -ms-autohiding-scrollbar!important
+
+    .btn-group
+      display: flex
+
+      @include media-breakpoint-up(sm)
+        justify-content: center
 
 .page-title
   @include clearfix()
