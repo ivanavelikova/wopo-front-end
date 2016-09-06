@@ -45,6 +45,7 @@
     "ember-intl": "2.13.1",
     "ember-intl-cp-validations": "2.3.0",
     "ember-load-initializers": "^0.5.1",
+    "ember-page-title": "3.0.7",
     "ember-resolver": "^2.0.3",
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1"
