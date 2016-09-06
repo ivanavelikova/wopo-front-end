@@ -13,7 +13,8 @@ const Validations = buildValidations({
     validator('format', {
       regex: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
       messageKey: 'errors.email'
-    })
+    }),
+    validator('unique-email')
   ],
   password: [
     validator('presence', true),
