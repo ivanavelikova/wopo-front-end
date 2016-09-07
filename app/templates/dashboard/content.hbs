@@ -1,0 +1,10 @@
+<div class="container">
+  {{#page-tabs}}
+      {{#link-to "dashboard.content.articles.index" class="btn btn-secondary"}}Статии{{/link-to}}
+      {{#link-to "dashboard.content.projects.index" class="btn btn-secondary"}}Проекти{{/link-to}}
+      {{#link-to "dashboard.content.jobs.index" class="btn btn-secondary"}}Работни места{{/link-to}}
+      {{#link-to "dashboard.content.information" class="btn btn-secondary"}}Информация{{/link-to}}
+  {{/page-tabs}}
+
+  {{outlet}}
+</div>

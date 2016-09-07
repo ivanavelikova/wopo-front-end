@@ -1,0 +1,77 @@
+{{title "Табло"}}
+<div class="container">
+  <div class="page-title">
+    <h2 class="pull-xs-left">Табло</h2>
+    {{#link-to "dashboard.index" class="btn btn-success pull-xs-right"}}
+      Изтегляне на портфолиото
+    {{/link-to}}
+  </div>
+  <div class="row">
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-primary statistics">
+        <div class="card-block">
+          {{fa-icon "user"}}
+          <div class="details">
+            <h1>140</h1>
+            <span>последователя</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-success statistics">
+        <div class="card-block">
+          {{fa-icon "pencil"}}
+          <div class="details">
+            <h1>10</h1>
+            <span>статии</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-warning statistics">
+        <div class="card-block">
+          {{fa-icon "briefcase"}}
+          <div class="details">
+            <h1>5</h1>
+            <span>проекта</span>
+          </div>
+        </div>
+      </div>    
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-danger statistics">
+        <div class="card-block">
+          {{fa-icon "laptop"}}
+          <div class="details">
+            <h1>3</h1>
+            <span>работи</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card">
+        <div class="card-header">
+          Посещения на портфолиото          
+        </div>
+        <div class="card-block">
+          {{visits-count-chart}}
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="card">
+        <div class="card-header">
+          Последователи          
+        </div>
+        <div class="card-block">
+          {{followers-count-chart}}
+        </div>
+      </div>
+    </div>      
+  </div>
+</div>
