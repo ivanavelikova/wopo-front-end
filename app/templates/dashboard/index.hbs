@@ -2,9 +2,6 @@
 <div class="container">
   <div class="page-title">
     <h2 class="pull-xs-left">Табло</h2>
-    {{#link-to "dashboard.index" class="btn btn-success pull-xs-right"}}
-      Изтегляне на портфолиото
-    {{/link-to}}
   </div>
   <div class="row">
     <div class="col-xl-3 col-md-6">
@@ -13,7 +10,7 @@
           {{fa-icon "user"}}
           <div class="details">
             <h1>140</h1>
-            <span>последователя</span>
+            <span>посещения от днес</span>
           </div>
         </div>
       </div>
@@ -46,7 +43,7 @@
           {{fa-icon "laptop"}}
           <div class="details">
             <h1>3</h1>
-            <span>работи</span>
+            <span>работни места</span>
           </div>
         </div>
       </div>
@@ -56,22 +53,12 @@
     <div class="col-xs-12">
       <div class="card">
         <div class="card-header">
-          Посещения на портфолиото          
+          Посещения на портфолиото
         </div>
         <div class="card-block">
           {{visits-count-chart}}
         </div>
       </div>
-    </div>
-    <div class="col-xs-12">
-      <div class="card">
-        <div class="card-header">
-          Последователи          
-        </div>
-        <div class="card-block">
-          {{followers-count-chart}}
-        </div>
-      </div>
-    </div>      
+    </div>     
   </div>
 </div>
