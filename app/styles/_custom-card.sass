@@ -7,7 +7,7 @@
     position: absolute
 
     h1
-      float: right
+      text-align: right
       display: block
       margin: 0
 
@@ -20,15 +20,26 @@
     float: left
     color: rgba(255, 255, 255, .4)
 
-.card-columns
-  @include media-breakpoint-only(sm)
-    column-count: 1
-
-  @include media-breakpoint-between(md, lg)
-    column-count: 2
-
 .card
   text-align: center
-  
-  img
-    padding-bottom: 1em
+
+  .card-title
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+    padding-bottom: 1rem
+    margin-bottom: 1rem
+
+  .card-img
+    height: 200px
+    display: flex
+    align-items: center
+    margin-bottom: 1rem
+
+    img
+      max-height: 200px
+
+  .card-text
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+    padding-bottom: 1rem
