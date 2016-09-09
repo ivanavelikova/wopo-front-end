@@ -23,21 +23,20 @@ Router.map(function() {
       this.route('projects', function() {
         this.route('new');
       });
-      
+
       this.route('information');
+      this.route('others');
     });
-    
+
     this.route('theme', function() {
       this.route('store');
     });
 
-    this.route('settings', function() {
-      this.route('country');
-      this.route('language');
-      this.route('general');
-    });
-    
     this.route('notifications');
+    this.route('settings', function() {
+      this.route('portfolio');
+      this.route('profile');
+    });
   });
 });
 
