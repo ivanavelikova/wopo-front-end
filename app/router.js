@@ -38,6 +38,10 @@ Router.map(function() {
       this.route('profile');
     });
   });
+
+  this.route('users', function() {
+    this.route('confirmation');
+  });
 });
 
 export default Router;

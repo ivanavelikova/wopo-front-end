@@ -19,7 +19,10 @@ export default Ember.Controller.extend({
         password: registerAction.get('password')
       });
 
-      user.save().then(success, failure).catch(failure);
+      user
+        .save()
+        .then(success)
+        .catch(failure);
 
       function success () {
         registerAction.set('disableForm', false);

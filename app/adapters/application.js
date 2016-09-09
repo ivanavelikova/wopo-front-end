@@ -5,7 +5,7 @@ const { inject: { service } } = Ember;
 
 export default DS.RESTAdapter.extend({
   cookies: service(),
-  intl: Ember.inject.service(),
+  intl: service(),
 
   host: 'http://localhost:3333',
   headers: Ember.computed(function() {
