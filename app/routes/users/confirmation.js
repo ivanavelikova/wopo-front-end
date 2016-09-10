@@ -15,6 +15,11 @@ export default Ember.Route.extend({
   },
 
   renderTemplate(controller) {
+    if (this.get('session.isAuthenticated')) {
+      this.render('errors/four-oh-four');
+      return;
+    }
+
     const email = controller.get('email');
     const confirmationCode = controller.get('confirmationCode');
 
@@ -26,7 +31,7 @@ export default Ember.Route.extend({
     this.get('session')
       .authenticate('authenticator:confirmation-jwt', email, confirmationCode)
       .then(() => {
-        this.transitionTo('dashboard');
+        this.transitionTo('welcome');
       })
       .catch(() => {
         this.render('errors/four-oh-four');
