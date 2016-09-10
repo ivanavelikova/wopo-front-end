@@ -1,7 +1,10 @@
 import Ember from 'ember';
 import Validations from '../validations/registration';
+import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
-export default Ember.Route.extend(Validations, {
+const registrationMixin = Ember.Mixin.create(Validations, UnauthenticatedRouteMixin);
+
+export default Ember.Route.extend(registrationMixin, {
   model () {
     return this;
   }
