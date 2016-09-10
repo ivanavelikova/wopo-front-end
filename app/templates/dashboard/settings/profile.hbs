@@ -31,13 +31,17 @@
   <div class="section-title">
     <h4 class="pull-xs-left">Държава</h4>
   </div>
-  {{country-picker}}
+  <div class="form-group">
+    {{x-select2 options=countries}}
+  </div>
 </section>
 <section class="settings">
   <div class="section-title">
     <h4 class="pull-xs-left">Език</h4>
   </div>
-  {{language-picker}}
+  <div class="form-group">
+    {{x-select2 options=languages}}
+  </div>
 </section>
 <section class="settings">
   <div class="section-title">
