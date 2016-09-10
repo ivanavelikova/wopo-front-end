@@ -1,9 +1,10 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
 const { inject: { service } } = Ember;
 
-export default DS.RESTAdapter.extend({
+export default DS.RESTAdapter.extend(DataAdapterMixin, {
   cookies: service(),
   intl: service(),
 
@@ -14,5 +15,6 @@ export default DS.RESTAdapter.extend({
       'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
       'X-Locale': this.get('intl').get('locale')[0]
     };
-  }).volatile()
+  }).volatile(),
+  authorizer: 'authorizer:jwt'
 });
