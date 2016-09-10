@@ -42,6 +42,9 @@ module.exports = function(defaults) {
     app.import(app.bowerDirectory + '/moment/min/moment.min.js');
     app.import(app.bowerDirectory + '/bootstrap-daterangepicker/daterangepicker-bs3.css');
     app.import(app.bowerDirectory + '/bootstrap-daterangepicker/daterangepicker.js');
+    app.import(app.bowerDirectory + '/select2/dist/css/select2.min.css');
+    app.import(app.bowerDirectory + '/select2-bootstrap-theme/dist/select2-bootstrap.min.css');
+    app.import(app.bowerDirectory + '/select2/dist/js/select2.min.js');
   }
 
   return app.toTree(summernoteAssets);
