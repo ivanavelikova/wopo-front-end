@@ -9,7 +9,7 @@ Router.map(function() {
   this.route('registration');
   this.route('login');
   this.route('forgot-password');
-  this.route('firststeps');
+  this.route('welcome');
   this.route('dashboard', function() {
     this.route('content', function() {
       this.route('articles', function() {
