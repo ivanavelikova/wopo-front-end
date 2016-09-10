@@ -24,8 +24,19 @@ Router.map(function() {
         this.route('new');
       });
 
-      this.route('information');
       this.route('others');
+
+      this.route('skills', function() {
+        this.route('new');
+      });
+
+      this.route('education', function() {
+        this.route('new');
+      });
+
+      this.route('certificates', function() {
+        this.route('new');
+      });
     });
 
     this.route('theme', function() {
