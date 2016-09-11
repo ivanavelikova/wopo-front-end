@@ -55,6 +55,7 @@
     pointer-events: none
 
   .page-tabs-scroll
+    text-align: center
     overflow: hidden
     height: 45px
     overflow-x: auto!important
@@ -64,10 +65,10 @@
     -ms-overflow-style: -ms-autohiding-scrollbar!important
 
     .btn-group
-      display: flex
+      font-size: 0
 
-      @include media-breakpoint-up(sm)
-        justify-content: center
+      .btn
+        float: none
 
 .page-title
   @include clearfix()
