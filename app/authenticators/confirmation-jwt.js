@@ -11,6 +11,7 @@ export default JWT.extend({
   store: service(),
   cookies: service(),
   intl: service(),
+  session: service(),
 
   authenticate(email, confirmationCode) {
     return new RSVP.Promise((resolve, reject) => {
@@ -21,6 +22,9 @@ export default JWT.extend({
           reject('token is missing in server response');
           return;
         }
+
+        this.set('session.data.portfolioDone', false);
+        this.get('session.store').persist(this.get('session.data'));
 
         resolve(response);
       }, reject);
