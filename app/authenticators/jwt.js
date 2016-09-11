@@ -21,7 +21,19 @@ export default Base.extend({
         return;
       }
 
-      resolve(data);
+      const headers = {
+        'Authorization': `Bearer ${data.token}`
+      };
+
+      this.makeRequest('users/session/check', {}, headers).then(success, failure);
+
+      function success () {
+        resolve(data);
+      }
+
+      function failure (reason) {
+        reject(reason.responseJSON.errors[0].detail);
+      }
     });
   },
 
@@ -52,9 +64,17 @@ export default Base.extend({
     return !isEmpty(data[property]);
   },
 
-  makeRequest(path, data) {
+  makeRequest(path, data, assignHeaders) {
     const csrfToken = this.get('cookies').read('XSRF-TOKEN');
     const host = this.get('store').adapterFor('application').get('host');
+    let headers = {
+      'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+      'X-Locale': this.get('intl').get('locale')[0]
+    };
+
+    if (assignHeaders) {
+      headers = Object.assign(assignHeaders, headers);
+    }
 
     const options = {
       url: `${host}/${path}`,
@@ -62,10 +82,7 @@ export default Base.extend({
       type: 'POST',
       dataType: 'json',
       contentType: 'application/x-www-form-urlencoded',
-      headers: {
-        'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
-        'X-Locale': this.get('intl').get('locale')[0]
-      }
+      headers
     };
 
     return jQuery.ajax(options);
