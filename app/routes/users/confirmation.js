@@ -30,9 +30,6 @@ export default Ember.Route.extend({
 
     this.get('session')
       .authenticate('authenticator:confirmation-jwt', email, confirmationCode)
-      .then(() => {
-        this.transitionTo('welcome');
-      })
       .catch(() => {
         this.render('errors/four-oh-four');
       });

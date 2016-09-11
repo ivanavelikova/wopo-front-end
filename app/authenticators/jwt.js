@@ -40,11 +40,6 @@ export default Base.extend({
           return;
         }
 
-        this.set('session.data.portfolioDone', response.portfolioDone);
-        this.get('session.store').persist(this.get('session.data'));
-
-        delete response.portfolioDone;
-
         resolve(response);
       }, reject);
     });

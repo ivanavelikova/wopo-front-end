@@ -18,22 +18,7 @@ export default Ember.Controller.extend({
 
       this.get('session')
         .authenticate('authenticator:jwt', email, password)
-        .then(success)
         .catch(failure);
-
-      function success () {
-        $('input').blur();
-        loginAction.set('email', null);
-        loginAction.set('password', null);
-        loginAction.set('didValidate', false);
-
-        if (loginAction.get('session.data.portfolioDone') === false) {
-          loginAction.transitionToRoute('welcome');
-          return;
-        }
-
-        loginAction.transitionToRoute('dashboard');
-      }
 
       function failure (reason) {
         loginAction.set('disableForm', false);

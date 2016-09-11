@@ -19,8 +19,7 @@ export default JWT.extend({
           return;
         }
 
-        this.set('session.data.portfolioDone', false);
-        this.get('session.store').persist(this.get('session.data'));
+        response.portfolioDone = false;
 
         resolve(response);
       }, reject);
