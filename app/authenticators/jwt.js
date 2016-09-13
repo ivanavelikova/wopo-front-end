@@ -17,6 +17,7 @@ export default Base.extend({
   restore(data) {
     return new RSVP.Promise((resolve, reject) => {
       if (!this._validate(data)) {
+        console.log('here');
         reject();
         return;
       }
@@ -25,13 +26,16 @@ export default Base.extend({
         'Authorization': `Bearer ${data.token}`
       };
 
-      this.makeRequest('users/session/check', {}, headers).then(success, failure);
+      this
+        .makeRequest('users/session/check', {}, headers)
+        .then(success, failure);
 
       function success () {
         resolve(data);
       }
 
       function failure (reason) {
+        console.log('hereee');
         reject(reason.responseJSON.errors[0].detail);
       }
     });
@@ -68,9 +72,12 @@ export default Base.extend({
     const csrfToken = this.get('cookies').read('XSRF-TOKEN');
     const host = this.get('store').adapterFor('application').get('host');
     let headers = {
-      'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
-      'X-Locale': this.get('intl').get('locale')[0]
+      'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
     };
+
+    if (this.get('intl').get('locale')) {
+      headers['X-Locale'] = this.get('intl').get('locale')[0];
+    }
 
     if (assignHeaders) {
       headers = Object.assign(assignHeaders, headers);
