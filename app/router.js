@@ -53,6 +53,7 @@ Router.map(function() {
   this.route('users', function() {
     this.route('confirmation');
   });
+  this.route('reset-password');
 });
 
 export default Router;

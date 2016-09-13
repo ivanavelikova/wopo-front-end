@@ -4,6 +4,11 @@ export default Ember.Controller.extend({
   intl: Ember.inject.service(),
   session: Ember.inject.service(),
 
+  queryParams: ['email', {
+    resetCode: 'reset_code'
+  }],
+  email: null,
+  resetCode: null,
   disableForm: false,
   alert: {
     type: null,
@@ -11,24 +16,25 @@ export default Ember.Controller.extend({
   },
 
   actions: {
-    login() {
-      const loginAction = this;
+    resetPassword() {
+      const thisAction = this;
       const email = this.get('email');
+      const resetCode = this.get('resetCode');
       const password = this.get('password');
 
       this.get('session')
-        .authenticate('authenticator:jwt', email, password)
+        .authenticate('authenticator:resetpassword-jwt', email, resetCode, password)
         .catch(failure);
 
       function failure (reason) {
-        loginAction.set('disableForm', false);
-        let alertContent = loginAction.get('intl').t('errors.serverFail');
+        thisAction.set('disableForm', false);
+        let alertContent = thisAction.get('intl').t('errors.serverFail');
 
         if (reason.responseJSON.errors[0].detail) {
           alertContent = reason.responseJSON.errors[0].detail;
         }
 
-        loginAction.set('alert', {
+        thisAction.set('alert', {
           type: 'danger',
           content: alertContent
         });
