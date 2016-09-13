@@ -5,15 +5,6 @@ const { inject: { service } } = Ember;
 export default Ember.Route.extend({
   session: service(),
 
-  queryParams: {
-    email: {
-      refreshModel: true
-    },
-    confirmationCode: {
-      refreshModel: true
-    }
-  },
-
   renderTemplate(controller) {
     if (this.get('session.isAuthenticated')) {
       this.render('errors/four-oh-four');
