@@ -5,11 +5,25 @@ const UniqueEmail = BaseValidator.extend({
   store: Ember.inject.service(),
   intl: Ember.inject.service(),
 
-  validate(value) {
+  validate(value, options) {
+    let condition = true;
+
+    if (options.unique === false) {
+      condition = false;
+    }
+
     return this.get('store')
       .queryRecord('user', { email: value })
       .then(result => {
-        return Ember.isEmpty(result) ? true : this.get('intl').t('errors.uniqueEmail');
+        if (Ember.isEmpty(result) !== condition && condition === true) {
+          return this.get('intl').t('errors.uniqueEmail');
+        }
+
+        if (Ember.isEmpty(result) !== condition && condition === false) {
+          return this.get('intl').t('errors.notUniqueEmail');
+        }
+
+        return true;
       });
   }
 });

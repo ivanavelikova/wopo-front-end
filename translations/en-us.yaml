@@ -35,6 +35,7 @@ errors:
   fill: "Please fill all inputs and try submitting again."
   serverFail: "There is an error with server. Please try again later."
   uniqueEmail: "E-mail was taken by someone else."
+  notUniqueEmail: "There is no registered user with this E-mail."
   notFound: "Page not found."
 success:
   registration: "Please verify your account using link which we sent to your email."
