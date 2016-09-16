@@ -1,9 +1,7 @@
 import Ember from 'ember';
+import fetch from 'ember-network/fetch';
 
-const {
-  $: jQuery,
-  inject: { service }
-} = Ember;
+const { inject: { service } } = Ember;
 
 export default Ember.Controller.extend({
   cookies: service(),
@@ -20,23 +18,49 @@ export default Ember.Controller.extend({
   actions: {
     sendForgotPasswordLink() {
       const thisAction = this;
-      const email = this.get('email');
+      const email = 'asd';
       const csrfToken = this.get('cookies').read('XSRF-TOKEN');
       const host = this.get('store').adapterFor('application').get('host');
 
-      const options = {
-        url: `${host}/users/forgot-password`,
-        data: { email },
-        type: 'POST',
-        dataType: 'json',
-        contentType: 'application/x-www-form-urlencoded',
+      const init = {
+        method: 'POST',
         headers: {
           'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
-          'X-Locale': this.get('intl').get('locale')[0]
-        }
+          'X-Locale': this.get('intl').get('locale')[0],
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
       };
 
-      jQuery.ajax(options).then(success, failure);
+      fetch(`${host}/users/forgot-password`, init)
+        .then(checkStatus)
+        .then(parseJSON)
+        .then(success)
+        .catch(function (error) {
+          if (!error.response) {
+            failure(error);
+            return;
+          }
+
+          return error.response.json().then(function(reason) {
+            failure(reason);
+          });
+        });
+
+      function checkStatus (response) {
+        if (response.status >= 200 && response.status < 300) {
+          return response;
+        } else {
+          var error = new Error(response.statusText);
+          error.response = response;
+          throw error;
+        }
+      }
+
+      function parseJSON (response) {
+        return response.json();
+      }
 
       function success () {
         thisAction.set('disableForm', false);
@@ -54,8 +78,8 @@ export default Ember.Controller.extend({
         thisAction.set('disableForm', false);
         let alertContent = thisAction.get('intl').t('errors.serverFail');
 
-        if (reason.responseJSON.errors[0].detail) {
-          alertContent = reason.responseJSON.errors[0].detail;
+        if (reason.errors && reason.errors[0].detail) {
+          alertContent = reason.errors[0].detail;
         }
 
         thisAction.set('alert', {
