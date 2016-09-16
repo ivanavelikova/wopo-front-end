@@ -24,8 +24,8 @@ export default Ember.Controller.extend({
         loginAction.set('disableForm', false);
         let alertContent = loginAction.get('intl').t('errors.serverFail');
 
-        if (reason.responseJSON.errors[0].detail) {
-          alertContent = reason.responseJSON.errors[0].detail;
+        if (reason.errors[0].detail) {
+          alertContent = reason.errors[0].detail;
         }
 
         loginAction.set('alert', {

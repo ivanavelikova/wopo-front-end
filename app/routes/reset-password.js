@@ -1,10 +1,8 @@
 import Ember from 'ember';
+import fetch from 'ember-network/fetch';
 import Validations from '../validations/reset-password';
 
-const {
-  $: jQuery,
-  inject: { service }
-} = Ember;
+const { inject: { service } } = Ember;
 
 export default Ember.Route.extend(Validations, {
   cookies: service(),
@@ -34,28 +32,40 @@ export default Ember.Route.extend(Validations, {
 
     const csrfToken = this.get('cookies').read('XSRF-TOKEN');
     const host = this.get('store').adapterFor('application').get('host');
-    const options = {
-      url: `${host}/users/reset-password/check`,
-      data: { email, resetCode },
-      type: 'POST',
-      dataType: 'json',
-      contentType: 'application/x-www-form-urlencoded',
+
+    const init = {
+      method: 'POST',
       headers: {
         'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
-        'X-Locale': this.get('intl').get('locale')[0]
-      }
+        'X-Locale': this.get('intl').get('locale')[0],
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, resetCode })
     };
 
-    jQuery.ajax(options).then(success, failure);
+    fetch(`${host}/users/reset-password/check`, init)
+      .then(checkStatus)
+      .then(parseJSON)
+      .then(() => {
+        thisRoute.render('reset-password');
+      })
+      .catch(() => {
+        thisRoute.render('errors/four-oh-four');
+      });
 
-    function success () {
-      thisRoute.render('reset-password');
+    function checkStatus (response) {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      } else {
+        let error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
     }
 
-    function failure () {
-      thisRoute.render('errors/four-oh-four');
+    function parseJSON (response) {
+      return response.json();
     }
-
-    // check resetcode
   }
 });

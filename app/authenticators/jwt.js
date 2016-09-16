@@ -1,9 +1,9 @@
 import Ember from 'ember';
+import fetch from 'ember-network/fetch';
 import Base from 'ember-simple-auth/authenticators/base';
 
 const {
   RSVP,
-  $: jQuery,
   isEmpty,
   inject: { service }
 } = Ember;
@@ -28,15 +28,27 @@ export default Base.extend({
 
       this
         .makeRequest('users/session/check', {}, headers)
-        .then(success, failure);
+        .then(() => {
+          resolve(data);
+        })
+        .catch(error => {
+          if (!error.response) {
+            failure(error);
+            return;
+          }
 
-      function success () {
-        resolve(data);
-      }
+          error.response.json().then(function(reason) {
+            failure(reason);
+          });
+        });
 
       function failure (reason) {
-        console.log('hereee');
-        reject(reason.responseJSON.errors[0].detail);
+        if (reason.errors && reason.errors[0].detail) {
+          reject(reason.errors[0].detail);
+          return;
+        }
+
+        reject(reason);
       }
     });
   },
@@ -45,19 +57,30 @@ export default Base.extend({
     return new RSVP.Promise((resolve, reject) => {
       const data = { email, password };
 
-      this.makeRequest('users/session', data).then(response => {
-        if (!this._validate(response)) {
-          reject('token is missing in server response');
-          return;
-        }
+      this.makeRequest('users/session', data)
+        .then(response => {
+          if (!this._validate(response)) {
+            reject('token is missing in server response');
+            return;
+          }
 
-        if (!this._validate(response, 'portfolioDone')) {
-          reject('portfolioDone is missing in server response');
-          return;
-        }
+          if (!this._validate(response, 'portfolioDone')) {
+            reject('portfolioDone is missing in server response');
+            return;
+          }
 
-        resolve(response);
-      }, reject);
+          resolve(response);
+        })
+        .catch(error => {
+          if (!error.response) {
+            reject(error);
+            return;
+          }
+
+          error.response.json().then(function(reason) {
+            reject(reason);
+          });
+        });
     });
   },
 
@@ -69,7 +92,9 @@ export default Base.extend({
     const csrfToken = this.get('cookies').read('XSRF-TOKEN');
     const host = this.get('store').adapterFor('application').get('host');
     let headers = {
-      'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
+      'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     };
 
     if (this.get('intl').get('locale')) {
@@ -80,15 +105,28 @@ export default Base.extend({
       headers = Object.assign(assignHeaders, headers);
     }
 
-    const options = {
-      url: `${host}/${path}`,
-      data,
-      type: 'POST',
-      dataType: 'json',
-      contentType: 'application/x-www-form-urlencoded',
-      headers
+    const init = {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(data)
     };
 
-    return jQuery.ajax(options);
+    return fetch(`${host}/${path}`, init)
+      .then(checkStatus)
+      .then(parseJSON);
+
+    function checkStatus (response) {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      } else {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
+    }
+
+    function parseJSON (response) {
+      return response.json();
+    }
   }
 });

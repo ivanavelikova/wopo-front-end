@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
   actions: {
     sendForgotPasswordLink() {
       const thisAction = this;
-      const email = 'asd';
+      const email = this.get('email');
       const csrfToken = this.get('cookies').read('XSRF-TOKEN');
       const host = this.get('store').adapterFor('application').get('host');
 
@@ -37,30 +37,16 @@ export default Ember.Controller.extend({
         .then(checkStatus)
         .then(parseJSON)
         .then(success)
-        .catch(function (error) {
+        .catch(error => {
           if (!error.response) {
             failure(error);
             return;
           }
 
-          return error.response.json().then(function(reason) {
+          error.response.json().then(function(reason) {
             failure(reason);
           });
         });
-
-      function checkStatus (response) {
-        if (response.status >= 200 && response.status < 300) {
-          return response;
-        } else {
-          var error = new Error(response.statusText);
-          error.response = response;
-          throw error;
-        }
-      }
-
-      function parseJSON (response) {
-        return response.json();
-      }
 
       function success () {
         thisAction.set('disableForm', false);
@@ -86,6 +72,20 @@ export default Ember.Controller.extend({
           type: 'danger',
           content: alertContent
         });
+      }
+
+      function checkStatus (response) {
+        if (response.status >= 200 && response.status < 300) {
+          return response;
+        } else {
+          let error = new Error(response.statusText);
+          error.response = response;
+          throw error;
+        }
+      }
+
+      function parseJSON (response) {
+        return response.json();
       }
     }
   }

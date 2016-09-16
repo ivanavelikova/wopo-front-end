@@ -30,8 +30,8 @@ export default Ember.Controller.extend({
         thisAction.set('disableForm', false);
         let alertContent = thisAction.get('intl').t('errors.serverFail');
 
-        if (reason.responseJSON.errors[0].detail) {
-          alertContent = reason.responseJSON.errors[0].detail;
+        if (reason.errors[0].detail) {
+          alertContent = reason.errors[0].detail;
         }
 
         thisAction.set('alert', {
