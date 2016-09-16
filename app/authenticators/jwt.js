@@ -17,7 +17,6 @@ export default Base.extend({
   restore(data) {
     return new RSVP.Promise((resolve, reject) => {
       if (!this._validate(data)) {
-        console.log('here');
         reject();
         return;
       }

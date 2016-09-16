@@ -13,16 +13,27 @@ export default JWT.extend({
     return new RSVP.Promise((resolve, reject) => {
       const data = { email, confirmationCode };
 
-      this.makeRequest('users/confirmation', data).then(response => {
-        if (!this._validate(response)) {
-          reject('token is missing in server response');
-          return;
-        }
+      this.makeRequest('users/confirmation', data)
+        .then(response => {
+          if (!this._validate(response)) {
+            reject('token is missing in server response');
+            return;
+          }
 
-        response.portfolioDone = false;
+          response.portfolioDone = false;
 
-        resolve(response);
-      }, reject);
+          resolve(response);
+        })
+        .catch(error => {
+          if (!error.response) {
+            reject(error);
+            return;
+          }
+
+          error.response.json().then(function(reason) {
+            reject(reason);
+          });
+        });
     });
   }
 });

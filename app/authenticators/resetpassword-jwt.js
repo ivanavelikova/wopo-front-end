@@ -13,19 +13,30 @@ export default JWT.extend({
     return new RSVP.Promise((resolve, reject) => {
       const data = { email, resetCode, password };
 
-      this.makeRequest('users/reset-password', data).then(response => {
-        if (!this._validate(response)) {
-          reject('token is missing in server response');
-          return;
-        }
+      this.makeRequest('users/reset-password', data)
+        .then(response => {
+          if (!this._validate(response)) {
+            reject('token is missing in server response');
+            return;
+          }
 
-        if (!this._validate(response, 'portfolioDone')) {
-          reject('portfolioDone is missing in server response');
-          return;
-        }
+          if (!this._validate(response, 'portfolioDone')) {
+            reject('portfolioDone is missing in server response');
+            return;
+          }
 
-        resolve(response);
-      }, reject);
+          resolve(response);
+        })
+        .catch(error => {
+          if (!error.response) {
+            reject(error);
+            return;
+          }
+
+          error.response.json().then(function(reason) {
+            reject(reason);
+          });
+        });
     });
   }
 });
