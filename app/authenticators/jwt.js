@@ -61,9 +61,6 @@ export default Base.extend({
     });
   },
 
-  invalidate(/*data*/) {
-  },
-
   _validate(data, property = 'token') {
     return !isEmpty(data[property]);
   },

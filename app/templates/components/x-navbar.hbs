@@ -33,10 +33,10 @@
           Профил
         {{/link-to}}
         <div class="dropdown-divider"></div>
-        {{#link-to "dashboard.index" class="dropdown-item"}}
+        <button class="dropdown-item" {{action 'logout'}}>
           {{fa-icon "sign-out"}}
           <span>Изход</span>
-        {{/link-to}}
+        </button>
       </div>
     </li>
   </ul>
