@@ -1,26 +1,29 @@
 <div class="stepper">
   <div class="stepper-top">
     <div class="divider"></div>
-    <button class="btn btn-link done">
+    <div class="step done">
       <span class="tag tag-pill tag-primary">{{fa-icon "check"}}</span>
-      <span class="title">Избери тема</span>
-    </button>
-    <button class="btn btn-link active">
+      <span class="title">{{ firstStepTitle }}</span>
+    </div>
+    <div class="step active">
       <span class="tag tag-pill tag-primary">2</span>
-      <span class="title">Попълни информацията</span>
-    </button>
-    <button class="btn btn-link locked">
+      <span class="title">{{ secondStepTitle }}</span>
+    </div>
+    <div class="step locked">
       <span class="tag tag-pill tag-primary">3</span>
-      <span class="title">Публикувай</span>
-    </button>
+      <span class="title">{{ ThirdStepTitle }}</span>
+    </div>
   </div>
-  <div class="stepper-content">
-    <h2>1</h2>
+  <div class="stepper-content {{if isFirst "show"}}">
+    {{yield firstContent}}
+    <button class="btn btn-primary" {{action "firstNext"}}>Напред</button>
   </div>
-  <div class="stepper-content">
-    <h2>2</h2>
+  <div class="stepper-content {{if isSecond "show"}}">
+    {{yield secondContent}}
+    <button class="btn btn-primary" {{action "secondNext"}}>Напред</button>
   </div>
-  <div class="stepper-content">
-    <h2>3</h2>
+  <div class="stepper-content {{if isThird "show"}}">
+    {{yield thirdContent}}
+    <button class="btn btn-primary" {{action thirdAction}}>Завърши</button>
   </div>
 </div>

@@ -1,0 +1,19 @@
+{{title "Първи стъпки"}}
+
+{{#x-stepper
+  firstStepTitle="Избери тема"
+  firstAction=(action "theme")
+  secondStepTitle="Попълни информацията"
+  secondAction=(action "content")
+  thirdStepTitle="Публикувай"
+  thirdAction=(action "finish")
+  as |section|
+}}
+  {{#if section.isFirstContent}}
+    <h2>1</h2>
+  {{else if section.isSecondContent}}
+    <h2>2</h2>
+  {{else if section.isThirdContent}}
+    <h2>3</h2>
+  {{/if}}
+{{/x-stepper}}

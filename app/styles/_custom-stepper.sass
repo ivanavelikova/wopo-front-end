@@ -20,18 +20,16 @@
       margin: auto
       height: 1px
 
-    .btn-link
+    .step
       background: #fff
       height: 72px
-      line-height: 54px
+      line-height: 72px
+      padding: 0 20px
       text-decoration: none
       outline: none
       z-index: 1
       position: relative
       display: block
-
-      &:active, &:hover, &:focus
-        background: $gray-lightest
       
       &.done
         color: $brand-success
@@ -59,3 +57,6 @@
     width: 100%
     padding: 30px
     background: pink
+
+    &:not(.show)
+      display: none
