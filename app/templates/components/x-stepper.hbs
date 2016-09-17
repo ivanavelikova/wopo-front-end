@@ -16,14 +16,20 @@
   </div>
   <div class="stepper-content {{if isFirst "show"}}">
     {{yield firstContent}}
-    <button class="btn btn-primary" {{action "firstNext"}}>Напред</button>
   </div>
   <div class="stepper-content {{if isSecond "show"}}">
     {{yield secondContent}}
-    <button class="btn btn-primary" {{action "secondNext"}}>Напред</button>
   </div>
   <div class="stepper-content {{if isThird "show"}}">
     {{yield thirdContent}}
-    <button class="btn btn-primary" {{action thirdAction}}>Завърши</button>
+  </div>
+  <div class="stepper-bottom">
+    {{#if isFirst}}
+      <button class="btn btn-primary" {{action "firstNext"}}>Напред</button>
+    {{else if isSecond}}
+      <button class="btn btn-primary" {{action "secondNext"}}>Напред</button>
+    {{else if isThird}}
+      <button class="btn btn-primary" {{action thirdAction}}>Завърши</button>
+    {{/if}}
   </div>
 </div>

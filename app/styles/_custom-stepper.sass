@@ -2,6 +2,7 @@
   background: $gray-lighter
   
   .stepper-top
+    border-bottom: 1px solid $gray-lighter
     background: #fff
     position: relative
     display: flex
@@ -56,7 +57,12 @@
   .stepper-content
     width: 100%
     padding: 30px
-    background: pink
+    background: #fff
 
     &:not(.show)
       display: none
+
+  .stepper-bottom
+    border-top: 1px solid $gray-lighter
+    background: #fff
+    padding: 20px

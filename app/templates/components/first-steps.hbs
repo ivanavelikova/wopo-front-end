@@ -10,7 +10,36 @@
   as |section|
 }}
   {{#if section.isFirstContent}}
-    <h2>1</h2>
+    <div class="row">
+      <div class="col-xl-4 col-md-6">
+        <div class="card card-block">
+          <div class="card-title">
+            <h4 class="pull-xs-left">Belong</h4>
+            <div class="btn btn-secondary pull-xs-right">
+              Избери
+            </div>
+          </div>
+          <div class="card-img">
+            <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
+          </div>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus purus in nulla lobortis eleifend. Curabitur at euismod leo.</p>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6">
+        <div class="card card-block">
+          <div class="card-title">
+            <h4 class="pull-xs-left">Belong</h4>
+            <div class="btn btn-success pull-xs-right">
+              Избрана
+            </div>
+          </div>
+          <div class="card-img">
+            <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
+          </div>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus purus in nulla lobortis eleifend. Curabitur at euismod leo.</p>
+        </div>
+      </div>
+    </div>
   {{else if section.isSecondContent}}
     <h2>2</h2>
   {{else if section.isThirdContent}}
