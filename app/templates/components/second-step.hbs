@@ -1,6 +1,95 @@
 {{#if show}}
   <div class="stepper-content">
-    <h2>2</h2>
+    <section class="information">
+      <div class="section-title">
+        <h5 class="pull-xs-left">За Вас</h5>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="description" rows="3" placeholder="Моето страхотно описание..."></textarea>
+      </div>
+    </section>
+    <section class="information">
+      <div class="section-title">
+        <h5 class="pull-xs-left">Умения</h5>
+        {{#link-to "dashboard.content.skills.new" class="btn btn-success pull-xs-right"}}
+          Ново умение
+        {{/link-to}}
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-md-6">
+          <div class="card card-block">
+            <h5 class="card-title">Photoshop</h5>
+            {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
+            {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="information">
+      <div class="section-title">
+        <h5 class="pull-xs-left">Работни места</h5>
+        {{#link-to "dashboard.content.jobs.new" class="btn btn-success pull-xs-right"}}
+          Ново работно място
+        {{/link-to}}
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-md-6">
+          <div class="card card-block">
+            <h5 class="card-title">Художник</h5>
+            <h6 class="card-subtitle text-muted">20.10.2015 - 23.06.2016</h6>
+            <p class="card-text border">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus purus in nulla lobortis eleifend. Curabitur at euismod leo.</p>
+            {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
+            {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="information">
+      <div class="section-title">
+        <h5 class="pull-xs-left">Образование и обучение</h5>
+        {{#link-to "dashboard.content.education.new" class="btn btn-success pull-xs-right"}}
+          Ново учебно заведение
+        {{/link-to}}
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-md-6">
+          <div class="card card-block">
+            <h5 class="card-title">СОУ "Сава Доброплодни"</h5>
+            <h6 class="card-subtitle text-muted">15.09.2012 - 14.05.2016</h6>
+            {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
+            {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="information">
+      <div class="section-title">
+        <h5 class="pull-xs-left">Сертификати и отличия</h5>
+        {{#link-to "dashboard.content.certificates.new" class="btn btn-success pull-xs-right"}}
+          Качване на сертификат
+        {{/link-to}}
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-md-6">
+          <div class="card card-block">
+            <h5 class="card-title">Първо място в категория "Мултимедийни презентации" на НЕТ "Джон Атанасов" 2015</h5>      
+            <div class="card-img">
+              <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
+            </div>
+            {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
+            {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="information">
+      <div class="section-title">
+        <h5 class="pull-xs-left">Импортиране на статии</h5>
+        {{#link-to "dashboard.content.certificates.new" class="btn btn-success pull-xs-right"}}
+          Импорт
+        {{/link-to}}
+      </div>
+    </section>
   </div>
   <div class="stepper-bottom">
     <button class="btn btn-primary" {{action "back"}}>Назад</button>
