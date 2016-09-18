@@ -1,6 +1,58 @@
-{{title "Добре дошли"}}
-<div class="center-wrapper center-wrapper--stepper">
-  <div class="center-content center-content--stepper">
-    {{first-steps}}
+{{title pageTitle}}
+<div class="center-wrapper center-wrapper--welcome">
+  <div class="center-content center-content--welcome">
+    {{#if showWelcome}}
+      <div class="welcome">
+        <h1>Добре дошли в wopo!</h1>
+        <h2>Веднага можете да започнете да създавате портфолиото си, използвайки бутона по-долу.</h2>
+        <button class="btn btn-primary" {{action "start"}}>Започни</button>
+      </div>
+    {{else}}
+      <div class="stepper">
+        <div class="stepper-top">
+          <div class="divider"></div>
+          <div class="step {{if isFirst "active" "done"}}">
+            <span class="tag tag-pill tag-primary">
+              {{#if isFirst}}
+                1
+              {{else}}
+                {{fa-icon "check"}}
+              {{/if}}
+            </span>
+            <span class="title">Избери тема</span>
+          </div>
+          <div class="step {{if isSecond "active" (if isThird "done" "locked")}}">
+            <span class="tag tag-pill tag-primary">
+              {{#if isThird}}
+                {{fa-icon "check"}}
+              {{else}}
+                2
+              {{/if}}
+            </span>
+            <span class="title">Попълни информацията</span>
+          </div>
+          <div class="step {{if isThird "active" "locked"}}">
+            <span class="tag tag-pill tag-primary">3</span>
+            <span class="title">Публикувай</span>
+          </div>
+        </div>
+
+        {{first-step
+          nextAction=(action "firstNext")
+          show=isFirst
+        }}
+
+        {{second-step
+          nextAction=(action "secondNext")
+          backAction=(action "secondBack")
+          show=isSecond
+        }}
+
+        {{third-step
+          backAction=(action "thirdBack")
+          show=isThird
+        }}
+      </div>
+    {{/if}}
   </div>
 </div>

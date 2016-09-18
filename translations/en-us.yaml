@@ -1,4 +1,6 @@
 home: "Home"
+welcome: "Welcome"
+firstSteps: "First steps"
 errors:
   description: "This field"
   inclusion: "{description} is not included in the list."

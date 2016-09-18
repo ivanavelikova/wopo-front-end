@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('first-steps', 'Integration | Component | first steps', {
+moduleForComponent('first-step', 'Integration | Component | first step', {
   integration: true
 });
 
@@ -9,15 +9,15 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{first-steps}}`);
+  this.render(hbs`{{first-step}}`);
 
   assert.equal(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
-    {{#first-steps}}
+    {{#first-step}}
       template block text
-    {{/first-steps}}
+    {{/first-step}}
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');

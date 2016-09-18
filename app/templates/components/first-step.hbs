@@ -1,23 +1,17 @@
-{{title "Първи стъпки | wopo" replace=true}}
-
-{{#x-stepper
-  firstStepTitle="Избери тема"
-  firstAction=(action "theme")
-  secondStepTitle="Попълни информацията"
-  secondAction=(action "content")
-  thirdStepTitle="Публикувай"
-  thirdAction=(action "finish")
-  as |section|
-}}
-  {{#if section.isFirstContent}}
+{{#if show}}
+  <div class="stepper-content">
     <div class="row">
       <div class="col-xl-4 col-md-6">
         <div class="card card-block">
           <div class="card-title">
             <h4 class="pull-xs-left">Belong</h4>
-            <div class="btn btn-secondary pull-xs-right">
-              Избери
-            </div>
+            <button class="btn btn-{{if isFirstTheme 'success' 'secondary'}} pull-xs-right" {{action "selectTheme" 1}}>
+              {{#if isFirstTheme}}
+                Избрана
+              {{else}}
+                Избери
+              {{/if}}
+            </button>
           </div>
           <div class="card-img">
             <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
@@ -29,8 +23,12 @@
         <div class="card card-block">
           <div class="card-title">
             <h4 class="pull-xs-left">Belong</h4>
-            <div class="btn btn-success pull-xs-right">
-              Избрана
+            <div class="btn btn-{{if isSecondTheme 'success' 'secondary'}} pull-xs-right" {{action "selectTheme" 2}}>
+              {{#if isSecondTheme}}
+                Избрана
+              {{else}}
+                Избери
+              {{/if}}
             </div>
           </div>
           <div class="card-img">
@@ -40,9 +38,8 @@
         </div>
       </div>
     </div>
-  {{else if section.isSecondContent}}
-    <h2>2</h2>
-  {{else if section.isThirdContent}}
-    <h2>3</h2>
-  {{/if}}
-{{/x-stepper}}
+  </div>
+  <div class="stepper-bottom">
+    <button class="btn btn-primary" {{action "next"}}>Напред</button>
+  </div>
+{{/if}}

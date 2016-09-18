@@ -1,4 +1,6 @@
 home: "Начало"
+welcome: "Добре дошли"
+firstSteps: "Първи стъпки"
 errors:
   description: "Това поле"
   inclusion: "{description} не е включено в листа."
