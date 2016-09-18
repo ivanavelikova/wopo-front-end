@@ -13,7 +13,7 @@ export default JWT.extend({
     return new RSVP.Promise((resolve, reject) => {
       const data = { email, resetCode, password };
 
-      this.makeRequest('users/reset-password', data)
+      this.makeRequest('reset-password', data)
         .then(response => {
           if (!this._validate(response)) {
             reject('token is missing in server response');

@@ -44,7 +44,7 @@ export default Ember.Route.extend(Validations, {
       body: JSON.stringify({ email, resetCode })
     };
 
-    fetch(`${host}/users/reset-password/check`, init)
+    fetch(`${host}/reset-password/check`, init)
       .then(checkStatus)
       .then(parseJSON)
       .then(() => {

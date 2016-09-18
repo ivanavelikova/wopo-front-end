@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
         body: JSON.stringify({ email })
       };
 
-      fetch(`${host}/users/forgot-password`, init)
+      fetch(`${host}/forgot-password`, init)
         .then(checkStatus)
         .then(parseJSON)
         .then(success)

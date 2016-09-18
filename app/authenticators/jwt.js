@@ -26,7 +26,7 @@ export default Base.extend({
       };
 
       this
-        .makeRequest('users/session/check', {}, headers)
+        .makeRequest('session/check', {}, headers)
         .then(() => {
           resolve(data);
         })
@@ -56,7 +56,7 @@ export default Base.extend({
     return new RSVP.Promise((resolve, reject) => {
       const data = { email, password };
 
-      this.makeRequest('users/session', data)
+      this.makeRequest('session', data)
         .then(response => {
           if (!this._validate(response)) {
             reject('token is missing in server response');
