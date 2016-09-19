@@ -1,12 +1,15 @@
 import Ember from 'ember';
 import Validations from '../validations/first-step';
 
-const { computed, inject: { service } } = Ember;
+const {
+  computed,
+  inject: { service }
+} = Ember;
 
 export default Ember.Component.extend(Validations, {
   storage: service(),
 
-  themeId: computed.reads('storage.themeId'),
+  themeId: computed.alias('storage.themeId'),
 
   isFirstTheme: computed('themeId', function () {
     if (this.get('themeId') === 1) {
@@ -31,7 +34,7 @@ export default Ember.Component.extend(Validations, {
     },
 
     selectTheme (id) {
-      this.set('storage.themeId', id);
+      this.set('themeId', id);
     }
   }
 });

@@ -10,23 +10,27 @@ export default Ember.Controller.extend({
   intl: service(),
   storage: service(),
 
-  currentStep: 0,
+  currentStep: computed.alias('storage.currentStep'),
 
   init () {
     this._super(...arguments);
+
+    if (this.get('currentStep') && this.get('currentStep') > 0) {
+      this.set('pageTitle', this.get('intl').t('firstSteps'));
+      return;
+    }
 
     this.set('pageTitle', this.get('intl').t('welcome'));
   },
 
   changeTitle: observer('currentStep', function () {
-    this.set('storage.currentStep', this.get('currentStep'));
-    if (this.get('currentStep') !== 0) {
+    if (this.get('currentStep') && this.get('currentStep') > 0) {
       this.set('pageTitle', this.get('intl').t('firstSteps'));
     }
   }),
 
   showWelcome: computed('currentStep', function () {
-    if (this.get('currentStep') === 0) {
+    if (!this.get('currentStep')) {
       return true;
     }
   }),
