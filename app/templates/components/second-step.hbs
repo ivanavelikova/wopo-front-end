@@ -11,9 +11,23 @@
     <section class="information">
       <div class="section-title">
         <h5 class="pull-xs-left">Умения</h5>
-        {{#link-to "dashboard.content.skills.new" class="btn btn-success pull-xs-right"}}
-          Ново умение
-        {{/link-to}}
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.skill">Ново умение</div>
+      </div>
+      <div class="modal fade bd-example-modal-lg skill" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="section-title">
+              <h2 class="pull-xs-left">Ново умение</h2>
+            </div>
+            <div class="form-group">
+              <label for="title">Име</label>
+              <input type="text" name="title" class="form-control" id="title" placeholder="Photoshop...">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Добави</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-xl-4 col-md-6">
@@ -28,9 +42,31 @@
     <section class="information">
       <div class="section-title">
         <h5 class="pull-xs-left">Работни места</h5>
-        {{#link-to "dashboard.content.jobs.new" class="btn btn-success pull-xs-right"}}
-          Ново работно място
-        {{/link-to}}
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.job">Ново работно място</div>
+      </div>
+      <div class="modal fade bd-example-modal-lg job" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="section-title">
+              <h2 class="pull-xs-left">Ново работно място</h2>
+            </div>
+            <div class="form-group">
+              <label for="title">Име</label>
+              <input type="text" name="title" class="form-control" id="title" placeholder="Художник...">
+            </div>
+            <div class="form-group">
+              <label for="content">Описание</label>
+              {{text-editor}}
+            </div>
+            <div class="form-group">
+              <label for="datepicker">Времеви период</label>
+              {{date-picker}}
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Добави</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-xl-4 col-md-6">
@@ -47,14 +83,32 @@
     <section class="information">
       <div class="section-title">
         <h5 class="pull-xs-left">Образование и обучение</h5>
-        {{#link-to "dashboard.content.education.new" class="btn btn-success pull-xs-right"}}
-          Ново учебно заведение
-        {{/link-to}}
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.education">Ново учебно заведение</div>
+      </div>
+      <div class="modal fade bd-example-modal-lg education" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="section-title">
+              <h2 class="pull-xs-left">Ново учебно заведение</h2>
+            </div>
+            <div class="form-group">
+              <label for="title">Име</label>
+              <input type="text" name="title" class="form-control" id="title" placeholder="СУ 'Сава Доброплодни' ">
+            </div>
+            <div class="form-group">
+              <label for="datepicker">Времеви период</label>
+              {{date-picker}}
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Добави</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-xl-4 col-md-6">
           <div class="card card-block">
-            <h5 class="card-title">СОУ "Сава Доброплодни"</h5>
+            <h5 class="card-title">СУ "Сава Доброплодни"</h5>
             <h6 class="card-subtitle text-muted">15.09.2012 - 14.05.2016</h6>
             {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
             {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
@@ -65,10 +119,28 @@
     <section class="information">
       <div class="section-title">
         <h5 class="pull-xs-left">Сертификати и отличия</h5>
-        {{#link-to "dashboard.content.certificates.new" class="btn btn-success pull-xs-right"}}
-          Качване на сертификат
-        {{/link-to}}
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.certificates">Ново отличие</div>
       </div>
+      <div class="modal fade bd-example-modal-lg certificates" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="section-title">
+              <h2 class="pull-xs-left">Ново отличие</h2>
+            </div>
+            <div class="form-group">
+              <label for="title">Име</label>
+              <input type="text" name="title" class="form-control" id="title" placeholder="Награда от състезанието...">
+            </div>
+            <div class="form-group">
+              <label for="image">Снимка</label>
+              <input type="file" class="form-control-file" id="image">
+            </div> 
+            <div class="form-group">
+              <button class="btn btn-primary">Добави</button>
+            </div>
+          </div>
+        </div>
+      </div> 
       <div class="row">
         <div class="col-xl-4 col-md-6">
           <div class="card card-block">
@@ -85,9 +157,23 @@
     <section class="information">
       <div class="section-title">
         <h5 class="pull-xs-left">Импортиране на статии</h5>
-        {{#link-to "dashboard.content.certificates.new" class="btn btn-success pull-xs-right"}}
-          Импорт
-        {{/link-to}}
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.content">Импорт</div>
+      </div>
+      <div class="modal fade bd-example-modal-lg content" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="section-title">
+              <h2 class="pull-xs-left">Импортиране на статии</h2>
+            </div>
+            <div class="form-group">
+              <label for="title">Линк</label>
+              <input type="text" name="title" class="form-control" id="title" placeholder="http://example.com/example">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Добави</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
