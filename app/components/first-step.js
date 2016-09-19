@@ -1,24 +1,24 @@
 import Ember from 'ember';
 import Validations from '../validations/first-step';
+import FirstStepsData from '../mixins/first-steps-data';
 
-const {
-  computed,
-  inject: { service }
-} = Ember;
+const { computed } = Ember;
 
-export default Ember.Component.extend(Validations, {
-  storage: service(),
+const FirstStepMixin = Ember.Mixin.create(Validations, FirstStepsData);
 
-  themeId: computed.alias('storage.themeId'),
+export default Ember.Component.extend(FirstStepMixin, {
+  data: Ember.Object.create({
+    themeId: null
+  }),
 
-  isFirstTheme: computed('themeId', function () {
-    if (this.get('themeId') === 1) {
+  isFirstTheme: computed('data.themeId', function () {
+    if (this.get('data.themeId') === 1) {
       return true;
     }
   }),
 
-  isSecondTheme: computed('themeId', function () {
-    if (this.get('themeId') === 2) {
+  isSecondTheme: computed('data.themeId', function () {
+    if (this.get('data.themeId') === 2) {
       return true;
     }
   }),
@@ -34,7 +34,7 @@ export default Ember.Component.extend(Validations, {
     },
 
     selectTheme (id) {
-      this.set('themeId', id);
+      this.set('data.themeId', id);
     }
   }
 });

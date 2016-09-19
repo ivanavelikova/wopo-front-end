@@ -1,7 +1,7 @@
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
-  about: [
+  'data.about': [
     validator('presence', true)
   ]
 });

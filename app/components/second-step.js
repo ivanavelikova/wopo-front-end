@@ -1,15 +1,13 @@
 import Ember from 'ember';
 import Validations from '../validations/second-step';
+import FirstStepsData from '../mixins/first-steps-data';
 
-const {
-  computed,
-  inject: { service }
-} = Ember;
+const SecondStepMixin = Ember.Mixin.create(Validations, FirstStepsData);
 
-export default Ember.Component.extend(Validations, {
-  storage: service(),
-
-  about: computed.alias('storage.about'),
+export default Ember.Component.extend(SecondStepMixin, {
+  data: Ember.Object.create({
+    about: null
+  }),
 
   actions: {
     next () {

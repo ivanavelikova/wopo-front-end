@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import FirstStepsData from '../mixins/first-steps-data';
 
 const {
   computed,
@@ -6,16 +7,22 @@ const {
   inject: { service }
 } = Ember;
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(FirstStepsData, {
   intl: service(),
   storage: service(),
 
-  currentStep: computed.alias('storage.currentStep'),
+  data: Ember.Object.create({
+    currentStep: 0
+  }),
 
   init () {
     this._super(...arguments);
 
-    if (this.get('currentStep') && this.get('currentStep') > 0) {
+    if (!this.get('storage.firstSteps')) {
+      this.set('storage.firstSteps', {});
+    }
+
+    if (this.get('data.currentStep') && this.get('data.currentStep') > 0) {
       this.set('pageTitle', this.get('intl').t('firstSteps'));
       return;
     }
@@ -23,55 +30,55 @@ export default Ember.Controller.extend({
     this.set('pageTitle', this.get('intl').t('welcome'));
   },
 
-  changeTitle: observer('currentStep', function () {
-    if (this.get('currentStep') && this.get('currentStep') > 0) {
+  changeTitle: observer('data.currentStep', function () {
+    if (this.get('data.currentStep') && this.get('data.currentStep') > 0) {
       this.set('pageTitle', this.get('intl').t('firstSteps'));
     }
   }),
 
-  showWelcome: computed('currentStep', function () {
-    if (!this.get('currentStep')) {
+  showWelcome: computed('data.currentStep', function () {
+    if (!this.get('data.currentStep')) {
       return true;
     }
   }),
 
-  isFirst: computed('currentStep', function () {
-    if (this.get('currentStep') === 1) {
+  isFirst: computed('data.currentStep', function () {
+    if (this.get('data.currentStep') === 1) {
       return true;
     }
   }),
 
-  isSecond: computed('currentStep', function () {
-    if (this.get('currentStep') === 2) {
+  isSecond: computed('data.currentStep', function () {
+    if (this.get('data.currentStep') === 2) {
       return true;
     }
   }),
 
-  isThird: computed('currentStep', function () {
-    if (this.get('currentStep') === 3) {
+  isThird: computed('data.currentStep', function () {
+    if (this.get('data.currentStep') === 3) {
       return true;
     }
   }),
 
   actions: {
     start () {
-      this.set('currentStep', 1);
+      this.set('data.currentStep', 1);
     },
 
     firstNext () {
-      this.set('currentStep', 2);
+      this.set('data.currentStep', 2);
     },
 
     secondNext () {
-      this.set('currentStep', 3);
+      this.set('data.currentStep', 3);
     },
 
     secondBack () {
-      this.set('currentStep', 1);
+      this.set('data.currentStep', 1);
     },
 
     thirdBack () {
-      this.set('currentStep', 2);
+      this.set('data.currentStep', 2);
     }
   }
 });

@@ -10,6 +10,12 @@
   
   &--welcome
     background: $gray-lighter
+  
+    @include media-breakpoint-up(xs)
+      padding-top: 60px
+
+    @include media-breakpoint-down(xs)
+      padding-top: 110px
 
 .center-content
   margin: auto
