@@ -43,17 +43,20 @@
         {{first-step
           nextAction=(action "firstNext")
           show=isFirst
+          data=data
         }}
 
         {{second-step
           nextAction=(action "secondNext")
           backAction=(action "secondBack")
           show=isSecond
+          data=data
         }}
 
         {{third-step
           backAction=(action "thirdBack")
           show=isThird
+          data=data
         }}
       </div>
     {{/if}}

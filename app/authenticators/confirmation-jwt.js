@@ -20,7 +20,7 @@ export default JWT.extend({
             return;
           }
 
-          response.portfolioDone = false;
+          this.get('session').set('data.firstSteps', {});
 
           resolve(response);
         })

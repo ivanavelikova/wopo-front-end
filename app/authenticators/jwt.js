@@ -25,6 +25,15 @@ export default Base.extend({
         'Authorization': `Bearer ${data.token}`
       };
 
+      const failure = (reason) => {
+        if (reason.errors && reason.errors[0].detail) {
+          reject(reason.errors[0].detail);
+          return;
+        }
+
+        reject(reason);
+      };
+
       this
         .makeRequest('session/check', {}, headers)
         .then(() => {
@@ -40,15 +49,6 @@ export default Base.extend({
             failure(reason);
           });
         });
-
-      function failure (reason) {
-        if (reason.errors && reason.errors[0].detail) {
-          reject(reason.errors[0].detail);
-          return;
-        }
-
-        reject(reason);
-      }
     });
   },
 
@@ -65,9 +65,8 @@ export default Base.extend({
 
           if (this._validate(response, 'firstSteps')) {
             this.get('session').set('data.firstSteps', response.firstSteps);
+            delete response.firstSteps;
           }
-
-          delete response.firstSteps;
 
           resolve(response);
         })
@@ -79,6 +78,46 @@ export default Base.extend({
 
           error.response.json().then(function(reason) {
             reject(reason);
+          });
+        });
+    });
+  },
+
+  invalidate(data) {
+    return new RSVP.Promise((resolve, reject) => {
+      let sessionData = this.get('session.data');
+
+      if (!this._validate(sessionData, 'firstSteps')) {
+        resolve();
+        return;
+      }
+
+      const firstSteps = sessionData.firstSteps;
+      const headers = {
+        'Authorization': `Bearer ${data.token}`
+      };
+
+      this.makeRequest('session/first-steps', { firstSteps }, headers)
+        .then(() => {
+          delete sessionData.firstSteps;
+          this.set('session.data', sessionData);
+          resolve();
+        })
+        .catch(error => {
+          if (!error.response) {
+            reject(error);
+            return;
+          }
+
+          error.response.json().then(function(reason) {
+            if (!reason.errors && !reason.errors[0].detail) {
+              console.error(error);
+              reject();
+              return;
+            }
+
+            console.error(reason.errors[0].detail);
+            reject();
           });
         });
     });

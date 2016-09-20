@@ -1,16 +1,9 @@
 import Ember from 'ember';
 import Validations from '../validations/first-step';
-import FirstStepsData from '../mixins/first-steps-data';
 
 const { computed } = Ember;
 
-const FirstStepMixin = Ember.Mixin.create(Validations, FirstStepsData);
-
-export default Ember.Component.extend(FirstStepMixin, {
-  data: Ember.Object.create({
-    themeId: null
-  }),
-
+export default Ember.Component.extend(Validations, {
   isFirstTheme: computed('data.themeId', function () {
     if (this.get('data.themeId') === 1) {
       return true;
