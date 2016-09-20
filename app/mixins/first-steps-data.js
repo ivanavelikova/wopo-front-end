@@ -1,12 +1,15 @@
 import Ember from 'ember';
 
 const {
+  computed,
   observer,
   inject: { service }
 } = Ember;
 
 export default Ember.Mixin.create({
-  storage: service(),
+  fastboot: service(),
+  session: service(),
+  storage: computed.alias('session.data'),
 
   init () {
     this._super(...arguments);
@@ -26,10 +29,10 @@ export default Ember.Mixin.create({
 
     storage.setProperties(data);
 
-    this.set('storage.firstSteps', storage);
+    this.get('session').set('data.firstSteps', storage);
   },
 
-  updateData: observer('storage.firstSteps', function () {
+  updateData: observer('storage', function () {
     let data = this.get('data');
     const storage = this.get('storage.firstSteps');
 

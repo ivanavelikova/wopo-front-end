@@ -8,8 +8,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   intl: service(),
   session: service(),
 
-  beforeModel() {
-    if (this.get('session.data.authenticated.portfolioDone') === false) {
+  beforeModel () {
+    if (this.get('session.data.firstSteps')) {
       AuthConfiguration.routeAfterAuthentication = 'welcome';
       AuthConfiguration.routeIfAlreadyAuthenticated = 'welcome';
     }
@@ -17,8 +17,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     return this.get('intl').setLocale('bg-bg');
   },
 
-  sessionAuthenticated() {
-    if (this.get('session.data.authenticated.portfolioDone') === false) {
+  sessionAuthenticated () {
+    if (this.get('session.data.firstSteps')) {
       AuthConfiguration.routeAfterAuthentication = 'welcome';
       AuthConfiguration.routeIfAlreadyAuthenticated = 'welcome';
     }

@@ -9,7 +9,6 @@ const {
 
 export default Ember.Controller.extend(FirstStepsData, {
   intl: service(),
-  storage: service(),
 
   data: Ember.Object.create({
     currentStep: 0
@@ -17,10 +16,6 @@ export default Ember.Controller.extend(FirstStepsData, {
 
   init () {
     this._super(...arguments);
-
-    if (!this.get('storage.firstSteps')) {
-      this.set('storage.firstSteps', {});
-    }
 
     if (this.get('data.currentStep') && this.get('data.currentStep') > 0) {
       this.set('pageTitle', this.get('intl').t('firstSteps'));

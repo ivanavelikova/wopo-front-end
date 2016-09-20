@@ -63,10 +63,11 @@ export default Base.extend({
             return;
           }
 
-          if (!this._validate(response, 'portfolioDone')) {
-            reject('portfolioDone is missing in server response');
-            return;
+          if (this._validate(response, 'firstSteps')) {
+            this.get('session').set('data.firstSteps', response.firstSteps);
           }
+
+          delete response.firstSteps;
 
           resolve(response);
         })
