@@ -1,6 +1,6 @@
 {{#if show}}
   <div class="stepper-content">
-    <section class="information">
+    <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">За Вас</h5>
       </div>
@@ -8,38 +8,39 @@
         {{textarea id="about" class="form-control" placeholder="Моето страхотно описание..." value=data.about}}
       </div>
     </section>
-    <section class="information">
+    <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Умения</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.skill">Ново умение</div>
-      </div>
-      <div class="modal fade bd-example-modal-lg skill" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="section-title">
-              <h2 class="pull-xs-left">Ново умение</h2>
-            </div>
-            <div class="form-group">
-              <label for="title">Име</label>
-              <input type="text" name="title" class="form-control" id="title" placeholder="Photoshop...">
-            </div>
-            <div class="form-group">
-              <button class="btn btn-primary">Добави</button>
-            </div>
-          </div>
-        </div>
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addSkill">Ново умение</div>
+
+        {{skill-modal
+          success=(action "addSkill")
+          data=addSkill
+          modalTarget="addSkill"
+          modalTitle="Ново умение"
+          modalActionName="Добави"
+        }}
       </div>
       <div class="row">
-        <div class="col-xl-4 col-md-6">
-          <div class="card card-block">
-            <h5 class="card-title">Photoshop</h5>
-            {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
-            {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
-          </div>
-        </div>
+        {{#each data.skills as |skill index|}}
+          {{skill-card
+            data=skill
+            index=index
+            delete=(action "deleteSkill")
+            edit=(action "updateEditSkill")
+          }}
+        {{/each}}
       </div>
+
+      {{skill-modal
+        success=(action "editSkill")
+        data=editSkill
+        modalTarget="editSkill"
+        modalTitle="Редактиране на умение"
+        modalActionName="Редактирай"
+      }}
     </section>
-    <section class="information">
+    <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Работни места</h5>
         <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.job">Ново работно място</div>
@@ -80,7 +81,7 @@
         </div>
       </div>
     </section>
-    <section class="information">
+    <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Образование и обучение</h5>
         <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.education">Ново учебно заведение</div>
@@ -116,7 +117,7 @@
         </div>
       </div>
     </section>
-    <section class="information">
+    <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Сертификати и отличия</h5>
         <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.certificates">Ново отличие</div>
@@ -154,7 +155,7 @@
         </div>
       </div>
     </section>
-    <section class="information">
+    <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Импортиране на статии</h5>
         <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.content">Импорт</div>
@@ -173,6 +174,25 @@
               <button class="btn btn-primary">Добави</button>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+    <section class="form-section">
+      <div class="section-title">
+        <h5 class="pull-xs-left">Получаване на предложения за работа от работодателите в wopo</h5>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+            Да
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+            Не
+          </label>
         </div>
       </div>
     </section>

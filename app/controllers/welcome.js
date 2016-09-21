@@ -13,7 +13,8 @@ export default Ember.Controller.extend({
   data: Ember.Object.create({
     currentStep: 0,
     themeId: null,
-    about: null
+    about: null,
+    skills: null
   }),
 
   init () {
