@@ -1,10 +1,16 @@
 {{#if show}}
   <div class="stepper-content">
+    {{#if showAlert}}
+      <div class="alert alert-{{alert.type}}" role="alert">
+        {{alert.content}}
+      </div>
+    {{/if}}
+
     <div class="row">
       <div class="col-xl-4 col-md-6">
         <div class="card card-block">
           <div class="card-title">
-            <h4 class="pull-xs-left">Belong</h4>
+            <h4>Belong</h4>
             <button class="btn btn-{{if isFirstTheme 'success' 'secondary'}} pull-xs-right" {{action "selectTheme" 1}}>
               {{#if isFirstTheme}}
                 Избрана
@@ -22,7 +28,7 @@
       <div class="col-xl-4 col-md-6">
         <div class="card card-block">
           <div class="card-title">
-            <h4 class="pull-xs-left">Belong</h4>
+            <h4>Belong</h4>
             <div class="btn btn-{{if isSecondTheme 'success' 'secondary'}} pull-xs-right" {{action "selectTheme" 2}}>
               {{#if isSecondTheme}}
                 Избрана
