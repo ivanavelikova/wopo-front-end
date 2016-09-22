@@ -1,45 +1,56 @@
 import Ember from 'ember';
 import Validations from '../validations/skills';
 
-const { $: jQuery } = Ember;
+const {
+  computed,
+  defineProperty,
+  inject: { service }
+} = Ember;
 
 export default Ember.Component.extend(Validations, {
-  didInsertElement () {
-    const modalTarget = this.get('modalTarget');
-    const modal = jQuery(`.modal.${modalTarget}`);
+  intl: service(),
 
-    modal.on('shown.bs.modal', function () {
-      const formGroup = modal.find('.form-group:first');
-      const focusInput = formGroup.find('input:first');
-      const focusTextarea = formGroup.find('textarea:first');
+  init() {
+    this._super(...arguments);
 
-      if (focusInput.length) {
-        focusInput.focus();
+    const data = this.get('data');
+    
+    const defineProperties = (key) => {
+      defineProperty(this, `${key}Validation`, computed.oneWay(`validations.attrs.data.${key}`));
+      defineProperty(this, `${key}ShowErrorMessage`, computed(`${key}Validation.isDirty`, `${key}Validation.isInvalid`, function() {
+        return this.get(`${key}Validation.isDirty`) && this.get(`${key}Validation.isInvalid`);
+      }));
+    };
+
+    for (let key in data) {
+      if (key !== 'index') {
+        defineProperties(key);
       }
-      
-      if (focusTextarea.length) {
-        focusTextarea.focus();
-      }
-    });
+    }
   },
 
-  willDestroyElement () {
-    const modalTarget = this.get('modalTarget');
-    const modal = jQuery(`.modal.${modalTarget}`);
-
-    modal.off('shown.bs.modal');
+  alert: {
+    type: null,
+    content: null
   },
+
+  modalVisible: null,
+
+  showAlert: Ember.computed('alert.{type,content}', function () {
+    return this.get('alert.type') !== null && this.get('alert.content') !== null;
+  }),
 
   actions: {
     submitForm () {
       if (!this.get('validations.isValid')) {
-        alert('noooo');
+        this.set('alert', {
+          type: 'info',
+          content: this.get('intl').t('errors.fill')
+        });
         return;
       }
-
-      const modalTarget = this.get('modalTarget');
-      const modal = jQuery(`.modal.${modalTarget}`);
-      modal.modal('hide');
+      
+      this.set('modalVisible', false);
 
       if (this.get('index')) {
         this.sendAction('success', this.get('index'));

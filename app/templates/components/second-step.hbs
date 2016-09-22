@@ -1,11 +1,28 @@
 {{#if show}}
   <div class="stepper-content">
+    {{#if showAlert}}
+      <div class="alert alert-{{alert.type}}" role="alert">
+        {{alert.content}}
+      </div>
+    {{/if}}
+
     <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">За Вас</h5>
       </div>
-      <div class="form-group">
-        {{textarea id="about" class="form-control" placeholder="Моето страхотно описание..." value=data.about}}
+      <div class="form-group {{if (v-get this "data.about" "isValid") "has-success" "has-danger"}}">
+        {{textarea
+          id="about"
+          class="form-control"
+          placeholder="Моето страхотно описание..."
+          value=data.about
+        }}
+
+        <div class="form-control-feedback">
+          {{#if (v-get this "data.about" "isInvalid")}}
+              {{v-get this "data.about" "message"}}
+          {{/if}}
+        </div>
       </div>
     </section>
     <section class="form-section">
@@ -23,7 +40,7 @@
       </div>
       
       {{#if haveSkills}}
-        <div class="card-columns">
+        <div class="row">
           {{#each data.skills as |skill index|}}
             {{skill-card
               data=skill
@@ -34,7 +51,9 @@
           {{/each}}
         </div>
       {{else}}
-        <p>Все още не сте добавили умения.</p>
+        <div class="alert alert-info" role="alert">
+          Не сте добавили умения. Добавянето на най-малко едно умение е задължително. Можете да добавите ново умение, използвайки бутона "Ново умение".
+        </div>
       {{/if}}
 
       {{skill-modal

@@ -39,6 +39,7 @@ errors:
   uniqueEmail: "E-mail was taken by someone else."
   notUniqueEmail: "There is no registered user with this E-mail."
   notFound: "Page not found."
+  selectTheme: "Please select a theme before continuing with other steps."
 success:
   registration: "Please verify your account using link which we sent to your email."
   forgotPassword: "Your link for resetting the password is sent to your e-mail."

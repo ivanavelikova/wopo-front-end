@@ -1,9 +1,14 @@
 import Ember from 'ember';
 import Validations from '../validations/first-step';
 
-const { computed } = Ember;
+const {
+  computed,
+  inject: { service }
+} = Ember;
 
 export default Ember.Component.extend(Validations, {
+  intl: service(),
+
   alert: {
     type: null,
     content: null
@@ -33,10 +38,17 @@ export default Ember.Component.extend(Validations, {
   actions: {
     next () {
       if (!this.get('validations.isValid')) {
-        alert('noooo');
+        this.set('alert', {
+          type: 'info',
+          content: this.get('intl').t('errors.selectTheme')
+        });
         return;
       }
 
+      this.set('alert', {
+        type: null,
+        content: null
+      });
       this.sendAction('nextAction');
     },
 
