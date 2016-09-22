@@ -1,10 +1,11 @@
 import Ember from 'ember';
+import BaseRoute from 'front-end/routes/base';
 import fetch from 'ember-network/fetch';
 import Validations from '../validations/reset-password';
 
 const { inject: { service } } = Ember;
 
-export default Ember.Route.extend(Validations, {
+export default BaseRoute.extend(Validations, {
   cookies: service(),
   store: service(),
   intl: service(),

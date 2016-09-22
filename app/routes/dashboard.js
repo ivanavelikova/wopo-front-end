@@ -1,9 +1,10 @@
 import Ember from 'ember';
+import BaseRoute from 'front-end/routes/base';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 const { inject: { service } } = Ember;
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default BaseRoute.extend(AuthenticatedRouteMixin, {
   session: service(),
 
   beforeModel () {

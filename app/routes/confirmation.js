@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import BaseRoute from 'front-end/routes/base';
 
 const { inject: { service } } = Ember;
 
-export default Ember.Route.extend({
+export default BaseRoute.extend({
   session: service(),
 
   renderTemplate(controller) {

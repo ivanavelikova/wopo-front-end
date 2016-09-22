@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import BaseRoute from 'front-end/routes/base';
 
-export default Ember.Route.extend({
+export default BaseRoute.extend({
 });

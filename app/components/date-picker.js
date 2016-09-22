@@ -3,6 +3,13 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   didInsertElement () {
     const datePicker = this.$('#datepicker');
-    datePicker.daterangepicker({});
+    datePicker.daterangepicker();
+
+    this.set('datePicker', datePicker);
+  },
+
+  willDestroyElement () {
+    const instance = this.get('datePicker').data('daterangepicker');
+    instance.remove();
   }
 });
