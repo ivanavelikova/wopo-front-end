@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import Validations from '../validations/second-step';
 
+const { computed } = Ember;
+
 export default Ember.Component.extend(Validations, {
   addSkill: {
     name: null
@@ -10,6 +12,10 @@ export default Ember.Component.extend(Validations, {
     index: null,
     name: null
   },
+
+  haveSkills: computed('data.skills', function () {
+    return Array.isArray(this.get('data.skills'));
+  }),
 
   actions: {
     addSkill () {

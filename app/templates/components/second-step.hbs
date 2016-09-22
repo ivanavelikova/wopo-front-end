@@ -22,16 +22,20 @@
         }}
       </div>
       
-      <div class="card-columns">
-        {{#each data.skills as |skill index|}}
-          {{skill-card
-            data=skill
-            index=index
-            delete=(action "deleteSkill")
-            edit=(action "updateEditSkill")
-          }}
-        {{/each}}
-      </div>
+      {{#if haveSkills}}
+        <div class="card-columns">
+          {{#each data.skills as |skill index|}}
+            {{skill-card
+              data=skill
+              index=index
+              delete=(action "deleteSkill")
+              edit=(action "updateEditSkill")
+            }}
+          {{/each}}
+        </div>
+      {{else}}
+        <p>Все още не сте добавили умения.</p>
+      {{/if}}
 
       {{skill-modal
         success=(action "editSkill")
