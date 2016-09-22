@@ -10,8 +10,8 @@
       <div class="col-xl-4 col-md-6">
         <div class="card card-block">
           <div class="card-title">
-            <h4>Belong</h4>
-            <button class="btn btn-{{if isFirstTheme 'success' 'secondary'}} pull-xs-right" {{action "selectTheme" 1}}>
+            <h4 title="Belong">Belong</h4>
+            <button class="btn btn-{{if isFirstTheme 'success' 'secondary'}}" {{action "selectTheme" 1}}>
               {{#if isFirstTheme}}
                 Избрана
               {{else}}
@@ -28,8 +28,8 @@
       <div class="col-xl-4 col-md-6">
         <div class="card card-block">
           <div class="card-title">
-            <h4>Belong</h4>
-            <div class="btn btn-{{if isSecondTheme 'success' 'secondary'}} pull-xs-right" {{action "selectTheme" 2}}>
+            <h4 title="Belong">Belong</h4>
+            <div class="btn btn-{{if isSecondTheme 'success' 'secondary'}}" {{action "selectTheme" 2}}>
               {{#if isSecondTheme}}
                 Избрана
               {{else}}
