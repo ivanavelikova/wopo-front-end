@@ -5,7 +5,8 @@ const {
   computed,
   observer,
   defineProperty,
-  inject: { service }
+  inject: { service },
+  $: jQuery
 } = Ember;
 
 export default Ember.Component.extend(Validations, {
@@ -35,13 +36,15 @@ export default Ember.Component.extend(Validations, {
     content: null
   },
 
-  modalVisible: null,
-
   updateData: observer('modalVisible', function () {
+    if (this.get('modalVisible')) {
+      return;
+    }
+
     const data = this.get('data');
 
     for (let key in data) {
-      if (key !== 'index' && this.get(`data.${key}`) === '') {
+      if (key !== 'index') {
         this.set(`data.${key}`, null);
       }
     }
@@ -61,7 +64,7 @@ export default Ember.Component.extend(Validations, {
         return;
       }
       
-      this.set('modalVisible', false);
+      jQuery(':focus').blur();
 
       if (this.get('index')) {
         this.sendAction('success', this.get('index'));

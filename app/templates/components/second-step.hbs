@@ -33,6 +33,7 @@
         {{skill-modal
           success=(action "addSkill")
           data=addSkill
+          modalVisible=addModalVisible
           modalTarget="addSkill"
           modalTitle="Ново умение"
           modalActionName="Добави"
@@ -59,6 +60,7 @@
       {{skill-modal
         success=(action "editSkill")
         data=editSkill
+        modalVisible=editModalVisible
         modalTarget="editSkill"
         modalTitle="Редактиране на умение"
         modalActionName="Редактирай"

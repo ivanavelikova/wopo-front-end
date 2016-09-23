@@ -26,11 +26,13 @@ export default Ember.Component.extend(Validations, {
   addSkill: {
     name: null
   },
+  addModalVisible: null,
 
   editSkill: {
     index: null,
     name: null
   },
+  editModalVisible: null,
 
   haveSkills: computed('data.skills', function () {
     return Array.isArray(this.get('data.skills'));
@@ -50,10 +52,7 @@ export default Ember.Component.extend(Validations, {
       skills.push(addSkill);
 
       this.set('data.skills', skills);
-
-      for (let key in addSkill) {
-        this.set(`addSkill.${key}`, null);
-      }
+      this.set('addModalVisible', false);
     },
 
     deleteSkill (index) {
@@ -98,6 +97,7 @@ export default Ember.Component.extend(Validations, {
       }
 
       this.set('data.skills', skills);
+      this.set('editModalVisible', false);
     },
 
     next () {
