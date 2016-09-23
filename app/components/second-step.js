@@ -26,16 +26,39 @@ export default Ember.Component.extend(Validations, {
   addSkill: {
     name: null
   },
-  addModalVisible: null,
+  addSkillModalVisible: null,
 
   editSkill: {
     index: null,
     name: null
   },
-  editModalVisible: null,
+  editSkillModalVisible: null,
 
   haveSkills: computed('data.skills', function () {
     return Array.isArray(this.get('data.skills'));
+  }),
+
+  addWorkExperience: {
+    position: null,
+    startDate: null,
+    endDate: null,
+    employer: null,
+    responsibilities: null
+  },
+  addWorkExperienceModalVisible: null,
+
+  editWorkExperience: {
+    index: null,
+    position: null,
+    startDate: null,
+    endDate: null,
+    employer: null,
+    responsibilities: null
+  },
+  editWorkExperienceModalVisible: null,
+
+  haveWorkExperience: computed('data.workExperience', function () {
+    return Array.isArray(this.get('data.workExperience'));
   }),
 
   actions: {
@@ -52,7 +75,7 @@ export default Ember.Component.extend(Validations, {
       skills.push(addSkill);
 
       this.set('data.skills', skills);
-      this.set('addModalVisible', false);
+      this.set('addSkillModalVisible', false);
     },
 
     deleteSkill (index) {
@@ -97,7 +120,23 @@ export default Ember.Component.extend(Validations, {
       }
 
       this.set('data.skills', skills);
-      this.set('editModalVisible', false);
+      this.set('editSkillModalVisible', false);
+    },
+
+    addWorkExperience () {
+      let workExperience = this.get('data.workExperience');
+      this.set('data.workExperience', []);
+
+      if (!Array.isArray(workExperience)) {
+        workExperience = [];
+      }
+
+      const addWorkExperience = JSON.parse(JSON.stringify(this.get('addWorkExperience')));
+
+      workExperience.push(addWorkExperience);
+
+      this.set('data.workExperience', workExperience);
+      this.set('addWorkExperienceModalVisible', false);
     },
 
     next () {

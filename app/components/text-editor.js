@@ -3,7 +3,9 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   didInsertElement () {
     const editor = this.$('.summernote');
+
     editor.summernote({
+      placeholder: this.get('placeholder'),
       height: 200,
       toolbar: [
         ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -12,8 +14,7 @@ export default Ember.Component.extend({
         ['height', ['height']],
         ['color', ['color']],
         ['para', ['style', 'ul', 'ol', 'paragraph', 'heigth']],
-        ['insert', ['picture', 'link', 'video', 'table', 'hr']],
-        ['misc', ['help']]
+        ['insert', ['picture', 'link', 'video', 'table', 'hr']]
       ],
       popover: {
         image: [],

@@ -14,7 +14,8 @@ export default Ember.Controller.extend({
     currentStep: 0,
     themeId: null,
     about: null,
-    skills: null
+    skills: null,
+    workExperience: null
   }),
 
   init () {

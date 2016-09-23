@@ -5,7 +5,7 @@ errors:
   description: "Това поле"
   inclusion: "{description} не е включено в листа."
   exclusion: "{description} е резервиран."
-  invalid: "{description} е невалиден."
+  invalid: "{description} е невалидно."
   confirmation: "{description} не съвпада с {on}."
   accepted: "{description} must be accepted."
   empty: "{description} е задължително."
