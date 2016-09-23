@@ -3,6 +3,7 @@ import Validations from '../validations/skills';
 
 const {
   computed,
+  observer,
   defineProperty,
   inject: { service }
 } = Ember;
@@ -17,8 +18,8 @@ export default Ember.Component.extend(Validations, {
     
     const defineProperties = (key) => {
       defineProperty(this, `${key}Validation`, computed.oneWay(`validations.attrs.data.${key}`));
-      defineProperty(this, `${key}ShowErrorMessage`, computed(`${key}Validation.isDirty`, `${key}Validation.isInvalid`, function() {
-        return this.get(`${key}Validation.isDirty`) && this.get(`${key}Validation.isInvalid`);
+      defineProperty(this, `${key}ShowErrorMessage`, computed(`${key}Validation.isDirty`, `${key}Validation.isInvalid`, `data.${key}`, function() {
+        return this.get(`${key}Validation.isDirty`) && this.get(`${key}Validation.isInvalid`) && this.get(`data.${key}`) !== null;
       }));
     };
 
@@ -35,6 +36,16 @@ export default Ember.Component.extend(Validations, {
   },
 
   modalVisible: null,
+
+  updateData: observer('modalVisible', function () {
+    const data = this.get('data');
+
+    for (let key in data) {
+      if (key !== 'index' && this.get(`data.${key}`) === '') {
+        this.set(`data.${key}`, null);
+      }
+    }
+  }),
 
   showAlert: Ember.computed('alert.{type,content}', function () {
     return this.get('alert.type') !== null && this.get('alert.content') !== null;

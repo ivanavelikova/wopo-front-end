@@ -7,7 +7,7 @@ const {
 
 export default Ember.Component.extend({
   hideModal: observer('modalVisible', function () {
-    if(!this.get('modalVisible')) {
+    if (!this.get('modalVisible')) {
       const modalTarget = this.get('modalTarget');
       const modal = jQuery(`.modal.${modalTarget}`);
 
@@ -36,6 +36,8 @@ export default Ember.Component.extend({
     });
 
     modal.on('hidden.bs.modal', () => {
+      this.set('modalVisible', false);
+
       this.set('alert', {
         type: null,
         content: null
