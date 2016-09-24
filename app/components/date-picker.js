@@ -1,12 +1,14 @@
 import Ember from 'ember';
 
+const { observer } = Ember;
+
 export default Ember.Component.extend({
   singleDatePicker: false,
+  options: {},
 
   didInsertElement () {
     const datePicker = this.$('.datepicker');
-
-    datePicker.daterangepicker({
+    const options = {
       parentEl: this.get('parentEl'),
       singleDatePicker: this.get('singleDatePicker'),
       showDropdowns: true,
@@ -40,7 +42,10 @@ export default Ember.Component.extend({
         ],
         firstDay: 1
       }
-    });
+    };
+    this.set('options', options);
+
+    datePicker.daterangepicker(options);
 
     datePicker.on('apply.daterangepicker', () => {
       this.set('value', datePicker.val());
@@ -50,7 +55,34 @@ export default Ember.Component.extend({
   },
 
   willDestroyElement () {
-    const instance = this.get('datePicker').data('daterangepicker');
-    instance.remove();
-  }
+    const datePicker = this.get('datePicker');
+    const instance = datePicker.data('daterangepicker');
+
+    if (instance) {
+      datePicker.off('apply.daterangepicker');
+      instance.remove();
+    }
+  },
+
+  resetDatePicker: observer('modalVisible', function () {
+    if (this.get('modalVisible')) {
+      return;
+    }
+
+    const datePicker = this.get('datePicker');
+    const instance = datePicker.data('daterangepicker');
+
+    if (instance) {
+      datePicker.off('apply.daterangepicker');
+      instance.remove();
+    }
+
+    const options = this.get('options');
+
+    datePicker.daterangepicker(options);
+
+    datePicker.on('apply.daterangepicker', () => {
+      this.set('value', datePicker.val());
+    });
+  })
 });

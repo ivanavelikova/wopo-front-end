@@ -1,33 +1,50 @@
 import Ember from 'ember';
 
+const { observer } = Ember;
+
 export default Ember.Component.extend({
+  updateOnChange: true,
+
+  updateData: observer('value', function () {
+    const value = this.get('value');
+    const editor = CKEDITOR.instances[this.get('editorId')];
+    
+    if (value === null) {
+      this.set('updateOnChange', false);
+
+      editor.setData('', {
+        callback: () => {
+          if (editor.getData() === '') {
+            this.set('updateOnChange', true);
+          }
+        }
+      });
+    }
+  }),
+
   didInsertElement () {
-    const editor = this.$('.summernote');
-
-    editor.summernote({
-      placeholder: this.get('placeholder'),
-      height: 200,
-      toolbar: [
-        ['style', ['bold', 'italic', 'underline', 'clear']],
-        ['font', ['fontname' , 'strikethrough', 'superscript', 'subscript']],
-        ['fontsize', ['fontsize']],
-        ['height', ['height']],
-        ['color', ['color']],
-        ['para', ['style', 'ul', 'ol', 'paragraph', 'heigth']],
-        ['insert', ['picture', 'link', 'video', 'table', 'hr']]
+    const config = {
+      toolbarGroups: [
+        { name: 'tools' },
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+        { name: 'styles' },
+        { name: 'others' }
       ],
-      popover: {
-        image: [],
-        link: [],
-        air: []
-      },
-      fontNames: ['Arial', 'Helvetica', 'Roboto', 'Tahoma', 'Times New Roman', 'Verdana']
-    });
+      removeButtons: 'Underline,Subscript,Superscript,Strike,Styles',
+      extraPlugins: 'markdown',
+      format_tags: 'p;h1;h2;h3;pre'
+    };
+    const editor = CKEDITOR.replace(this.get('editorId'), config);
 
-    this.set('editor', editor);
+    editor.on('change', () => {
+      if (this.get('updateOnChange')) {
+        this.set('value', toMarkdown(editor.getData()));
+      }
+    });
   },
 
   willDestroyElement () {
-    this.get('editor').summernote('destroy');
+    CKEDITOR.instances[this.get('editorId')].destroy();
   }
 });

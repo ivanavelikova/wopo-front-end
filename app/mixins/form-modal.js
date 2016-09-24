@@ -60,6 +60,9 @@ export default Ember.Mixin.create({
           type: 'info',
           content: this.get('intl').t('errors.fill')
         });
+
+        jQuery(`.modal.${this.get('modalTarget')}`).animate({ scrollTop: 0 });
+
         return;
       }
       

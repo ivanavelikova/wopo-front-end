@@ -4,7 +4,9 @@
     "window",
     "-Promise",
     "Chart",
-    "$"
+    "$",
+    "CKEDITOR",
+    "toMarkdown"
   ],
   "browser": true,
   "boss": true,

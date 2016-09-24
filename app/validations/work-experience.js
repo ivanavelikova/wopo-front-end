@@ -1,7 +1,4 @@
-import Ember from 'ember';
 import { validator, buildValidations } from 'ember-cp-validations';
-
-const { computed } = Ember;
 
 const Validations = buildValidations({
   'data.position': [

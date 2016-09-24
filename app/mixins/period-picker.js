@@ -92,6 +92,7 @@ export default Ember.Mixin.create({
     if (!this.get('modalVisible')) {
       this.set('isOngoing', false);
       this.set('period', '');
+      this.set('data.startDate', null);
     }
   })
 });

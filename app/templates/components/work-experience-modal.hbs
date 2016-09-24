@@ -41,6 +41,7 @@
             placeholder="Изберете началната дата"
             value=data.startDate
             singleDatePicker=true
+            modalVisible=modalVisible
           }}
 
           <div class="form-control-feedback">
@@ -58,6 +59,7 @@
             parentEl=(concat ".modal." modalTarget)
             placeholder="Изберете времеви период"
             value=period
+            modalVisible=modalVisible
           }}
 
           <div class="form-control-feedback">
@@ -95,6 +97,21 @@
         <div class="form-control-feedback">
           {{#if employerShowErrorMessage}}
               {{v-get this "data.employer" "message"}}
+          {{/if}}
+        </div>
+      </div>
+      
+      <div class="form-group {{if (v-get this "data.responsibilities" "isValid") "has-success" (if responsibilitiesShowErrorMessage "has-danger")}}">
+        <label for="{{modalTarget}}Responsibilities">Основни дейности и отговорности</label>
+        {{text-editor
+          editorId=(concat modalTarget "Responsibilities")
+          placeholder="Избройте основните дейности и отговорности"
+          value=data.responsibilities
+        }}
+
+        <div class="form-control-feedback">
+          {{#if responsibilitiesShowErrorMessage}}
+              {{v-get this "data.responsibilities" "message"}}
           {{/if}}
         </div>
       </div>

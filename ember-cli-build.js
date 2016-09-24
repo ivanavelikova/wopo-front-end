@@ -2,6 +2,7 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 var Funnel = require('broccoli-funnel');
+var mergeTrees = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
@@ -32,20 +33,27 @@ module.exports = function(defaults) {
     app.import(app.bowerDirectory + '/perfect-scrollbar/css/perfect-scrollbar.min.css');
     app.import(app.bowerDirectory + '/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js');
     app.import(app.bowerDirectory + '/chart.js/dist/Chart.bundle.min.js');
-    app.import(app.bowerDirectory + '/summernote/dist/summernote.min.js');
-    app.import(app.bowerDirectory + '/summernote/dist/summernote.css');
-    var summernoteAssets = new Funnel(app.bowerDirectory + '/summernote/dist/', {
-      srcDir: '/',
-      include: ['**/*.js', '**/*.eot', '**/*.woff', '**/*.ttf'],
-      destDir: '/assets'
-    });
+    app.import(app.bowerDirectory + '/ckeditor/ckeditor.js');
     app.import(app.bowerDirectory + '/moment/min/moment.min.js');
     app.import(app.bowerDirectory + '/bootstrap-daterangepicker/daterangepicker-bs3.css');
     app.import(app.bowerDirectory + '/bootstrap-daterangepicker/daterangepicker.js');
     app.import(app.bowerDirectory + '/select2/dist/css/select2.min.css');
     app.import(app.bowerDirectory + '/select2-bootstrap-theme/dist/select2-bootstrap.min.css');
     app.import(app.bowerDirectory + '/select2/dist/js/select2.min.js');
+    app.import(app.bowerDirectory + '/to-markdown/dist/to-markdown.js');
+
+    var ckeditorAssets = new Funnel(app.bowerDirectory, {
+      srcDir: 'ckeditor',
+      destDir: '/'
+    });
+    
+    var ckeditorMarkdownAssets = new Funnel(app.bowerDirectory, {
+      srcDir: 'ckeditor-markdown-plugin',
+      destDir: '/plugins'
+    });
+
+    assets = mergeTrees([ckeditorAssets, ckeditorMarkdownAssets]);
   }
 
-  return app.toTree(summernoteAssets);
+  return app.toTree(assets);
 };
