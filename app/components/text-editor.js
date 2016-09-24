@@ -23,15 +23,19 @@ export default Ember.Component.extend({
   }),
 
   didInsertElement () {
+    $.fn.modal.Constructor.prototype._enforceFocus = function () {};
+
     const config = {
       toolbarGroups: [
         { name: 'tools' },
         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
         { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+        { name: 'links' },
+        { name: 'insert' },
         { name: 'styles' },
         { name: 'others' }
       ],
-      removeButtons: 'Underline,Subscript,Superscript,Strike,Styles',
+      removeButtons: 'Underline,Subscript,Superscript,Strike,Styles,Table,Anchor',
       extraPlugins: 'markdown',
       format_tags: 'p;h1;h2;h3;pre'
     };
