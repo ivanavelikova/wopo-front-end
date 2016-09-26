@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import fetch from 'ember-network/fetch';
 import Base from 'ember-simple-auth/authenticators/base';
 
 const {
@@ -9,10 +8,8 @@ const {
 } = Ember;
 
 export default Base.extend({
-  cookies: service(),
-  store: service(),
-  intl: service(),
   session: service(),
+  network: service(),
 
   restore(data) {
     return new RSVP.Promise((resolve, reject) => {
@@ -20,10 +17,6 @@ export default Base.extend({
         reject();
         return;
       }
-
-      const headers = {
-        'Authorization': `Bearer ${data.token}`
-      };
 
       const failure = (reason) => {
         if (reason.errors && reason.errors[0].detail) {
@@ -35,7 +28,8 @@ export default Base.extend({
       };
 
       this
-        .makeRequest('session/check', {}, headers)
+        .get('network')
+        .post('session/check', {}, data.token)
         .then(() => {
           resolve(data);
         })
@@ -56,7 +50,9 @@ export default Base.extend({
     return new RSVP.Promise((resolve, reject) => {
       const data = { email, password };
 
-      this.makeRequest('session', data)
+      this
+        .get('network')
+        .post('session', data)
         .then(response => {
           if (!this._validate(response)) {
             reject('token is missing in server response');
@@ -83,7 +79,7 @@ export default Base.extend({
     });
   },
 
-  invalidate(data) {
+  invalidate() {
     return new RSVP.Promise((resolve, reject) => {
       let sessionData = this.get('session.data');
 
@@ -92,12 +88,13 @@ export default Base.extend({
         return;
       }
 
-      const firstSteps = sessionData.firstSteps;
-      const headers = {
-        'Authorization': `Bearer ${data.token}`
+      const data = {
+        firstSteps: sessionData.firstSteps
       };
 
-      this.makeRequest('session/first-steps', { firstSteps }, headers)
+      this.
+        get('network')
+        .post('session/first-steps', data, true)
         .then(() => {
           delete sessionData.firstSteps;
           this.set('session.data', sessionData);
@@ -125,47 +122,5 @@ export default Base.extend({
 
   _validate(data, property = 'token') {
     return !isEmpty(data[property]);
-  },
-
-  makeRequest(path, data, assignHeaders) {
-    const csrfToken = this.get('cookies').read('XSRF-TOKEN');
-    const host = this.get('store').adapterFor('application').get('host');
-    let headers = {
-      'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    };
-
-    if (this.get('intl').get('locale')) {
-      headers['X-Locale'] = this.get('intl').get('locale')[0];
-    }
-
-    if (assignHeaders) {
-      headers = Object.assign(assignHeaders, headers);
-    }
-
-    const init = {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(data)
-    };
-
-    return fetch(`${host}/${path}`, init)
-      .then(checkStatus)
-      .then(parseJSON);
-
-    function checkStatus (response) {
-      if (response.status >= 200 && response.status < 300) {
-        return response;
-      } else {
-        var error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-      }
-    }
-
-    function parseJSON (response) {
-      return response.json();
-    }
   }
 });
