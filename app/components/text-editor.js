@@ -40,6 +40,8 @@ export default Ember.Component.extend({
       format_tags: 'p;h1;h2;h3;pre'
     };
     const editor = CKEDITOR.replace(this.get('editorId'), config);
+    
+    editor.setData(this.get('value'));
 
     editor.on('change', () => {
       if (this.get('updateOnChange')) {

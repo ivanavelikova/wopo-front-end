@@ -10,16 +10,15 @@
       <div class="section-title">
         <h5 class="pull-xs-left">За Вас</h5>
       </div>
-      <div class="form-group {{if (v-get this "data.about" "isValid") "has-success" "has-danger"}}">
-        {{textarea
-          id="about"
-          class="form-control"
+      <div class="form-group {{if (v-get this "data.about" "isValid") "has-success" (if aboutNotNull "has-danger")}}">
+        {{text-editor
+          editorId="about"
           placeholder="Напишете накратко за Вас"
           value=data.about
         }}
 
         <div class="form-control-feedback">
-          {{#if (v-get this "data.about" "isInvalid")}}
+          {{#if (if aboutNotNull (v-get this "data.about" "isInvalid"))}}
               {{v-get this "data.about" "message"}}
           {{/if}}
         </div>

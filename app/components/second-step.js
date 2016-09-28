@@ -14,6 +14,10 @@ export default Ember.Component.extend(Validations, {
     content: null
   },
 
+  aboutNotNull: computed('data.about', function () {
+    return this.get('data.about') !== null;
+  }),
+
   showAlert: Ember.computed('alert.{type,content}', function() {
     if (this.get('alert.type') !== null && this.get('alert.content') !== null) {
       $('html, body').animate({ scrollTop: 0 });
