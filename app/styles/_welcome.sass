@@ -1,2 +1,24 @@
 .welcome
   text-align: center
+
+  .icons
+    @include clearfix()
+    display: inline-block
+
+    .icons-item
+      height: 100px
+      float: left
+      margin: 10px
+
+      @include media-breakpoint-down(md)
+        height: 50px
+
+      svg
+        height: 100%
+
+  h1
+    font-size: 48px
+
+  h3
+    font-weight: normal
+    margin-bottom: 35px

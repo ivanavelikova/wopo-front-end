@@ -5,9 +5,15 @@
 <div class="center-wrapper center-wrapper--welcome">
   <div class="center-content center-content--welcome">
     {{#if showWelcome}}
-      <div class="welcome">
+      <div class="welcome col-md-10 offset-md-1">
+        <div class="icons">
+          {{paper-cut class="icons-item"}}
+          {{x-pen class="icons-item"}}
+          {{x-picture class="icons-item"}}
+          {{x-folder class="icons-item"}}
+        </div>
         <h1>Добре дошли в wopo!</h1>
-        <h2>Веднага можете да започнете да създавате портфолиото си, използвайки бутона по-долу.</h2>
+        <h3>Веднага можете да започнете да създавате портфолиото си, използвайки бутона по-долу.</h3>
         <button class="btn btn-primary" {{action "start"}}>Започни</button>
       </div>
     {{else}}
