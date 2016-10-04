@@ -6,7 +6,8 @@
     "Chart",
     "$",
     "CKEDITOR",
-    "toMarkdown"
+    "toMarkdown",
+    "Dropzone"
   ],
   "browser": true,
   "boss": true,

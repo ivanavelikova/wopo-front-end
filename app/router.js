@@ -51,6 +51,7 @@ Router.map(function() {
       this.route('profile');
     });
   });
+  this.route('media-manager');
 });
 
 export default Router;
