@@ -65,18 +65,33 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.1)
       padding-bottom: 1rem
 
-.card-media
-  .card-img-container
-    overflow: hidden
-    padding-top: 100%
+.media
+  .success-mark,
+  .error-mark,
+  .progress
+    opacity: 0
 
-    .card-img
-      margin: 0
-      width: 100%
-      height: 100%
-      object-fit: cover
-      position: absolute
-      top: 0
-      left: 0
-      bottom: 0
-      right: 0
+  &.dz-success .success-mark
+      opacity: 1
+
+  &.dz-error .error-mark
+      opacity: 1
+
+  &.dz-processing .progress
+    opacity: 1
+
+  .card-media
+    .card-img-container
+      overflow: hidden
+      padding-top: 100%
+
+      .card-img
+        margin: 0
+        width: 100%
+        height: 100%
+        object-fit: cover
+        position: absolute
+        top: 0
+        left: 0
+        bottom: 0
+        right: 0
