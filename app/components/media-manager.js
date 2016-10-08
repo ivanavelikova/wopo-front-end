@@ -1,12 +1,20 @@
 import Ember from 'ember';
 
-const { inject: { service } } = Ember;
+const {
+  computed,
+  inject: { service }
+} = Ember;
 
 export default Ember.Component.extend({
   cookies: service(),
   store: service(),
   intl: service(),
   session: service(),
+
+  selectedMedia: null,
+  disableSelect: computed('selectedMedia', function () {
+    return this.get('selectedMedia') === null;
+  }),
 
   didInsertElement () {
     const host = this.get('store').adapterFor('application').get('host');
@@ -15,10 +23,26 @@ export default Ember.Component.extend({
 
     Dropzone.autoDiscover = false;
 
+    const selectMedia = (e) => {
+      const media = $(e.currentTarget);
+
+      if (media.hasClass('selected')) {
+        return;
+      }
+      
+      container.find('.media').removeClass('selected');
+      $(media).addClass('selected');
+
+      const url = media.find('.card-img').attr('src');
+      console.log(url);
+      this.set('selectedMedia', url);
+    };
+
     container.dropzone({
       url: `${host}/media-manager`,
       maxFilesize: 2,
       uploadMultiple: false,
+      createImageThumbnails: false,
       paramName: 'media',
       headers,
       clickable: '.btn-upload',
@@ -27,16 +51,14 @@ export default Ember.Component.extend({
       dictFileTooBig: this.get('intl').t('errors.fileTooBig', {
         maxFilesize: '2MiB'
       }),
-      dictResponseError: 'eror',
+
       previewTemplate: `
         <div class="media">
           <div class="card card-media">
             <div class="card-img-container">
-              <img class="card-img" data-dz-thumbnail alt="">
+              <img class="card-img" src="" alt="">
             </div>
             <div class="card-img-overlay">
-              <div class="success-mark"><span>✔</span></div>
-              <div class="error-mark"><span>✘</span></div>
               <div class="error-message"></div>
               <progress class="progress" value="0" max="100"></progress>
               <button type="button" class="delete" aria-label="Delete">
@@ -46,8 +68,11 @@ export default Ember.Component.extend({
           </div>
         </div>
       `,
+
       error: (file, message) => {
-        if (!file.previewElement) {
+        const media = $(file.previewElement);
+
+        if (!media) {
           return;
         }
 
@@ -55,13 +80,43 @@ export default Ember.Component.extend({
           message = message.errors[0].detail;
         }
         
-        $(file.previewElement).addClass('dz-error');
-        $(file.previewElement).removeClass('dz-processing');
-        $(file.previewElement).find('.error-message').html(message);
+        media.addClass('error');
+        media.removeClass('dz-processing');
+        media.find('.error-message').html(message);
+      },
+
+      success: (file, response) => {
+        const media = $(file.previewElement);
+
+        // add thumbnail from response
+
+        media.on('click', selectMedia);
+        console.log(file, response);
       },
 
       uploadprogress: (file, progress) => {
-        $(file.previewElement).find('.progress').val(progress);
+        const media = $(file.previewElement);
+        media.find('.progress').val(progress);
+      },
+
+      complete: function (file) {
+        const media = $(file.previewElement);
+
+        media.find('.delete').on('click', () => {
+          this.removeFile(file);
+        });
+      }
+    });
+
+    container.find('.media').on('click', selectMedia);
+
+    $('.footer').on({
+      dragover () {
+        return false;
+      },
+
+      drop () {
+        return false;
       }
     });
   },
@@ -80,5 +135,11 @@ export default Ember.Component.extend({
     }
 
     return headers;
+  },
+
+  actions: {
+    select () {
+      alert(this.get('selectedMedia'));
+    }
   }
 });

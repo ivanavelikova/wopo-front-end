@@ -66,19 +66,21 @@
       padding-bottom: 1rem
 
 .media
-  .success-mark,
-  .error-mark,
-  .progress
+  .progress,
+  .delete
     opacity: 0
-
-  &.dz-success .success-mark
-      opacity: 1
-
-  &.dz-error .error-mark
-      opacity: 1
+    pointer-events: none
 
   &.dz-processing .progress
     opacity: 1
+
+  // TODO: Hide .progress after complete
+
+  &.selected .card-media
+    border-color: $brand-success
+
+  &.error
+    color: $brand-danger
 
   .card-media
     .card-img-container
