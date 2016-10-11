@@ -10,6 +10,7 @@ export default Ember.Component.extend({
   store: service(),
   intl: service(),
   session: service(),
+  network: service(),
 
   selectedMedia: null,
   disableSelect: computed('selectedMedia', function () {
@@ -34,13 +35,13 @@ export default Ember.Component.extend({
       $(media).addClass('selected');
 
       const url = media.find('.card-img').attr('src');
-      console.log(url);
       this.set('selectedMedia', url);
     };
 
     container.dropzone({
       url: `${host}/media-manager`,
       maxFilesize: 2,
+      parallelUploads: 1,
       uploadMultiple: false,
       createImageThumbnails: false,
       paramName: 'media',
@@ -85,26 +86,52 @@ export default Ember.Component.extend({
         media.find('.error-message').html(message);
       },
 
-      success: (file, response) => {
+      success: function (file, response) {
         const media = $(file.previewElement);
 
-        // add thumbnail from response
+        media.find('.card-img').attr('src', response.url);
+        
+        media.removeClass('dz-processing');
+        media.addClass('dz-success');
 
         media.on('click', selectMedia);
-        console.log(file, response);
+
+        media.find('.delete').on('click', (e) => {
+          this.removeFile(file);
+          e.preventDefault();
+        });
+      },
+
+      removedfile: (file) => {
+        const media = $(file.previewElement);
+        const url = media.find('.card-img').attr('src');
+        
+        this
+          .get('network')
+          .delete('media-manager', { url }, true)
+          .then(() => {
+            media.remove();
+          })
+          .catch(error => {
+            if (!error.response) {
+              console.error(error);
+              return;
+            }
+
+            error.response.json().then(function(reason) {
+              if (!reason.errors && !reason.errors[0].detail) {
+                console.error(error);
+                return;
+              }
+
+              console.error(reason.errors[0].detail);
+            });
+          });
       },
 
       uploadprogress: (file, progress) => {
         const media = $(file.previewElement);
         media.find('.progress').val(progress);
-      },
-
-      complete: function (file) {
-        const media = $(file.previewElement);
-
-        media.find('.delete').on('click', () => {
-          this.removeFile(file);
-        });
       }
     });
 
@@ -119,6 +146,8 @@ export default Ember.Component.extend({
         return false;
       }
     });
+
+    // TODO: show files already stored on server
   },
 
   _headers () {
@@ -139,7 +168,7 @@ export default Ember.Component.extend({
 
   actions: {
     select () {
-      alert(this.get('selectedMedia'));
+      console.log(this.get('selectedMedia'));
     }
   }
 });

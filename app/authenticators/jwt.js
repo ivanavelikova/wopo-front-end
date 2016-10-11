@@ -92,8 +92,8 @@ export default Base.extend({
         firstSteps: sessionData.firstSteps
       };
 
-      this.
-        get('network')
+      this
+        .get('network')
         .post('session/first-steps', data, true)
         .then(() => {
           delete sessionData.firstSteps;

@@ -74,13 +74,21 @@
   &.dz-processing .progress
     opacity: 1
 
-  // TODO: Hide .progress after complete
-
   &.selected .card-media
     border-color: $brand-success
 
+    .card-img-overlay
+      background: rgba(107, 214, 88, .5)
+
   &.error
     color: $brand-danger
+
+  &.dz-success
+    cursor: pointer
+
+    .delete
+      opacity: 1
+      pointer-events: auto
 
   .card-media
     .card-img-container

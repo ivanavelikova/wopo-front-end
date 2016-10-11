@@ -12,6 +12,10 @@ export default Ember.Service.extend({
   post (path, data, authorization, assignHeaders) {
     return this._fetch('POST', path, data, authorization, assignHeaders);
   },
+  
+  delete (path, data, authorization, assignHeaders) {
+    return this._fetch('DELETE', path, data, authorization, assignHeaders);
+  },
 
   _fetch (method, path, data, authorization, assignHeaders) {
     if (!assignHeaders) {
