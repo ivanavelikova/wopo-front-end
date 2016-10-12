@@ -48,7 +48,6 @@ export default Ember.Component.extend({
     container.dropzone({
       url: `${host}/media-manager`,
       maxFilesize: 2,
-      parallelUploads: 1,
       uploadMultiple: false,
       createImageThumbnails: false,
       paramName: 'media',
