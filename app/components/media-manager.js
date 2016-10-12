@@ -25,17 +25,24 @@ export default Ember.Component.extend({
     Dropzone.autoDiscover = false;
 
     const selectMedia = (e) => {
-      const media = $(e.currentTarget);
+      e.stopPropagation();
+
+      const media = $(e.delegateTarget);
 
       if (media.hasClass('selected')) {
         return;
       }
+
+      const url = media.find('.card-img').attr('src');
+
+      if (!url) {
+        return;
+      }
+
+      this.set('selectedMedia', url);
       
       container.find('.media').removeClass('selected');
       $(media).addClass('selected');
-
-      const url = media.find('.card-img').attr('src');
-      this.set('selectedMedia', url);
     };
 
     container.dropzone({
@@ -94,21 +101,28 @@ export default Ember.Component.extend({
         media.removeClass('dz-processing');
         media.addClass('dz-success');
 
-        media.on('click', selectMedia);
+        media.on('click', ':not(.delete)', selectMedia);
 
         media.find('.delete').on('click', (e) => {
+          e.stopPropagation();
+          
           this.removeFile(file);
-          e.preventDefault();
         });
       },
 
       removedfile: (file) => {
         const media = $(file.previewElement);
+
+        if (media.hasClass('selected')) {
+          this.set('selectedMedia', null);
+        }
+
         const url = media.find('.card-img').attr('src');
+        const path = url.replace(`${host}/`, '');
         
         this
           .get('network')
-          .delete('media-manager', { url }, true)
+          .delete(path, {}, true)
           .then(() => {
             media.remove();
           })
@@ -135,7 +149,7 @@ export default Ember.Component.extend({
       }
     });
 
-    container.find('.media').on('click', selectMedia);
+    container.find('.media').on('click', ':not(.delete)', selectMedia);
 
     $('.footer').on({
       dragover () {
