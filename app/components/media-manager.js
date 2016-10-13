@@ -18,11 +18,60 @@ export default Ember.Component.extend({
   }),
 
   didInsertElement () {
+    Dropzone.autoDiscover = false;
+
+    const dropzone = this._initDropzone();
+
+    // List uploaded medias
+    this
+      .get('network')
+      .post('media-manager/list', {}, true)
+      .then(response => {
+        const medias = response.images;
+
+        if (!medias) {
+          return;
+        }
+
+        for (let i = 0, length = medias.length; i < length; i += 1) {
+          const media = medias[i];
+
+          dropzone.emit('addedfile', media);
+          dropzone.emit('success', media, media);
+        }
+      })
+      .catch(error => {
+        if (!error.response) {
+          console.error(error);
+          return;
+        }
+
+        error.response.json().then(function(reason) {
+          if (!reason.errors && !reason.errors[0].detail) {
+            console.error(error);
+            return;
+          }
+
+          console.error(reason.errors[0].detail);
+        });
+      });
+
+    // Disable drag & drop on footer
+    $('.footer').on({
+      dragover () {
+        return false;
+      },
+
+      drop () {
+        return false;
+      }
+    });
+  },
+
+  _initDropzone () {
     const host = this.get('store').adapterFor('application').get('host');
     const headers = this._headers();
     const container = $('.media-container');
-
-    Dropzone.autoDiscover = false;
 
     const selectMedia = (e) => {
       e.stopPropagation();
@@ -45,7 +94,9 @@ export default Ember.Component.extend({
       $(media).addClass('selected');
     };
 
-    container.dropzone({
+    container.find('.media').on('click', ':not(.delete)', selectMedia);
+
+    return new Dropzone('.media-container', {
       url: `${host}/media-manager`,
       maxFilesize: 2,
       uploadMultiple: false,
@@ -147,20 +198,6 @@ export default Ember.Component.extend({
         media.find('.progress').val(progress);
       }
     });
-
-    container.find('.media').on('click', ':not(.delete)', selectMedia);
-
-    $('.footer').on({
-      dragover () {
-        return false;
-      },
-
-      drop () {
-        return false;
-      }
-    });
-
-    // TODO: show files already stored on server
   },
 
   _headers () {
@@ -181,6 +218,7 @@ export default Ember.Component.extend({
 
   actions: {
     select () {
+      // TODO
       console.log(this.get('selectedMedia'));
     }
   }
