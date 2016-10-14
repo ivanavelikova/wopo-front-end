@@ -218,8 +218,15 @@ export default Ember.Component.extend({
 
   actions: {
     select () {
-      // TODO
-      console.log(this.get('selectedMedia'));
+      const funcNum = this.get('funcNum');
+      const selectedMedia = this.get('selectedMedia');
+
+      if (this.get('isCKEditor')) {
+        console.log(funcNum, selectedMedia);
+        window.opener.CKEDITOR.tools.callFunction(funcNum, selectedMedia);
+      }
+
+      window.close();
     }
   }
 });

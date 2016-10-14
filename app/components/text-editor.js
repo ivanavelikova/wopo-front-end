@@ -37,7 +37,8 @@ export default Ember.Component.extend({
       ],
       removeButtons: 'Underline,Subscript,Superscript,Strike,Styles,Table,Anchor',
       extraPlugins: 'markdown',
-      format_tags: 'p;h1;h2;h3;pre'
+      format_tags: 'p;h1;h2;h3;pre',
+      filebrowserBrowseUrl: '/media-manager'
     };
     const editor = CKEDITOR.replace(this.get('editorId'), config);
     
