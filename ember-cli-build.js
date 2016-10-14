@@ -42,6 +42,7 @@ module.exports = function(defaults) {
     app.import(app.bowerDirectory + '/select2/dist/js/select2.min.js');
     app.import(app.bowerDirectory + '/to-markdown/dist/to-markdown.js');
     app.import(app.bowerDirectory + '/dropzone/dist/min/dropzone.min.js');
+    app.import(app.bowerDirectory + '/showdown/dist/showdown.min.js');
 
     var ckeditorAssets = new Funnel(app.bowerDirectory, {
       srcDir: 'ckeditor',
