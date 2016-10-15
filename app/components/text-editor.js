@@ -22,6 +22,17 @@ export default Ember.Component.extend({
     }
   }),
 
+  onUpdateValue: observer('updateValue', function () {
+    const value = this.get('value');
+    const editor = CKEDITOR.instances[this.get('editorId')];
+
+    if (this.get('updateValue') && editor && value) {
+      const converter = new showdown.Converter();
+      const html = converter.makeHtml(value);
+      editor.setData(html);
+    }
+  }),
+
   didInsertElement () {
     $.fn.modal.Constructor.prototype._enforceFocus = function () {};
 

@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
     themeId: null,
     about: null,
     skills: null,
-    workExperience: null
+    workExperiences: null
   }),
 
   init () {

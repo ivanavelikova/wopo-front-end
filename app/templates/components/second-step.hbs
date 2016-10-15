@@ -79,16 +79,32 @@
           modalActionName="Добави"
         }}
       </div>
-      <div class="row">
-        <div class="col-xl-4 col-md-6">
-          <div class="card card-block">
-            <h5 class="card-title">Художник</h5>
-            <h6 class="card-subtitle text-muted">20.10.2015 - 23.06.2016</h6>
-            {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
-            {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
-          </div>
+
+      {{#if haveWorkExperiences}}
+        <div class="row">
+          {{#each data.workExperiences as |workExperience index|}}
+            {{work-experience-card
+              data=workExperience
+              index=index
+              delete=(action "deleteWorkExperience")
+              edit=(action "updateEditWorkExperience")
+            }}
+          {{/each}}
         </div>
-      </div>
+      {{else}}
+        <div class="alert alert-info" role="alert">
+          Не сте добавили трудов стаж. Можете да добавите трудов стаж, използвайки бутона "Нов трудов стаж".
+        </div>
+      {{/if}}
+
+      {{work-experience-modal
+        success=(action "editWorkExperience")
+        data=editWorkExperience
+        modalVisible=editWorkExperienceModalVisible
+        modalTarget="editWorkExperience"
+        modalTitle="Редактиране на трудов стаж"
+        modalActionName="Редактирай"
+      }}
     </section>
     <section class="form-section">
       <div class="section-title">
@@ -160,28 +176,6 @@
             </div>
             {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
             {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="form-section">
-      <div class="section-title">
-        <h5 class="pull-xs-left">Импортиране на статии</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.content">Импорт</div>
-      </div>
-      <div class="modal fade bd-example-modal-lg content" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="section-title">
-              <h2 class="pull-xs-left">Импортиране на статии</h2>
-            </div>
-            <div class="form-group">
-              <label for="title">Линк</label>
-              <input type="text" name="title" class="form-control" id="title" placeholder="http://example.com/example">
-            </div>
-            <div class="form-group">
-              <button class="btn btn-primary">Добави</button>
-            </div>
           </div>
         </div>
       </div>

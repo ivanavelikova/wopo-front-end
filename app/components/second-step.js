@@ -61,8 +61,8 @@ export default Ember.Component.extend(Validations, {
   },
   editWorkExperienceModalVisible: null,
 
-  haveWorkExperience: computed('data.workExperience', function () {
-    return Array.isArray(this.get('data.workExperience'));
+  haveWorkExperiences: computed('data.workExperiences', function () {
+    return Array.isArray(this.get('data.workExperiences'));
   }),
 
   actions: {
@@ -128,19 +128,64 @@ export default Ember.Component.extend(Validations, {
     },
 
     addWorkExperience () {
-      let workExperience = this.get('data.workExperience');
-      this.set('data.workExperience', []);
+      let workExperiences = this.get('data.workExperiences');
+      this.set('data.workExperiences', []);
 
-      if (!Array.isArray(workExperience)) {
-        workExperience = [];
+      if (!Array.isArray(workExperiences)) {
+        workExperiences = [];
       }
 
       const addWorkExperience = JSON.parse(JSON.stringify(this.get('addWorkExperience')));
 
-      workExperience.push(addWorkExperience);
+      workExperiences.push(addWorkExperience);
 
-      this.set('data.workExperience', workExperience);
+      this.set('data.workExperiences', workExperiences);
       this.set('addWorkExperienceModalVisible', false);
+    },
+
+    deleteWorkExperience (index) {
+      let workExperiences = this.get('data.workExperiences');
+      this.set('data.workExperiences', []);
+
+      if (!Array.isArray(workExperiences)) {
+        workExperiences = [];
+      }
+
+      workExperiences.splice(index, 1);
+
+      if (workExperiences.length === 0) {
+        workExperiences = null;
+      }
+
+      this.set('data.workExperiences', workExperiences);
+    },
+
+    updateEditWorkExperience (index) {
+      const workExperience = this.get('data.workExperiences')[index];
+
+      this.set('editWorkExperience.index', index);
+
+      for (let key in workExperience) {
+        this.set(`editWorkExperience.${key}`, workExperience[key]);
+      }
+    },
+
+    editWorkExperience () {
+      let workExperiences = JSON.parse(JSON.stringify(this.get('data.workExperiences')));
+      this.set('data.workExperiences', []);
+
+      if (!Array.isArray(workExperiences)) {
+        workExperiences = [];
+      }
+      
+      const editWorkExperience = JSON.parse(JSON.stringify(this.get('editWorkExperience')));
+
+      for (let key in workExperiences[editWorkExperience.index]) {
+        workExperiences[editWorkExperience.index][key] = editWorkExperience[key];
+      }
+
+      this.set('data.workExperiences', workExperiences);
+      this.set('editWorkExperienceModalVisible', false);
     },
 
     next () {
