@@ -25,6 +25,8 @@ export default Ember.Component.extend({
   didInsertElement () {
     $.fn.modal.Constructor.prototype._enforceFocus = function () {};
 
+    CKEDITOR.addCss( 'img { width: 100% }' );
+
     const config = {
       toolbarGroups: [
         { name: 'tools' },
