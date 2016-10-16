@@ -27,31 +27,31 @@ export default Ember.Component.extend(Validations, {
     return false;
   }),
 
-  addSkill: {
+  addSkills: {
     name: null
   },
-  addSkillModalVisible: null,
+  addSkillsModalVisible: null,
 
-  editSkill: {
+  editSkills: {
     index: null,
     name: null
   },
-  editSkillModalVisible: null,
+  editSkillsModalVisible: null,
 
   haveSkills: computed('data.skills', function () {
     return Array.isArray(this.get('data.skills'));
   }),
 
-  addWorkExperience: {
+  addWorkExperiences: {
     position: null,
     startDate: null,
     endDate: null,
     employer: null,
     responsibilities: null
   },
-  addWorkExperienceModalVisible: null,
+  addWorkExperiencesModalVisible: null,
 
-  editWorkExperience: {
+  editWorkExperiences: {
     index: null,
     position: null,
     startDate: null,
@@ -59,7 +59,7 @@ export default Ember.Component.extend(Validations, {
     employer: null,
     responsibilities: null
   },
-  editWorkExperienceModalVisible: null,
+  editWorkExperiencesModalVisible: null,
 
   haveWorkExperiences: computed('data.workExperiences', function () {
     return Array.isArray(this.get('data.workExperiences'));
@@ -84,188 +84,93 @@ export default Ember.Component.extend(Validations, {
     return Array.isArray(this.get('data.education'));
   }),
 
+  addCertificates: {
+    name: null,
+    image_url: null
+  },
+  addCertificatesModalVisible: null,
+
+  editCertificates: {
+    index: null,
+    name: null,
+    image_url: null
+  },
+  editCertificatesModalVisible: null,
+
+  haveCertificates: computed('data.certificates', function () {
+    return Array.isArray(this.get('data.certificates'));
+  }),
+
+  _fixCase (s) {
+    const firstLetter = s[0].toUpperCase();
+    const restOfString = s.slice(1);
+
+    return s && firstLetter + restOfString;
+  },
+
   actions: {
-    addSkill () {
-      let skills = this.get('data.skills');
-      this.set('data.skills', []);
+    add (section) {
+      let data = this.get(`data.${section}`);
+      const sectionName = this._fixCase(section);
+      this.set(`data.${section}`, []);
 
-      if (!Array.isArray(skills)) {
-        skills = [];
+      if (!Array.isArray(data)) {
+        data = [];
       }
 
-      const addSkill = JSON.parse(JSON.stringify(this.get('addSkill')));
+      const addData = JSON.parse(JSON.stringify(this.get(`add${sectionName}`)));
 
-      skills.push(addSkill);
+      data.push(addData);
 
-      this.set('data.skills', skills);
-      this.set('addSkillModalVisible', false);
+      this.set(`data.${section}`, data);
+      this.set(`add${sectionName}ModalVisible`, false);
     },
 
-    deleteSkill (index) {
-      let skills = this.get('data.skills');
-      this.set('data.skills', []);
+    delete (section, index) {
+      let data = this.get(`data.${section}`);
+      this.set(`data.${section}`, []);
 
-      if (!Array.isArray(skills)) {
-        skills = [];
+      if (!Array.isArray(data)) {
+        data = [];
       }
 
-      skills.splice(index, 1);
+      data.splice(index, 1);
 
-      if (skills.length === 0) {
-        skills = null;
+      if (data.length === 0) {
+        data = null;
       }
 
-      this.set('data.skills', skills);
+      this.set(`data.${section}`, data);
     },
 
-    updateEditSkill (index) {
-      const skill = this.get('data.skills')[index];
+    updateEdit (section, index) {
+      const data = this.get(`data.${section}`)[index];
+      const sectionName = this._fixCase(section);
 
-      this.set('editSkill.index', index);
+      this.set(`edit${sectionName}.index`, index);
 
-      for (let key in skill) {
-        this.set(`editSkill.${key}`, skill[key]);
+      for (let key in data) {
+        this.set(`edit${sectionName}.${key}`, data[key]);
       }
     },
 
-    editSkill () {
-      let skills = JSON.parse(JSON.stringify(this.get('data.skills')));
-      this.set('data.skills', []);
+    edit (section) {
+      let data = JSON.parse(JSON.stringify(this.get(`data.${section}`)));
+      const sectionName = this._fixCase(section);
+      this.set(`data.${section}`, []);
 
-      if (!Array.isArray(skills)) {
-        skills = [];
+      if (!Array.isArray(data)) {
+        data = [];
       }
       
-      const editSkill = JSON.parse(JSON.stringify(this.get('editSkill')));
+      const editData = JSON.parse(JSON.stringify(this.get(`edit${sectionName}`)));
 
-      for (let key in skills[editSkill.index]) {
-        skills[editSkill.index][key] = editSkill[key];
+      for (let key in data[editData.index]) {
+        data[editData.index][key] = editData[key];
       }
 
-      this.set('data.skills', skills);
-      this.set('editSkillModalVisible', false);
-    },
-
-    addWorkExperience () {
-      let workExperiences = this.get('data.workExperiences');
-      this.set('data.workExperiences', []);
-
-      if (!Array.isArray(workExperiences)) {
-        workExperiences = [];
-      }
-
-      const addWorkExperience = JSON.parse(JSON.stringify(this.get('addWorkExperience')));
-
-      workExperiences.push(addWorkExperience);
-
-      this.set('data.workExperiences', workExperiences);
-      this.set('addWorkExperienceModalVisible', false);
-    },
-
-    deleteWorkExperience (index) {
-      let workExperiences = this.get('data.workExperiences');
-      this.set('data.workExperiences', []);
-
-      if (!Array.isArray(workExperiences)) {
-        workExperiences = [];
-      }
-
-      workExperiences.splice(index, 1);
-
-      if (workExperiences.length === 0) {
-        workExperiences = null;
-      }
-
-      this.set('data.workExperiences', workExperiences);
-    },
-
-    updateEditWorkExperience (index) {
-      const workExperience = this.get('data.workExperiences')[index];
-
-      this.set('editWorkExperience.index', index);
-
-      for (let key in workExperience) {
-        this.set(`editWorkExperience.${key}`, workExperience[key]);
-      }
-    },
-
-    editWorkExperience () {
-      let workExperiences = JSON.parse(JSON.stringify(this.get('data.workExperiences')));
-      this.set('data.workExperiences', []);
-
-      if (!Array.isArray(workExperiences)) {
-        workExperiences = [];
-      }
-      
-      const editWorkExperience = JSON.parse(JSON.stringify(this.get('editWorkExperience')));
-
-      for (let key in workExperiences[editWorkExperience.index]) {
-        workExperiences[editWorkExperience.index][key] = editWorkExperience[key];
-      }
-
-      this.set('data.workExperiences', workExperiences);
-      this.set('editWorkExperienceModalVisible', false);
-    },
-
-    addEducation () {
-      let education = this.get('data.education');
-      this.set('data.education', []);
-
-      if (!Array.isArray(education)) {
-        education = [];
-      }
-
-      const addEducation = JSON.parse(JSON.stringify(this.get('addEducation')));
-
-      education.push(addEducation);
-
-      this.set('data.education', education);
-      this.set('addEducationModalVisible', false);
-    },
-
-    deleteEducation (index) {
-      let education = this.get('data.education');
-      this.set('data.education', []);
-
-      if (!Array.isArray(education)) {
-        education = [];
-      }
-
-      education.splice(index, 1);
-
-      if (education.length === 0) {
-        education = null;
-      }
-
-      this.set('data.education', education);
-    },
-
-    updateEditEducation (index) {
-      const education = this.get('data.education')[index];
-
-      this.set('editEducation.index', index);
-
-      for (let key in education) {
-        this.set(`editEducation.${key}`, education[key]);
-      }
-    },
-
-    editEducation () {
-      let education = JSON.parse(JSON.stringify(this.get('data.education')));
-      this.set('data.education', []);
-
-      if (!Array.isArray(education)) {
-        education = [];
-      }
-      
-      const editEducation = JSON.parse(JSON.stringify(this.get('editEducation')));
-
-      for (let key in education[editEducation.index]) {
-        education[editEducation.index][key] = editEducation[key];
-      }
-
-      this.set('data.education', education);
-      this.set('editEducationModalVisible', false);
+      this.set(`data.${section}`, data);
+      this.set(`edit${sectionName}ModalVisible`, false);
     },
 
     next () {

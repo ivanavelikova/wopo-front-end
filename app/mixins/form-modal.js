@@ -69,11 +69,11 @@ export default Ember.Mixin.create({
       jQuery(':focus').blur();
       
       if (this.get('index')) {
-        this.sendAction('success', this.get('index'));
+        this.sendAction('success', this.get('section'), this.get('index'));
         return;
       }
 
-      this.sendAction('success');
+      this.sendAction('success', this.get('section'));
     }
   }
 });

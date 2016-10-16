@@ -27,13 +27,14 @@
     <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Умения</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addSkill">Ново умение</div>
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addSkills">Ново умение</div>
 
         {{skill-modal
-          success=(action "addSkill")
-          data=addSkill
-          modalVisible=addSkillModalVisible
-          modalTarget="addSkill"
+          success=(action "add")
+          data=addSkills
+          modalVisible=addSkillsModalVisible
+          section="skills"
+          modalTarget="addSkills"
           modalTitle="Ново умение"
           modalActionName="Добави"
         }}
@@ -45,8 +46,9 @@
             {{skill-card
               data=skill
               index=index
-              delete=(action "deleteSkill")
-              edit=(action "updateEditSkill")
+              section="skills"
+              delete=(action "delete")
+              edit=(action "updateEdit")
             }}
           {{/each}}
         </div>
@@ -57,10 +59,11 @@
       {{/if}}
 
       {{skill-modal
-        success=(action "editSkill")
-        data=editSkill
-        modalVisible=editSkillModalVisible
-        modalTarget="editSkill"
+        success=(action "edit")
+        data=editSkills
+        modalVisible=editSkillsModalVisible
+        section="skills"
+        modalTarget="editSkills"
         modalTitle="Редактиране на умение"
         modalActionName="Редактирай"
       }}
@@ -68,13 +71,14 @@
     <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Трудов стаж</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addWorkExperience">Нов трудов стаж</div>
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addWorkExperiences">Нов трудов стаж</div>
 
         {{work-experience-modal
-          success=(action "addWorkExperience")
-          data=addWorkExperience
-          modalVisible=addWorkExperienceModalVisible
-          modalTarget="addWorkExperience"
+          success=(action "add")
+          data=addWorkExperiences
+          modalVisible=addWorkExperiencesModalVisible
+          section="workExperiences"
+          modalTarget="addWorkExperiences"
           modalTitle="Нов трудов стаж"
           modalActionName="Добави"
         }}
@@ -86,8 +90,9 @@
             {{work-experience-card
               data=workExperience
               index=index
-              delete=(action "deleteWorkExperience")
-              edit=(action "updateEditWorkExperience")
+              section="workExperiences"
+              delete=(action "delete")
+              edit=(action "updateEdit")
             }}
           {{/each}}
         </div>
@@ -98,10 +103,11 @@
       {{/if}}
 
       {{work-experience-modal
-        success=(action "editWorkExperience")
-        data=editWorkExperience
-        modalVisible=editWorkExperienceModalVisible
-        modalTarget="editWorkExperience"
+        success=(action "edit")
+        data=editWorkExperiences
+        modalVisible=editWorkExperiencesModalVisible
+        section="workExperiences"
+        modalTarget="editWorkExperiences"
         modalTitle="Редактиране на трудов стаж"
         modalActionName="Редактирай"
       }}
@@ -112,9 +118,10 @@
         <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addEducation">Ново образование/обучение</div>
 
         {{education-modal
-          success=(action "addEducation")
+          success=(action "add")
           data=addEducation
           modalVisible=addEducationModalVisible
+          section="education"
           modalTarget="addEducation"
           modalTitle="Ново образование/обучение"
           modalActionName="Добави"
@@ -127,8 +134,9 @@
             {{education-card
               data=education
               index=index
-              delete=(action "deleteEducation")
-              edit=(action "updateEditEducation")
+              section="education"
+              delete=(action "delete")
+              edit=(action "updateEdit")
             }}
           {{/each}}
         </div>
@@ -139,9 +147,10 @@
       {{/if}}
 
       {{education-modal
-        success=(action "editEducation")
+        success=(action "edit")
         data=editEducation
         modalVisible=editEducationModalVisible
+        section="education"
         modalTarget="editEducation"
         modalTitle="Редактиране на образование/обучение"
         modalActionName="Редактирай"
@@ -150,7 +159,7 @@
     <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Сертификати и отличия</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.certificates">Нов сертификат/отличие</div>
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.certificates">Нов сертификат/отличие</div>
       </div>
 
       <div class="row">

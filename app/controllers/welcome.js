@@ -17,7 +17,8 @@ export default Ember.Controller.extend({
     skills: null,
     workExperiences: null,
     education: null,
-    certificates: null
+    certificates: null,
+    projects: null
   }),
 
   init () {
