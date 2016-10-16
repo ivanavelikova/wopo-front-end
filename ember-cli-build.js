@@ -46,12 +46,12 @@ module.exports = function(defaults) {
 
     var ckeditorAssets = new Funnel(app.bowerDirectory, {
       srcDir: 'ckeditor',
-      destDir: '/'
+      destDir: '/ckeditor'
     });
     
     var ckeditorMarkdownAssets = new Funnel(app.bowerDirectory, {
       srcDir: 'ckeditor-markdown-plugin',
-      destDir: '/plugins'
+      destDir: '/ckeditor/plugins'
     });
 
     assets = mergeTrees([ckeditorAssets, ckeditorMarkdownAssets]);
