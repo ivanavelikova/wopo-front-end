@@ -159,23 +159,46 @@
     <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Сертификати и отличия</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.certificates">Нов сертификат/отличие</div>
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addCertificates">Нов сертификат/отличие</div>
+
+        {{certificate-modal
+          success=(action "add")
+          data=addCertificates
+          modalVisible=addCertificatesModalVisible
+          section="certificates"
+          modalTarget="addCertificates"
+          modalTitle="Нов сертификат/отличие"
+          modalActionName="Добави"
+        }}
       </div>
 
-      <div class="row">
-        <div class="col-xl-4 col-md-6">
-          <div class="card card-block">
-            <div class="card-title">
-              <h4 title="">Първо място в категория "Мултимедийни презентации" на НЕТ "Джон Атанасов" 2015</h4>
-            </div>
-            <div class="card-img">
-              <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
-            </div>
-            <button class="btn btn-link card-link">Редактирай</button>
-            <button class="btn btn-link card-link">Изтрий</button>
-          </div>
+      {{#if haveCertificates}}
+        <div class="row">
+          {{#each data.certificates as |certificate index|}}
+            {{certificate-card
+              data=certificate
+              index=index
+              section="certificates"
+              delete=(action "delete")
+              edit=(action "updateEdit")
+            }}
+          {{/each}}
         </div>
-      </div>
+      {{else}}
+        <div class="alert alert-info" role="alert">
+          Не сте добавили сертификати/отличия. Можете да добавите, използвайки бутона "Нов сертификат/отличие".
+        </div>
+      {{/if}}
+
+      {{certificate-modal
+        success=(action "edit")
+        data=editCertificates
+        modalVisible=editCertificatesModalVisible
+        section="certificates"
+        modalTarget="editCertificates"
+        modalTitle="Редактиране на сертификат/отличие"
+        modalActionName="Редактирай"
+      }}
     </section>
   </div>
   <div class="stepper-bottom">

@@ -13,13 +13,13 @@
       {{/if}}
       
       <div class="form-group {{if (v-get this "data.organisation" "isValid") "has-success" (if organisationShowErrorMessage "has-danger")}}">
-        <label for="{{modalTarget}}Organisation">Образователна инситуция</label>
+        <label for="{{modalTarget}}Organisation">Образователна институция</label>
         {{input
           type="text"
           name="organisation"
           class="form-control"
           id=(concat modalTarget "Organisation")
-          placeholder="Напишете заеманата длъжност"
+          placeholder="Напишете образователната институция"
           value=data.organisation
           autocomplete="off"
         }}

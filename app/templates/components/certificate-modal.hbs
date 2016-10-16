@@ -1,0 +1,62 @@
+{{#x-modal
+  modalTarget=modalTarget
+  modalTitle=modalTitle
+  modalVisible=modalVisible
+  alert=alert
+}}
+  <form {{action "submitForm" on="submit"}}>
+    <div class="modal-body">
+      {{#if showAlert}}
+        <div class="alert alert-{{alert.type}}" role="alert">
+          {{alert.content}}
+        </div>
+      {{/if}}
+      
+      <div class="form-group {{if (v-get this "data.name" "isValid") "has-success" (if nameShowErrorMessage "has-danger")}}">
+        <label for="{{modalTarget}}Name">Име на сертификат/отличие</label>
+        {{input
+          type="text"
+          name="name"
+          class="form-control"
+          id=(concat modalTarget "Name")
+          placeholder="Напишете името на сертификата/отличието"
+          value=data.name
+          autocomplete="off"
+        }}
+
+        <div class="form-control-feedback">
+          {{#if nameShowErrorMessage}}
+              {{v-get this "data.name" "message"}}
+          {{/if}}
+        </div>
+      </div>
+      <div class="form-group {{if (v-get this "data.image_url" "isValid") "has-success" (if image_urlShowErrorMessage "has-danger")}}">
+        <label for="{{modalTarget}}ImageUrl">Снимка</label>
+        <div class="input-group">
+          {{input
+            type="text"
+            name="image_url"
+            class="form-control"
+            id=(concat modalTarget "ImageUrl")
+            placeholder="http://..."
+            value=data.image_url
+            autocomplete="off"
+          }}
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" {{action "openMediaManager"}}>Мениджър на снимки</button>
+          </span>
+        </div>
+
+        <div class="form-control-feedback">
+          {{#if image_urlShowErrorMessage}}
+              {{v-get this "data.image_url" "message"}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+      <button type="submit" class="btn btn-primary">{{modalActionName}}</button>
+    </div>
+  </form>
+{{/x-modal}}

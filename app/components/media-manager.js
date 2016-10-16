@@ -218,12 +218,13 @@ export default Ember.Component.extend({
 
   actions: {
     select () {
-      const funcNum = this.get('funcNum');
+      const funcNum = this.get('CKEditorFuncNum');
       const selectedMedia = this.get('selectedMedia');
 
       if (this.get('isCKEditor')) {
-        console.log(funcNum, selectedMedia);
         window.opener.CKEDITOR.tools.callFunction(funcNum, selectedMedia);
+      } else {
+        window.opener.postMessage({ media: selectedMedia }, '*');
       }
 
       window.close();
