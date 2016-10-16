@@ -15,7 +15,9 @@ export default Ember.Controller.extend({
     themeId: null,
     about: null,
     skills: null,
-    workExperiences: null
+    workExperiences: null,
+    education: null,
+    certificates: null
   }),
 
   init () {
@@ -89,27 +91,27 @@ export default Ember.Controller.extend({
   actions: {
     start () {
       this.set('data.currentStep', 1);
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     },
 
     firstNext () {
       this.set('data.currentStep', 2);
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     },
 
     secondNext () {
       this.set('data.currentStep', 3);
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     },
 
     secondBack () {
       this.set('data.currentStep', 1);
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     },
 
     thirdBack () {
       this.set('data.currentStep', 2);
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     }
   }
 });

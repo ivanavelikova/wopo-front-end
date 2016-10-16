@@ -65,6 +65,25 @@ export default Ember.Component.extend(Validations, {
     return Array.isArray(this.get('data.workExperiences'));
   }),
 
+  addEducation: {
+    organisation: null,
+    startDate: null,
+    endDate: null
+  },
+  addEducationModalVisible: null,
+
+  editEducation: {
+    index: null,
+    organisation: null,
+    startDate: null,
+    endDate: null
+  },
+  editEducationModalVisible: null,
+
+  haveEducation: computed('data.education', function () {
+    return Array.isArray(this.get('data.education'));
+  }),
+
   actions: {
     addSkill () {
       let skills = this.get('data.skills');
@@ -186,6 +205,67 @@ export default Ember.Component.extend(Validations, {
 
       this.set('data.workExperiences', workExperiences);
       this.set('editWorkExperienceModalVisible', false);
+    },
+
+    addEducation () {
+      let education = this.get('data.education');
+      this.set('data.education', []);
+
+      if (!Array.isArray(education)) {
+        education = [];
+      }
+
+      const addEducation = JSON.parse(JSON.stringify(this.get('addEducation')));
+
+      education.push(addEducation);
+
+      this.set('data.education', education);
+      this.set('addEducationModalVisible', false);
+    },
+
+    deleteEducation (index) {
+      let education = this.get('data.education');
+      this.set('data.education', []);
+
+      if (!Array.isArray(education)) {
+        education = [];
+      }
+
+      education.splice(index, 1);
+
+      if (education.length === 0) {
+        education = null;
+      }
+
+      this.set('data.education', education);
+    },
+
+    updateEditEducation (index) {
+      const education = this.get('data.education')[index];
+
+      this.set('editEducation.index', index);
+
+      for (let key in education) {
+        this.set(`editEducation.${key}`, education[key]);
+      }
+    },
+
+    editEducation () {
+      let education = JSON.parse(JSON.stringify(this.get('data.education')));
+      this.set('data.education', []);
+
+      if (!Array.isArray(education)) {
+        education = [];
+      }
+      
+      const editEducation = JSON.parse(JSON.stringify(this.get('editEducation')));
+
+      for (let key in education[editEducation.index]) {
+        education[editEducation.index][key] = editEducation[key];
+      }
+
+      this.set('data.education', education);
+      this.set('editEducationModalVisible', false);
     },
 
     next () {

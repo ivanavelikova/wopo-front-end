@@ -1,0 +1,90 @@
+{{#x-modal
+  modalTarget=modalTarget
+  modalTitle=modalTitle
+  modalVisible=modalVisible
+  alert=alert
+}}
+  <form {{action "submitForm" on="submit"}}>
+    <div class="modal-body">
+      {{#if showAlert}}
+        <div class="alert alert-{{alert.type}}" role="alert">
+          {{alert.content}}
+        </div>
+      {{/if}}
+      
+      <div class="form-group {{if (v-get this "data.organisation" "isValid") "has-success" (if organisationShowErrorMessage "has-danger")}}">
+        <label for="{{modalTarget}}Organisation">Образователна инситуция</label>
+        {{input
+          type="text"
+          name="organisation"
+          class="form-control"
+          id=(concat modalTarget "Organisation")
+          placeholder="Напишете заеманата длъжност"
+          value=data.organisation
+          autocomplete="off"
+        }}
+
+        <div class="form-control-feedback">
+          {{#if organisationShowErrorMessage}}
+              {{v-get this "data.organisation" "message"}}
+          {{/if}}
+        </div>
+      </div>
+
+      {{#if isOngoing}}
+        <div class="form-group {{if (v-get this "data.startDate" "isValid") "has-success" (if startDateShowErrorMessage "has-danger")}}">
+          <label for="{{modalTarget}}StartDate">Начална дата</label>
+          {{date-picker
+            name="startDate"
+            pickerId=(concat modalTarget "StartDate")
+            parentEl=(concat ".modal." modalTarget)
+            placeholder="Изберете началната дата"
+            value=data.startDate
+            singleDatePicker=true
+            modalVisible=modalVisible
+          }}
+
+          <div class="form-control-feedback">
+            {{#if startDateShowErrorMessage}}
+                {{v-get this "data.startDate" "message"}}
+            {{/if}}
+          </div>
+        </div>
+      {{else}}
+        <div class="form-group {{if periodIsValid "has-success" (if periodShowErrorMessage "has-danger")}}">
+          <label for="{{modalTarget}}Period">Времеви период</label>
+          {{date-picker
+            name="period"
+            pickerId=(concat modalTarget "Period")
+            parentEl=(concat ".modal." modalTarget)
+            placeholder="Изберете времеви период"
+            value=period
+            modalVisible=modalVisible
+          }}
+
+          <div class="form-control-feedback">
+            {{#if periodShowErrorMessage}}
+              {{periodMessage}}
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+
+      <div class="form-group">
+        <label class="custom-control custom-checkbox">
+          {{input
+            class="custom-control-input"
+            type="checkbox"
+            checked=isOngoing
+          }}
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">До момента</span>
+        </label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+      <button type="submit" class="btn btn-primary">{{modalActionName}}</button>
+    </div>
+  </form>
+{{/x-modal}}

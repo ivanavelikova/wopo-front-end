@@ -109,73 +109,61 @@
     <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Образование и обучение</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.education">Ново учебно заведение</div>
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addEducation">Ново образование/обучение</div>
+
+        {{education-modal
+          success=(action "addEducation")
+          data=addEducation
+          modalVisible=addEducationModalVisible
+          modalTarget="addEducation"
+          modalTitle="Ново образование/обучение"
+          modalActionName="Добави"
+        }}
       </div>
-      <div class="modal fade bd-example-modal-lg education" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="section-title">
-              <h2 class="pull-xs-left">Ново учебно заведение</h2>
-            </div>
-            <div class="form-group">
-              <label for="title">Име</label>
-              <input type="text" name="title" class="form-control" id="title" placeholder="СУ 'Сава Доброплодни' ">
-            </div>
-            <div class="form-group">
-              <label for="datepicker">Времеви период</label>
-              {{date-picker}}
-            </div>
-            <div class="form-group">
-              <button class="btn btn-primary">Добави</button>
-            </div>
-          </div>
+
+      {{#if haveEducation}}
+        <div class="row">
+          {{#each data.education as |education index|}}
+            {{education-card
+              data=education
+              index=index
+              delete=(action "deleteEducation")
+              edit=(action "updateEditEducation")
+            }}
+          {{/each}}
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-4 col-md-6">
-          <div class="card card-block">
-            <h5 class="card-title">СУ "Сава Доброплодни"</h5>
-            <h6 class="card-subtitle text-muted">15.09.2012 - 14.05.2016</h6>
-            {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
-            {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
-          </div>
+      {{else}}
+        <div class="alert alert-info" role="alert">
+          Не сте добавили образование/обучение. Можете да добавите, използвайки бутона "Ново образование/обучение".
         </div>
-      </div>
+      {{/if}}
+
+      {{education-modal
+        success=(action "editEducation")
+        data=editEducation
+        modalVisible=editEducationModalVisible
+        modalTarget="editEducation"
+        modalTitle="Редактиране на образование/обучение"
+        modalActionName="Редактирай"
+      }}
     </section>
     <section class="form-section">
       <div class="section-title">
         <h5 class="pull-xs-left">Сертификати и отличия</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.certificates">Ново отличие/сертификат</div>
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".bd-example-modal-lg.certificates">Нов сертификат/отличие</div>
       </div>
-      <div class="modal fade bd-example-modal-lg certificates" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="section-title">
-              <h2 class="pull-xs-left">Ново отличие</h2>
-            </div>
-            <div class="form-group">
-              <label for="title">Име</label>
-              <input type="text" name="title" class="form-control" id="title" placeholder="Награда от състезанието...">
-            </div>
-            <div class="form-group">
-              <label for="image">Снимка</label>
-              <input type="file" class="form-control-file" id="image">
-            </div> 
-            <div class="form-group">
-              <button class="btn btn-primary">Добави</button>
-            </div>
-          </div>
-        </div>
-      </div> 
+
       <div class="row">
         <div class="col-xl-4 col-md-6">
           <div class="card card-block">
-            <h5 class="card-title">Първо място в категория "Мултимедийни презентации" на НЕТ "Джон Атанасов" 2015</h5>      
+            <div class="card-title">
+              <h4 title="">Първо място в категория "Мултимедийни презентации" на НЕТ "Джон Атанасов" 2015</h4>
+            </div>
             <div class="card-img">
               <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
             </div>
-            {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
-            {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
+            <button class="btn btn-link card-link">Редактирай</button>
+            <button class="btn btn-link card-link">Изтрий</button>
           </div>
         </div>
       </div>

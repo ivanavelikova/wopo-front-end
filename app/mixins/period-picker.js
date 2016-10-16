@@ -88,11 +88,24 @@ export default Ember.Mixin.create({
     this.set('period', `${startDate} - ${endDate}`);
   }),
 
-  clear: observer('modalVisible', function () {
+  updateWhenModalVisible: observer('modalVisible', function () {
     if (!this.get('modalVisible')) {
       this.set('isOngoing', false);
       this.set('period', '');
       this.set('data.startDate', null);
+      return;
+    }
+
+    const startDate = this.get('data.startDate');
+    const endDate = this.get('data.endDate');
+
+    if (endDate) {
+      this.set('period', `${startDate} - ${endDate}`);
+      return;
+    }
+
+    if (startDate) {
+      this.set('isOngoing', this.get('data.endDate') === null);
     }
   })
 });
