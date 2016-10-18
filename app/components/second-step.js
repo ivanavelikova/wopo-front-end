@@ -101,6 +101,29 @@ export default Ember.Component.extend(Validations, {
     return Array.isArray(this.get('data.certificates'));
   }),
 
+  addProjects: {
+    name: null,
+    startDate: null,
+    endDate: null,
+    image_url: null,
+    description: null
+  },
+  addProjectsModalVisible: null,
+
+  editProjects: {
+    index: null,
+    name: null,
+    startDate: null,
+    endDate: null,
+    image_url: null,
+    description: null
+  },
+  editProjectsModalVisible: null,
+
+  haveProjects: computed('data.projects', function () {
+    return Array.isArray(this.get('data.projects'));
+  }),
+
   _fixCase (s) {
     const firstLetter = s[0].toUpperCase();
     const restOfString = s.slice(1);

@@ -200,6 +200,50 @@
         modalActionName="Редактирай"
       }}
     </section>
+    <section class="form-section">
+      <div class="section-title">
+        <h5 class="pull-xs-left">Проекти</h5>
+        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addProjects">Нов проект</div>
+
+        {{project-modal
+          success=(action "add")
+          data=addProjects
+          modalVisible=addProjectsModalVisible
+          section="projects"
+          modalTarget="addProjects"
+          modalTitle="Нов проект"
+          modalActionName="Добави"
+        }}
+      </div>
+
+      {{#if haveProjects}}
+        <div class="row">
+          {{#each data.projects as |project index|}}
+            {{project-card
+              data=project
+              index=index
+              section="projects"
+              delete=(action "delete")
+              edit=(action "updateEdit")
+            }}
+          {{/each}}
+        </div>
+      {{else}}
+        <div class="alert alert-info" role="alert">
+          Не сте добавили проекти. Можете да добавите, използвайки бутона "Нов проект".
+        </div>
+      {{/if}}
+
+      {{project-modal
+        success=(action "edit")
+        data=editProjects
+        modalVisible=editProjectsModalVisible
+        section="projects"
+        modalTarget="editProjects"
+        modalTitle="Редактиране на проект"
+        modalActionName="Редактирай"
+      }}
+    </section>
   </div>
   <div class="stepper-bottom">
     <button class="btn btn-primary" {{action "back"}}>Назад</button>
