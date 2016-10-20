@@ -1,0 +1,68 @@
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          wopo.io
+        </a>
+      </h5>
+    </div>
+    <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+        <div class="form-group">
+          <label>Как искате портфолиото Ви да се достъпва?</label>
+          <div class="custom-controls-stacked">
+            <label class="custom-control custom-radio">
+              {{radio-button
+                value="subdomain"
+                groupValue=domain.type
+                name="wopo-domain-type"
+                radioId="wopo-subdomain"
+                radioClass="custom-control-input"}}
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">wopo.io адрес (безплатно)</span>
+            </label>
+            <label class="custom-control custom-radio">
+              {{radio-button
+                value="domain"
+                groupValue=domain.type
+                name="wopo-domain-type"
+                radioId="wopo-domain"
+                radioClass="custom-control-input"}}
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Собствен адрес (платено)</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingTwo">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Github Pages
+        </a>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="card-block">
+        Comming soon..
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingThree">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Собствен хостинг (чрез FTP)
+        </a>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="card-block">
+        Comming soon..
+      </div>
+    </div>
+  </div>
+</div>

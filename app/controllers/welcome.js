@@ -18,7 +18,10 @@ export default Ember.Controller.extend({
     workExperiences: null,
     education: null,
     certificates: null,
-    projects: null
+    projects: null,
+    jobOffers: true,
+    hosting: null,
+    domain: null
   }),
 
   init () {

@@ -8,7 +8,7 @@
 
     <section class="form-section">
       <div class="section-title">
-        <h5 class="pull-xs-left">За Вас</h5>
+        <h5 class="float-xs-left">За Вас</h5>
       </div>
       <div class="form-group {{if (v-get this "data.about" "isValid") "has-success" (if aboutNotNull "has-danger")}}">
         {{text-editor
@@ -26,8 +26,8 @@
     </section>
     <section class="form-section">
       <div class="section-title">
-        <h5 class="pull-xs-left">Умения</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addSkills">Ново умение</div>
+        <h5 class="float-xs-left">Умения</h5>
+        <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addSkills">Ново умение</div>
 
         {{skill-modal
           success=(action "add")
@@ -70,8 +70,8 @@
     </section>
     <section class="form-section">
       <div class="section-title">
-        <h5 class="pull-xs-left">Трудов стаж</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addWorkExperiences">Нов трудов стаж</div>
+        <h5 class="float-xs-left">Трудов стаж</h5>
+        <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addWorkExperiences">Нов трудов стаж</div>
 
         {{work-experience-modal
           success=(action "add")
@@ -114,8 +114,8 @@
     </section>
     <section class="form-section">
       <div class="section-title">
-        <h5 class="pull-xs-left">Образование и обучение</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addEducation">Ново образование/обучение</div>
+        <h5 class="float-xs-left">Образование и обучение</h5>
+        <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addEducation">Ново образование/обучение</div>
 
         {{education-modal
           success=(action "add")
@@ -158,8 +158,8 @@
     </section>
     <section class="form-section">
       <div class="section-title">
-        <h5 class="pull-xs-left">Сертификати и отличия</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addCertificates">Нов сертификат/отличие</div>
+        <h5 class="float-xs-left">Сертификати и отличия</h5>
+        <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addCertificates">Нов сертификат/отличие</div>
 
         {{certificate-modal
           success=(action "add")
@@ -202,8 +202,8 @@
     </section>
     <section class="form-section">
       <div class="section-title">
-        <h5 class="pull-xs-left">Проекти</h5>
-        <div class="btn btn-success pull-xs-right" data-toggle="modal" data-target=".modal.addProjects">Нов проект</div>
+        <h5 class="float-xs-left">Проекти</h5>
+        <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addProjects">Нов проект</div>
 
         {{project-modal
           success=(action "add")

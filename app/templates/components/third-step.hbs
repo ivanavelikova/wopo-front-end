@@ -1,16 +1,33 @@
 {{#if show}}
   <div class="stepper-content">
-    <section class="form-section">
+    <section class="form-section {{if (v-get this "data.jobOffers" "isInvalid") (if jobOffersNotNull "has-danger")}}">
       <div class="section-title">
         <label class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" checked>
+          {{input
+            class="custom-control-input"
+            type="checkbox"
+            checked=data.jobOffers
+          }}
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">Получаване на предложения за работа от работодателите в wopo</span>
         </label>
+        <div class="form-control-feedback">
+          {{#if (if jobOffersNotNull (v-get this "data.jobOffers" "isInvalid"))}}
+              {{v-get this "data.jobOffers" "message"}}
+          {{/if}}
+        </div>
         <p class="form-text text-muted">
           Можете по всяко време да включите или изключите тази опция от настройките за портфолиото.
         </p>
       </div>
+    </section>
+
+    <section class="form-section">
+      <div class="section-title">
+        <h5 class="pull-xs-left">Къде искате да Ви се публикува портфолиото?</h5>
+      </div>
+
+      {{hosting-accordion hostingData=data.hosting domainData=data.domain}}
     </section>
   </div>
   <div class="stepper-bottom">
