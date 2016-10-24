@@ -20,8 +20,19 @@ export default Ember.Controller.extend({
     certificates: null,
     projects: null,
     jobOffers: true,
-    hosting: null,
-    domain: null
+    selectedHosting: 'wopo',
+    wopoHosting: {
+      domain: {
+        type: 'subdomain',
+        value: null
+      }
+    },
+    githubPagesHosting: {
+      // TODO
+    },
+    ftpHosting: {
+      // TODO
+    }
   }),
 
   init () {
