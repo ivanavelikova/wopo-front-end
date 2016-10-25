@@ -1,28 +1,27 @@
 import Ember from 'ember';
+import Validations from '../validations/hosting-accordion';
 
 const {
   observer,
   computed
 } = Ember;
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(Validations, {
   availableHostings: ['wopo', 'githubPages', 'ftp'],
 
   wopoHosting: {
-    type: 'wopo',
     domain: {
       type: 'subdomain',
-      value: null
+      subdomain: null,
+      domain: null
     }
   },
 
   githubPagesHosting: {
-    type: 'githubPages'
     // TODO
   },
 
   ftpHosting: {
-    type: 'ftp'
     // TODO
   },
 
@@ -31,15 +30,14 @@ export default Ember.Component.extend({
     return domainType === 'subdomain';
   }),
 
-  onChangeSelectedHosting: observer('data.selectedHosting', function () {
-    this.set('data.hosting', null);
-    const selectedHosting = this.get('data.selectedHosting');
-    const hostingData = this.get(`${selectedHosting}Hosting`);
-    this.set('data.hosting', hostingData);
-  }),
+  onChangeWopoHosting: observer('wopoHosting.domain.{type,subdomain,domain}', function () {
+    if (this.get('data.selectedHosting') !== 'wopo') {
+      return;
+    }
 
-  onChangeWopoHosting: observer('wopoHosting.*', function () {
-    console.log(this.get('wopoHosting'));
+    this.set('data.wopoHosting', null);
+    this.set('data.wopoHosting', this.get('wopoHosting'));
+    this._wopoHostingSetValidation();
   }),
 
   didInsertElement () {
@@ -52,11 +50,17 @@ export default Ember.Component.extend({
     //
   },
 
+  _wopoHostingSetValidation () {
+    // TODO: subdomain, domain
+    const domainType = this.get('validations.attrs.data.wopoHosting.domain.type.isInvalid');
+    this.set('hostingValidations', domainType);
+  },
+
   _showHosting () {
     const selectedHosting = this.get('data.selectedHosting');
     const hostingsToHide = this._hostingsExcept(selectedHosting);
-    this._hideHostings(hostingsToHide);
 
+    this._hideHostings(hostingsToHide);
     $(`#${selectedHosting}Collapse`).collapse('show');
   },
 
@@ -72,6 +76,10 @@ export default Ember.Component.extend({
     const setHosting = (hosting) => {
       $(`#${hosting}Collapse`).on('shown.bs.collapse', () => {
         this._syncFromLocalStorage(hosting);
+
+        if (hosting === 'wopo') {
+          this._wopoHostingSetValidation();
+        }
       });
 
       $(`#${hosting}Collapse`).on('show.bs.collapse', () => {
@@ -91,7 +99,11 @@ export default Ember.Component.extend({
 
     const setHosting = (hosting) => {
       $(`#${hosting}Collapse`).on('hide.bs.collapse', () => {
-        console.log('hide', hosting);
+        const selectedHosting = this.get('data.selectedHosting');
+
+        if (hosting === selectedHosting) {
+          this.set('data.selectedHosting', null);
+        }
       });
     };
 
@@ -102,7 +114,6 @@ export default Ember.Component.extend({
 
   _syncFromLocalStorage (hosting) {
     const dataHosting = this.get(`data.${hosting}Hosting`);
-    console.log(dataHosting);
     this.set(`${hosting}Hosting`, dataHosting);
   },
 

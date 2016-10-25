@@ -1,15 +1,10 @@
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
-  'data.jobOffers': [
+  'data.wopoHosting.domain.type': [
     validator('presence', true),
     validator('inclusion', {
-      in: [true, false]
-    })
-  ],
-  'data.selectedHosting': [
-    validator('inclusion', {
-      in: ['wopo', null], // TODO: githubPages, ftp
+      in: ['subdomain'], // TODO: domain
       messageKey: 'errors.underConstruction'
     })
   ]

@@ -14,6 +14,8 @@ export default Ember.Component.extend(Validations, {
     content: null
   },
 
+  hostingValidations: true,
+
   jobOffersNotNull: computed('data.jobOffers', function () {
     return this.get('data.jobOffers') !== null;
   }),
@@ -29,7 +31,10 @@ export default Ember.Component.extend(Validations, {
 
   actions: {
     finish () {
-      if (!this.get('validations.isValid')) {
+      const jobOffers = !this.get('validations.attrs.data.jobOffers.isValid');
+      const selectedHosting = !this.get('validations.attrs.data.selectedHosting.isValid');
+
+      if (jobOffers || selectedHosting || this.get('hostingValidations')) {
         this.set('alert', {
           type: 'info',
           content: this.get('intl').t('errors.fill')

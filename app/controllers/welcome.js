@@ -24,7 +24,8 @@ export default Ember.Controller.extend({
     wopoHosting: {
       domain: {
         type: 'subdomain',
-        value: null
+        subdomain: null,
+        domain: null
       }
     },
     githubPagesHosting: {

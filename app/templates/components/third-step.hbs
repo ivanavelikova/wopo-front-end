@@ -1,5 +1,11 @@
 {{#if show}}
   <div class="stepper-content">
+    {{#if showAlert}}
+      <div class="alert alert-{{alert.type}}" role="alert">
+        {{alert.content}}
+      </div>
+    {{/if}}
+
     <section class="form-section {{if (v-get this "data.jobOffers" "isInvalid") (if jobOffersNotNull "has-danger")}}">
       <div class="section-title">
         <label class="custom-control custom-checkbox">
@@ -22,12 +28,21 @@
       </div>
     </section>
 
-    <section class="form-section">
+    <section class="form-section {{if (v-get this "data.selectedHosting" "isInvalid") "has-danger"}}">
       <div class="section-title">
         <h5 class="pull-xs-left">Къде искате да Ви се публикува портфолиото?</h5>
       </div>
 
-      {{hosting-accordion data=data}}
+      {{hosting-accordion data=data hostingValidations=hostingValidations}}
+
+      <div class="form-control-feedback">
+        {{#if (v-get this "data.selectedHosting" "isInvalid")}}
+            {{v-get this "data.selectedHosting" "message"}}
+        {{/if}}
+      </div>
+      <p class="form-text text-muted">
+        Ако в момента не искате да публикувате портфолиото, можете да затворите падащото меню, като кликнете върху името му (wopo.io, Github Pages, Собствен хостинг (чрез FTP)). След завършването на Първите стъпки можете от настройките за портфолиото да изберете къде да публикувате.
+      </p>
     </section>
   </div>
   <div class="stepper-bottom">
