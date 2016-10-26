@@ -30,6 +30,16 @@ export default Ember.Component.extend(Validations, {
     return domainType === 'subdomain';
   }),
 
+  showWopoSubdomainFullUrl: computed('wopoHosting.domain.subdomain', function () {
+    const subdomain = this.get('wopoHosting.domain.subdomain');
+    const validation = this.get(`validations.attrs.data.wopoHosting.domain.subdomain.isValid`);
+    return subdomain !== null && subdomain !== '' && validation;
+  }),
+
+  isSubdomainWopoNotNull: computed('wopoHosting.domain.subdomain', function () {
+    return this.get('wopoHosting.domain.subdomain') !== null;
+  }),
+
   onChangeWopoHosting: observer('wopoHosting.domain.{type,subdomain,domain}', function () {
     if (this.get('data.selectedHosting') !== 'wopo') {
       return;
@@ -51,9 +61,10 @@ export default Ember.Component.extend(Validations, {
   },
 
   _wopoHostingSetValidation () {
-    // TODO: subdomain, domain
     const domainType = this.get('validations.attrs.data.wopoHosting.domain.type.isInvalid');
-    this.set('hostingValidations', domainType);
+    const selectedDomainType = this.get('wopoHosting.domain.type');
+    const domain = this.get(`validations.attrs.data.wopoHosting.domain.${selectedDomainType}.isInvalid`);
+    this.set('hostingValidations', domainType || domain);
   },
 
   _showHosting () {

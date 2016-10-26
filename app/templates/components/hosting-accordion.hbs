@@ -34,7 +34,7 @@
             </label>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group {{if (v-get this "data.wopoHosting.domain.type" "isInvalid") "has-danger" (if (v-get this "data.wopoHosting.domain.subdomain" "isValid") "has-success" (if isSubdomainWopoNotNull "has-danger"))}}">
           {{#if isSubdomainWopo}}
             <div class="input-group">
               {{input
@@ -44,10 +44,21 @@
                 placeholder="Напишете адреса, чрез който искате портфолиото Ви да се достъпва"}}
               <div class="input-group-addon">.wopo.dev</div>
             </div>
-            <p class="form-text text-muted">Адресът ви ще е <strong>asd.wopo.dev</strong></p>
+            {{#if showWopoSubdomainFullUrl}}
+              <p class="form-text text-muted">Адресът ви ще е <strong>{{wopoHosting.domain.subdomain}}.wopo.dev</strong></p>
+            {{/if}}
           {{else}}
             Comming soon..
           {{/if}}
+          <div class="form-control-feedback">
+            {{#if (v-get this "data.wopoHosting.domain.type" "isInvalid")}}
+                {{v-get this "data.wopoHosting.domain.type" "message"}}
+            {{/if}}
+
+            {{#if (if isSubdomainWopoNotNull (v-get this "data.wopoHosting.domain.subdomain" "isInvalid"))}}
+                {{v-get this "data.wopoHosting.domain.subdomain" "message"}}
+            {{/if}}
+          </div>
         </div>
       </div>
     </div>

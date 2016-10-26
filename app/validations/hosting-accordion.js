@@ -7,6 +7,10 @@ const Validations = buildValidations({
       in: ['subdomain'], // TODO: domain
       messageKey: 'errors.underConstruction'
     })
+  ],
+  'data.wopoHosting.domain.subdomain': [
+    validator('presence', true),
+    validator('unique-wopo-subdomain')
   ]
 });
 
