@@ -43,6 +43,7 @@ errors:
   fileType: "You can't upload files of this type."
   fileTooBig: "File is too big. Max filesize: {maxFilesize}."
   underConstruction: "This feature is under construction."
+  uniqueDomain: "Domain was taken by someone else."
 success:
   registration: "Please verify your account using link which we sent to your email."
   forgotPassword: "Your link for resetting the password is sent to your e-mail."

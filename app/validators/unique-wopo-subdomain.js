@@ -9,10 +9,27 @@ const {
 
 const UniqueWopoSubdomain = BaseValidator.extend({
   network: service(),
+  intl: service(),
 
   validate(value/*, options, model, attribute*/) {
-    // TODO: validation
-    return true;
+    const intl = this.get('intl');
+    const data = {
+      subdomain: value
+    };
+
+    return this
+      .get('network')
+      .post('hosting/wopo/subdomain/check', data, true)
+      .then(response => {
+        if (response.exist) {
+          return intl.t('errors.uniqueDomain');
+        }
+
+        return true;
+      })
+      .catch(() => {
+        return intl.t('errors.serverFail');
+      });
   }
 });
 

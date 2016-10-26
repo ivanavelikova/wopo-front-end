@@ -10,7 +10,15 @@ const Validations = buildValidations({
   ],
   'data.wopoHosting.domain.subdomain': [
     validator('presence', true),
-    validator('unique-wopo-subdomain')
+    validator('length', {
+      max: 32
+    }),
+    validator('format', {
+      regex: /^\w+$/,
+    }),
+    validator('unique-wopo-subdomain', {
+      debounce: 500
+    })
   ]
 });
 

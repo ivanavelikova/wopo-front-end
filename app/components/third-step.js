@@ -31,23 +31,25 @@ export default Ember.Component.extend(Validations, {
 
   actions: {
     finish () {
-      const jobOffers = !this.get('validations.attrs.data.jobOffers.isValid');
-      const selectedHosting = !this.get('validations.attrs.data.selectedHosting.isValid');
+      setTimeout(() => {
+        const jobOffers = !this.get('validations.attrs.data.jobOffers.isValid');
+        const selectedHosting = !this.get('validations.attrs.data.selectedHosting.isValid');
 
-      if (jobOffers || selectedHosting || this.get('hostingValidations')) {
+        if (jobOffers || selectedHosting || this.get('hostingValidations')) {
+          this.set('alert', {
+            type: 'info',
+            content: this.get('intl').t('errors.fill')
+          });
+          return;
+        }
+
         this.set('alert', {
-          type: 'info',
-          content: this.get('intl').t('errors.fill')
+          type: null,
+          content: null
         });
-        return;
-      }
 
-      this.set('alert', {
-        type: null,
-        content: null
-      });
-
-      alert('Donnnneee!!!');
+        alert('Donnnneee!!!');
+      }, 500);
     },
 
     back () {
