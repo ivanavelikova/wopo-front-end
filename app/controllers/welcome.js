@@ -9,9 +9,11 @@ const {
 export default Ember.Controller.extend({
   intl: service(),
   session: service(),
+  fastboot: service(),
+  isFastboot: computed.reads('fastboot.isFastBoot'),
 
   data: Ember.Object.create({
-    currentStep: 0,
+    currentStep: null,
     themeId: null,
     about: null,
     skills: null,
@@ -40,14 +42,20 @@ export default Ember.Controller.extend({
     this._super(...arguments);
 
     // Set data
-    const storage = this.get('session.data.firstSteps');
-    const data = this.get('data');
-    const dataKeys = Object.keys(data);
-    data.setProperties(storage);
+    if (!this.get('isFastboot')) {
+      const storage = this.get('session.data.firstSteps');
+      const data = this.get('data');
+      const dataKeys = Object.keys(data);
+      data.setProperties(storage);
 
-    dataKeys.forEach(key => {
-      data.addObserver(key, this, 'updateStorage');
-    });
+      dataKeys.forEach(key => {
+        data.addObserver(key, this, 'updateStorage');
+      });
+
+      if (data.get('currentStep') === null) {
+        data.set('currentStep', 0);
+      }
+    }
 
     // Set pageTitle
     if (this.get('data.currentStep') && this.get('data.currentStep') > 0) {
@@ -81,27 +89,24 @@ export default Ember.Controller.extend({
   }),
 
   showWelcome: computed('data.currentStep', function () {
-    if (!this.get('data.currentStep')) {
-      return true;
-    }
+    return this.get('data.currentStep') === 0;
+  }),
+
+  showSteps: computed('data.currentStep', function () {
+    const currentStep = this.get('data.currentStep');
+    return currentStep === 1 || currentStep === 2 || currentStep === 3;
   }),
 
   isFirst: computed('data.currentStep', function () {
-    if (this.get('data.currentStep') === 1) {
-      return true;
-    }
+    return this.get('data.currentStep') === 1;
   }),
 
   isSecond: computed('data.currentStep', function () {
-    if (this.get('data.currentStep') === 2) {
-      return true;
-    }
+    return this.get('data.currentStep') === 2;
   }),
 
   isThird: computed('data.currentStep', function () {
-    if (this.get('data.currentStep') === 3) {
-      return true;
-    }
+    return this.get('data.currentStep') === 3;
   }),
 
   actions: {

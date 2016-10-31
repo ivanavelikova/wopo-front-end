@@ -52,7 +52,7 @@
     "ember-page-title": "3.0.7",
     "ember-radio-button": "1.0.7",
     "ember-resolver": "^2.0.3",
-    "ember-simple-auth": "1.1.0",
+    "ember-simple-auth": "git://github.com/simplabs/ember-simple-auth.git#8f1bc3d7cc61c0026368726da96ee18779749e3d",
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1"
   },

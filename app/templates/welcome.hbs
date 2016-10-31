@@ -16,7 +16,7 @@
         <h3>Веднага можете да започнете да създавате портфолиото си, използвайки бутона по-долу.</h3>
         <button class="btn btn-primary" {{action "start"}}>Започни</button>
       </div>
-    {{else}}
+    {{else if showSteps}}
       <div class="stepper">
         <div class="stepper-top">
           <div class="divider"></div>
@@ -65,6 +65,8 @@
           data=data
         }}
       </div>
+    {{else}}
+      <h4 class="text-xs-center">Зарежда се..</h4>
     {{/if}}
   </div>
 </div>
