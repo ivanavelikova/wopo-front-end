@@ -33,7 +33,7 @@
         <h5 class="pull-xs-left">Къде искате да Ви се публикува портфолиото?</h5>
       </div>
 
-      {{hosting-accordion data=data hostingValidations=hostingValidations}}
+      {{hosting-accordion data=data hostingIsInvalid=hostingIsInvalid}}
 
       <div class="form-control-feedback">
         {{#if (v-get this "data.selectedHosting" "isInvalid")}}
@@ -47,6 +47,6 @@
   </div>
   <div class="stepper-bottom">
     <button class="btn btn-primary" {{action "back"}}>Назад</button>
-    <button class="btn btn-primary" {{action "finish"}}>Завършете</button>
+    <button class="btn btn-primary" disabled={{finishDisabled}} {{action "finish"}}>Завършете</button>
   </div>
 {{/if}}
