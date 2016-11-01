@@ -2,7 +2,12 @@ import Ember from 'ember';
 import BaseRoute from 'front-end/routes/base';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const { inject: { service } } = Ember;
+const {
+  RSVP,
+  inject: {
+    service
+  }
+} = Ember;
 
 export default BaseRoute.extend(AuthenticatedRouteMixin, {
   session: service(),
@@ -14,4 +19,10 @@ export default BaseRoute.extend(AuthenticatedRouteMixin, {
       this.transitionTo('dashboard');
     }
   },
+
+  model () {
+    return RSVP.hash({
+      themes: this.get('store').findAll('theme')
+    });
+  }
 });

@@ -5,44 +5,27 @@
         {{alert.content}}
       </div>
     {{/if}}
-
+    
     <div class="row">
-      <div class="col-xl-4 col-md-6">
-        <div class="card card-block">
-          <div class="card-title">
-            <h4 title="Belong">Belong</h4>
-            <button class="btn btn-{{if isFirstTheme 'success' 'secondary'}}" {{action "selectTheme" 1}}>
-              {{#if isFirstTheme}}
-                Избрана
-              {{else}}
-                Избери
-              {{/if}}
-            </button>
-          </div>
-          <div class="card-img">
-            <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
-          </div>
-          {{#link-to "dashboard.theme.index" class="card-link"}}Демо{{/link-to}}
-        </div>
-      </div>
-      <div class="col-xl-4 col-md-6">
-        <div class="card card-block">
-          <div class="card-title">
-            <h4 title="Belong">Belong</h4>
-            <div class="btn btn-{{if isSecondTheme 'success' 'secondary'}}" {{action "selectTheme" 2}}>
-              {{#if isSecondTheme}}
-                Избрана
-              {{else}}
-                Избери
-              {{/if}}
+      {{#each themes as |theme|}}
+        <div class="col-xl-4 col-md-6">
+          <div class="card card-block">
+            <div class="card-title">
+              <h4 title="{{theme.name}}">{{theme.name}}</h4>
+              <button class="btn btn-{{if (eq data.themeId theme.id) 'success' 'secondary'}}" {{action "selectTheme" theme.id}}>
+                {{#if (eq data.themeId theme.id)}}
+                  Избрана
+                {{else}}
+                  Избери
+                {{/if}}
+              </button>
+            </div>
+            <div class="card-img">
+              <img class="img-fluid m-x-auto d-block" src="{{theme.cover}}" alt="">
             </div>
           </div>
-          <div class="card-img">
-            <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
-          </div>
-          {{#link-to "dashboard.theme.index" class="card-link"}}Демо{{/link-to}}
         </div>
-      </div>
+      {{/each}}
     </div>
   </div>
   <div class="stepper-bottom">

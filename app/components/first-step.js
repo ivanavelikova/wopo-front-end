@@ -2,12 +2,14 @@ import Ember from 'ember';
 import Validations from '../validations/first-step';
 
 const {
-  computed,
-  inject: { service }
+  inject: {
+    service
+  }
 } = Ember;
 
 export default Ember.Component.extend(Validations, {
   intl: service(),
+  store: service(),
 
   alert: {
     type: null,
@@ -21,18 +23,6 @@ export default Ember.Component.extend(Validations, {
     }
 
     return false;
-  }),
-  
-  isFirstTheme: computed('data.themeId', function () {
-    if (this.get('data.themeId') === 1) {
-      return true;
-    }
-  }),
-
-  isSecondTheme: computed('data.themeId', function () {
-    if (this.get('data.themeId') === 2) {
-      return true;
-    }
   }),
 
   actions: {
