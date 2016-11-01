@@ -27,7 +27,7 @@ export default Ember.Component.extend(Validations, {
 
   actions: {
     next () {
-      if (!this.get('validations.isValid')) {
+      if (this.get('validations.isInvalid')) {
         this.set('alert', {
           type: 'info',
           content: this.get('intl').t('errors.selectTheme')
