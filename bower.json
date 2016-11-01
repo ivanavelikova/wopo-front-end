@@ -15,6 +15,7 @@
     "ckeditor-markdown-plugin": "*",
     "to-markdown": "^3.0.1",
     "dropzone": "^4.3.0",
-    "showdown": "^1.4.3"
+    "showdown": "^1.4.3",
+    "seiyria-bootstrap-slider": "~6.0.6"
   }
 }

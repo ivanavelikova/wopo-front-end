@@ -55,7 +55,8 @@
     "ember-simple-auth": "git://github.com/simplabs/ember-simple-auth.git#8f1bc3d7cc61c0026368726da96ee18779749e3d",
     "ember-truth-helpers": "1.2.0",
     "ember-welcome-page": "^1.0.1",
-    "loader.js": "^4.0.1"
+    "loader.js": "^4.0.1",
+    "ui-ember-slider": "0.4.1"
   },
   "dependencies": {}
 }
