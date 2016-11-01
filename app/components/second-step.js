@@ -28,13 +28,15 @@ export default Ember.Component.extend(Validations, {
   }),
 
   addSkills: {
-    name: null
+    name: null,
+    familiarity: 0
   },
   addSkillsModalVisible: null,
 
   editSkills: {
     index: null,
-    name: null
+    name: null,
+    familiarity: 0
   },
   editSkillsModalVisible: null,
 
