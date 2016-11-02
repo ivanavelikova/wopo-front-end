@@ -33,18 +33,7 @@
 
       <div class="form-group {{if (v-get this "data.familiarity" "isValid") "has-success" (if familiarityShowErrorMessage "has-danger")}}">
         <label>Запознатост (в проценти)</label>
-        {{ui-slider 
-         value=data.familiarity
-         min=0 
-         max=100 
-         step=1 
-         orientation='horizontal' 
-         tooltip='show' 
-         disabled=false 
-         handle='round' 
-         selection='before' 
-         tooltipPosition='top'
-         focus=true }}
+        {{x-slider value=data.familiarity insertOrDestroy=modalVisible}}
 
         <div class="form-control-feedback">
           {{#if familiarityShowErrorMessage}}

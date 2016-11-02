@@ -43,7 +43,9 @@ export default Ember.Mixin.create({
     const data = this.get('data');
 
     for (let key in data) {
-      if (key !== 'index') {
+      if (key === 'familiarity') {
+        this.set(`data.${key}`, 0);
+      } else if (key !== 'index') {
         this.set(`data.${key}`, null);
       }
     }
@@ -55,7 +57,7 @@ export default Ember.Mixin.create({
 
   actions: {
     submitForm () {
-      if (!this.get('validations.isValid')) {
+      if (this.get('validations.isInvalid')) {
         this.set('alert', {
           type: 'info',
           content: this.get('intl').t('errors.fill')
