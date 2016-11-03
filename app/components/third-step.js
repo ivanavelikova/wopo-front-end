@@ -81,6 +81,8 @@ export default Ember.Component.extend(Validations, {
             this.get('_routing').transitionTo('dashboard.index');
           })
           .catch(error => {
+            this.set('finishDisabled', false);
+            
             if (!error.response) {
               failure(error);
               return;
