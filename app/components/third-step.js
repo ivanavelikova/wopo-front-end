@@ -9,6 +9,9 @@ const {
 
 export default Ember.Component.extend(Validations, {
   intl: service(),
+  session: service(),
+  network: service(),
+  _routing: service('-routing'),
 
   alert: {
     type: null,
@@ -53,12 +56,41 @@ export default Ember.Component.extend(Validations, {
           return;
         }
 
-        this.set('alert', {
-          type: null,
-          content: null
-        });
+        const portfolioData = {
+          portfolio: this.get('session.data.firstSteps')
+        };
 
-        alert('Donnnneee!!!');
+        const failure = (reason) => {
+          let error = reason;
+
+          if (reason.errors && reason.errors[0].detail) {
+            error = reason.errors[0].detail;
+          }
+
+          this.set('alert', {
+            type: 'danger',
+            content: error
+          });
+        };
+
+        this
+          .get('network')
+          .post('portfolios', portfolioData, true)
+          .then(() => {
+            this.get('session').set('data.firstSteps', null);
+            this.get('_routing').transitionTo('dashboard.index');
+          })
+          .catch(error => {
+            if (!error.response) {
+              failure(error);
+              return;
+            }
+
+            error.response.json().then(function(reason) {
+              failure(reason);
+            });
+          });
+
       }, 1000);
     },
 
