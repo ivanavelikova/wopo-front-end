@@ -1,2 +1,17 @@
 {{title "Начало"}}
-<h1>Начало</h1>
+{{index-navbar}}
+<div class="jumbotron text-xs-center">
+  <h2>Портфолио за всеки!</h2>
+  {{#link-to "registration" class="btn btn-primary"}} Регистрирай се сега! {{/link-to}}
+  <div class="themes text-xs-center">
+    <div class="secondary-theme">
+      {{second-theme}}
+    </div>
+    <div class="primary-theme">
+      {{first-theme}}
+    </div>
+    <div class="secondary-theme">
+      {{third-theme}}
+    </div>
+  </div>
+</div>
