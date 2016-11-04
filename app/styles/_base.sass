@@ -33,22 +33,48 @@ body
     max-width: 960px
 
   .reasons
-    margin: 50px
-    padding: 100px
+    margin: 75px
+    padding: 50px 100px
 
     .profesional-portfolio, .full-control, .work
-      margin-bottom: 150px
+      margin: 75px 0
+      padding: 50px 0
+      max-height: 500px
 
     .text-xs-left, .text-xs-right
-      display: inline-block
+      padding-top: 20px
       max-width: 500px
+    
+    .text-xs-left
+      float: left
+
+      .icon
+        text-align: right
+
+    .text-xs-right
+      float: right      
+
+      .icon
+        text-align: left
+
+    h2
+      line-height: 60px
 
     h4
       font-weight: 400
-      line-height: 36px
+      line-height: 44px
 
     .icon
-      width: 450px
+      display: inline-block
+
+      &.theme-pc
+        width: 430px
+
+      &.person-managing
+        width: 380px
+
+      &.shaking-hands
+        width: 500px
 
 .container
   margin-bottom: 20px
