@@ -11,18 +11,19 @@
     .full-control
       background-color: $gray-lightest
 
-    .text-xs-left, .text-xs-right
-      padding-top: 20px
+    .description
       max-width: 500px
     
-    .text-xs-left
-      float: left
+    .profesional-portfolio, .work
+      .description
+        float: left
 
       .icon
         text-align: right
 
-    .text-xs-right
-      float: right      
+    .full-control
+      .description
+        float: right    
 
       .icon
         text-align: left
@@ -47,6 +48,33 @@
 
       &.shaking-hands
         width: 500px
+  
+    @include media-breakpoint-down(lg)
+      .profesional-portfolio, .full-control, .work
+        margin: 100px 0
+        padding: 75px 50px
+
+      .theme-pc
+        max-width: 380px
+
+      .person-managing
+        max-width: 330px
+
+      .shaking-hands
+        max-width: 380px
+
+    @include media-breakpoint-down(md)
+      .description
+        max-width: 350px
+
+      .icon
+        max-width: 300px    
+
+    @include media-breakpoint-down(sm)
+      .description
+        display: block
+        margin: 0 auto
+        float: none !important
 
   .reviews
     padding: 0 100px
