@@ -22,9 +22,32 @@
 
     .secondary-theme
       width: 475px
-      margin-left: -200px
-      margin-right: -200px
+      margin: 0 -200px
       display: inline-block
 
       svg
         margin-bottom: 20px
+
+  @include media-breakpoint-down(lg)
+    .primary-theme
+      max-width: 450px
+
+    .secondary-theme
+      margin: 0 -175px !important
+      max-width: 375px
+
+  @include media-breakpoint-down(md)
+    .primary-theme
+      max-width: 350px
+
+    .secondary-theme
+      margin: 0 -125px !important
+      max-width: 275px
+
+  @include media-breakpoint-down(sm)    
+    .primary-theme
+      max-width: 150px
+
+    .secondary-theme
+      margin: 0 -50px !important
+      max-width: 100px
