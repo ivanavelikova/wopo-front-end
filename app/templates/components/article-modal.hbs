@@ -1,0 +1,96 @@
+{{#x-modal
+  modalTarget=modalTarget
+  modalTitle=modalTitle
+  modalVisible=modalVisible
+  alert=alert
+}}
+  <form {{action "submitForm" on="submit"}}>
+    <div class="modal-body">
+      {{#if showAlert}}
+        <div class="alert alert-{{alert.type}}" role="alert">
+          {{alert.content}}
+        </div>
+      {{/if}}
+
+      <div class="form-group {{if (v-get this "data.title" "isValid") "has-success" (if titleShowErrorMessage "has-danger")}}">
+        <label for="{{modalTarget}}Title">Заглавие</label>
+        {{input
+          type="text"
+          name="title"
+          class="form-control"
+          id=(concat modalTarget "Title")
+          placeholder="Напишете заглавието на статията"
+          value=data.title
+          autocomplete="off"
+        }}
+
+        <div class="form-control-feedback">
+          {{#if titleShowErrorMessage}}
+              {{v-get this "data.title" "message"}}
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="form-group {{if (v-get this "data.image_url" "isValid") "has-success" (if image_urlShowErrorMessage "has-danger")}}">
+        <label for="{{modalTarget}}ImageUrl">Снимка на корицата</label>
+        <div class="input-group">
+          {{input
+            type="text"
+            name="image_url"
+            class="form-control"
+            id=(concat modalTarget "ImageUrl")
+            placeholder="http://..."
+            value=data.image_url
+            autocomplete="off"
+          }}
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" {{action "openMediaManager"}}>Мениджър на снимки</button>
+          </span>
+        </div>
+
+        <div class="form-control-feedback">
+          {{#if image_urlShowErrorMessage}}
+              {{v-get this "data.image_url" "message"}}
+          {{/if}}
+        </div>
+      </div>
+      
+      <div class="form-group {{if (v-get this "data.content" "isValid") "has-success" (if contentShowErrorMessage "has-danger")}}">
+        <label for="{{modalTarget}}Content">Съдържание</label>
+        {{text-editor
+          editorId=(concat modalTarget "Content")
+          placeholder="Напишете съдържанието на статията"
+          value=data.content
+          updateValue=modalVisible
+        }}
+
+        <div class="form-control-feedback">
+          {{#if contentShowErrorMessage}}
+              {{v-get this "data.content" "message"}}
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="form-group {{if (v-get this "data.tags" "isValid") "has-success" (if tagsShowErrorMessage "has-danger")}}">
+        <label for="{{modalTarget}}Tags">Тагове</label>
+        {{tags-input
+          name="tags"
+          inputId=(concat modalTarget "Tags")
+          placeholder="Напишете таговете на статията"
+          value=data.tags
+          insertOrDestroy=modalVisible
+        }}
+
+        <div class="form-control-feedback">
+          {{#if tagsShowErrorMessage}}
+              {{v-get this "data.tags" "message"}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+      <button type="submit" class="btn btn-primary">{{modalActionName}}</button>
+    </div>
+  </form>
+{{/x-modal}}

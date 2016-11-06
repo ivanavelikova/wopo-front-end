@@ -8,7 +8,8 @@
     "CKEDITOR",
     "toMarkdown",
     "Dropzone",
-    "showdown"
+    "showdown",
+    "Bloodhound"
   ],
   "browser": true,
   "boss": true,

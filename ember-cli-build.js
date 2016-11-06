@@ -45,6 +45,10 @@ module.exports = function(defaults) {
     app.import(app.bowerDirectory + '/showdown/dist/showdown.min.js');
     app.import(app.bowerDirectory + '/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js');
     app.import(app.bowerDirectory + '/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css');
+    app.import(app.bowerDirectory + '/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js');
+    app.import(app.bowerDirectory + '/bootstrap-tagsinput/dist/bootstrap-tagsinput.css');
+    app.import(app.bowerDirectory + '/bootstrap-tagsinput/dist/bootstrap-tagsinput-typeahead.css');
+    app.import(app.bowerDirectory + '/typeahead.js/dist/typeahead.bundle.min.js');
 
     var ckeditorAssets = new Funnel(app.bowerDirectory, {
       srcDir: 'ckeditor',

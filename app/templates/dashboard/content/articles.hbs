@@ -1,9 +1,17 @@
 {{title "Моите статии"}}
 <div class="page-title">
   <h2 class="float-xs-left">Моите статии</h2>
-  {{#link-to "dashboard.content.articles.new" class="btn btn-success float-xs-right"}}
-    Нова статия
-  {{/link-to}}
+  <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addArticles">Нова статия</div>
+
+  {{article-modal
+    success=(action "add")
+    data=addArticles
+    modalVisible=addArticlesModalVisible
+    modalTarget="addArticles"
+    modalTitle="Нова статия"
+    modalActionName="Добави"
+    alert=addArticlesAlert
+  }}
 </div>
 <div class="row">
   <div class="col-xl-4 col-md-6">
@@ -13,9 +21,9 @@
         <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
       </div>
       <p class="card-text border">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus purus in nulla lobortis eleifend. Curabitur at euismod leo.</p>
-      {{#link-to "dashboard.content.articles.index" class="card-link"}}Посети{{/link-to}}
-      {{#link-to "dashboard.content.articles.index" class="card-link"}}Редактирай{{/link-to}}
-      {{#link-to "dashboard.content.articles.index" class="card-link"}}Изтрий{{/link-to}}
+      {{#link-to "dashboard.content.articles" class="card-link"}}Посети{{/link-to}}
+      {{#link-to "dashboard.content.articles" class="card-link"}}Редактирай{{/link-to}}
+      {{#link-to "dashboard.content.articles" class="card-link"}}Изтрий{{/link-to}}
     </div>
   </div>
   <div class="col-xl-4 col-md-6">
@@ -25,9 +33,9 @@
         <img class="img-fluid m-x-auto d-block" src="http://goo.gl/IVBfOQ" alt="Irises">
       </div>
       <p class="card-text border">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus purus in nulla lobortis eleifend. Curabitur at euismod leo.</p>
-      {{#link-to "dashboard.content.articles.index" class="card-link"}}Посети{{/link-to}}
-      {{#link-to "dashboard.content.articles.index" class="card-link"}}Редактирай{{/link-to}}
-      {{#link-to "dashboard.content.articles.index" class="card-link"}}Изтрий{{/link-to}}
+      {{#link-to "dashboard.content.articles" class="card-link"}}Посети{{/link-to}}
+      {{#link-to "dashboard.content.articles" class="card-link"}}Редактирай{{/link-to}}
+      {{#link-to "dashboard.content.articles" class="card-link"}}Изтрий{{/link-to}}
     </div>
   </div>
 </div>

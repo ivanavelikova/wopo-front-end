@@ -9,6 +9,10 @@ export default Ember.Service.extend({
   intl: service(),
   session: service(),
   
+  getData (path,  authorization, assignHeaders) {
+    return this._fetch('GET', path, null, authorization, assignHeaders);
+  },
+  
   post (path, data, authorization, assignHeaders) {
     return this._fetch('POST', path, data, authorization, assignHeaders);
   },
@@ -39,7 +43,10 @@ export default Ember.Service.extend({
     let init = {};
     init['method'] = (method) ? method : 'GET';
     init['headers'] = this._headers(assignHeaders);
-    init['body'] = JSON.stringify(data);
+
+    if (data !== null) {
+      init['body'] = JSON.stringify(data);
+    }
     
     const host = this.get('store').adapterFor('application').get('host');
 
