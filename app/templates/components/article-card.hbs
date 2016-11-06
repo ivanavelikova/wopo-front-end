@@ -1,0 +1,13 @@
+<div class="col-xl-4 col-md-6">
+  <div class="card card-block">
+    <div class="card-title">
+      <h4 title="{{data.title}}" class="text-xs-center">{{data.title}}</h4>
+    </div>
+    <div class="card-img">
+      <img class="img-fluid m-x-auto d-block" src="{{data.cover}}" alt="">
+    </div>
+    {{#link-to "dashboard.content.articles" class="card-link"}}Посети{{/link-to}}
+    <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editArticles" {{action edit data.id}}>Редактирай</button>
+    <button class="btn btn-link card-link" {{action delete data.id}}>Изтрий</button>
+  </div>
+</div>

@@ -13,29 +13,19 @@
     alert=addArticlesAlert
   }}
 </div>
-<div class="row">
-  <div class="col-xl-4 col-md-6">
-    <div class="card card-block">
-      <h4 class="card-title">The Starry Night</h4>
-      <div class="card-img">
-        <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
-      </div>
-      <p class="card-text border">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus purus in nulla lobortis eleifend. Curabitur at euismod leo.</p>
-      {{#link-to "dashboard.content.articles" class="card-link"}}Посети{{/link-to}}
-      {{#link-to "dashboard.content.articles" class="card-link"}}Редактирай{{/link-to}}
-      {{#link-to "dashboard.content.articles" class="card-link"}}Изтрий{{/link-to}}
-    </div>
+
+{{#if haveArticles}}
+  <div class="row">
+    {{#each articles as |article|}}
+      {{article-card
+        data=article
+        delete=(action "delete")
+        edit=(action "updateEdit")
+      }}
+    {{/each}}
   </div>
-  <div class="col-xl-4 col-md-6">
-    <div class="card card-block">
-      <h4 class="card-title">Irises</h4>
-      <div class="card-img">
-        <img class="img-fluid m-x-auto d-block" src="http://goo.gl/IVBfOQ" alt="Irises">
-      </div>
-      <p class="card-text border">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus purus in nulla lobortis eleifend. Curabitur at euismod leo.</p>
-      {{#link-to "dashboard.content.articles" class="card-link"}}Посети{{/link-to}}
-      {{#link-to "dashboard.content.articles" class="card-link"}}Редактирай{{/link-to}}
-      {{#link-to "dashboard.content.articles" class="card-link"}}Изтрий{{/link-to}}
-    </div>
+{{else}}
+  <div class="alert alert-info" role="alert">
+    Няма добавени статии. Можете да добавите, използвайки бутона "Нова статия".
   </div>
-</div>
+{{/if}}

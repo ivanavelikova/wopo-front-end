@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 const {
+  computed,
   $: jQuery,
   inject: {
     service
@@ -10,6 +11,9 @@ const {
 export default Ember.Controller.extend({
   store: service(),
   intl: service(),
+
+  sortProperties: ['id:desc'],
+  articles: Ember.computed.sort('model', 'sortProperties'),
 
   addArticles: {
     title: null,
@@ -31,6 +35,10 @@ export default Ember.Controller.extend({
     tags: null
   },
   editArticlesModalVisible: null,
+
+  haveArticles: computed('articles', function () {
+    return Array.isArray(this.get('articles'));
+  }),
 
   actions: {
     add () {
@@ -62,6 +70,14 @@ export default Ember.Controller.extend({
 
           jQuery('.modal.addArticles').animate({ scrollTop: 0 });
         });
+    },
+
+    delete (index) {
+      console.log('delete', index);
+    },
+
+    updateEdit (index) {
+      console.log('updateEdit', index);
     }
   }
 });
