@@ -12,8 +12,13 @@ export default Ember.Controller.extend({
   store: service(),
   intl: service(),
 
-  sortProperties: ['id:desc'],
-  articles: Ember.computed.sort('model', 'sortProperties'),
+  articles: computed.sort('model', function (a, b) {
+    if (parseInt(a.id) > parseInt(b.id)) {
+      return -1;
+    }
+
+    return 1;
+  }),
 
   addArticles: {
     title: null,
@@ -28,7 +33,7 @@ export default Ember.Controller.extend({
   },
 
   editArticles: {
-    index: null,
+    id: null,
     title: null,
     image_url: null,
     content: null,
@@ -72,12 +77,26 @@ export default Ember.Controller.extend({
         });
     },
 
-    delete (index) {
-      console.log('delete', index);
+    delete (id) {
+      this
+        .get('store')
+        .findRecord('article', id)
+        .then(article => {
+          article.destroyRecord();
+        });
     },
 
-    updateEdit (index) {
-      console.log('updateEdit', index);
+    updateEdit (id) {
+      this
+        .get('store')
+        .findRecord('article', id)
+        .then(article => {
+          this.set('editArticles.id', article.get('id'));
+          this.set('editArticles.title', article.get('title'));
+          this.set('editArticles.image_url', article.get('cover'));
+          this.set('editArticles.content', article.get('content'));
+          this.set('editArticles.tags', article.get('tags'));
+        });
     }
   }
 });
