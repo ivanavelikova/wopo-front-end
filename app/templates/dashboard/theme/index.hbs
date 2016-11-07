@@ -8,37 +8,26 @@
     {{/link-to}}
   </div>
   <div class="row">
-    <div class="col-xl-4 col-md-6">
-      <div class="card card-block">
-        <div class="card-title">
-          <h4 class="float-xs-left">Belong</h4>
-          <div class="btn btn-secondary float-xs-right">
-            Приложи
+    {{#each themes as |theme|}}
+      <div class="col-xl-4 col-md-6">
+        <div class="card card-block">
+          <div class="card-title">
+            <h4 title="{{theme.name}}">{{theme.name}}</h4>
+            <button class="btn btn-{{if theme.active 'success' 'secondary'}}" {{action "select" theme}}>
+              {{#if theme.active}}
+                Приложена
+              {{else}}
+                Приложи
+              {{/if}}
+            </button>
           </div>
-        </div>
-        <div class="card-img">
-          <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
-        </div>
-        <p class="card-text border">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus purus in nulla lobortis eleifend. Curabitur at euismod leo.</p>
-        {{#link-to "dashboard.content.articles" class="card-link"}}Персонализирай{{/link-to}}
-        {{#link-to "dashboard.content.articles" class="card-link"}}Изтрий{{/link-to}}
-      </div>
-    </div>
-    <div class="col-xl-4 col-md-6">
-      <div class="card card-block">
-        <div class="card-title">
-          <h4 class="float-xs-left">Belong</h4>
-          <div class="btn btn-success float-xs-right">
-            Приложена
+          <div class="card-img">
+            <img class="img-fluid m-x-auto d-block" src="{{theme.cover}}" alt="">
           </div>
+          {{#link-to "dashboard.theme.index" class="card-link"}}Персонализирай{{/link-to}}
+          <button class="btn btn-link card-link" {{action "delete" theme}}>Изтрий</button>
         </div>
-        <div class="card-img">
-          <img class="img-fluid m-x-auto d-block" src="http://goo.gl/CQTpGC" alt="The Starry Night">
-        </div>
-        <p class="card-text border">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus purus in nulla lobortis eleifend. Curabitur at euismod leo.</p>
-        {{#link-to "dashboard.content.articles" class="card-link"}}Персонализирай{{/link-to}}
-        {{#link-to "dashboard.content.articles" class="card-link"}}Изтрий{{/link-to}}
       </div>
-    </div>
+    {{/each}}
   </div>
 </div>
