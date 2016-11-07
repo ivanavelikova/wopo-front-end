@@ -29,3 +29,12 @@
     Няма добавени статии. Можете да добавите, използвайки бутона "Нова статия".
   </div>
 {{/if}}
+
+{{article-modal
+  success=(action "edit")
+  data=editArticles
+  modalVisible=editArticlesModalVisible
+  modalTarget="editArticles"
+  modalTitle="Редактиране на статия"
+  modalActionName="Редактирай"
+}}
