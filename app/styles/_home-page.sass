@@ -68,16 +68,35 @@
         max-width: 350px
 
       .icon
-        max-width: 300px    
+        max-width: 300px
+        padding-top: 15px
 
     @include media-breakpoint-down(sm)
-      .description
-        display: block
-        margin: 0 auto
-        float: none !important
+      .profesional-portfolio, .full-control, .work
+        margin: 100px 0
+        padding: 50px 25px
+
+        .description
+          display: block
+          margin: 0 auto
+          float: none !important
+
+          h2
+            font-size: 26px
+            line-height: 50px
+
+          h4
+            font-size: 20px
+            line-height: 34px
+
+        .icon
+          max-width: 220px
 
   .reviews
-    padding: 0 100px
+    padding: 0 50px
+
+    .mobile-nav
+      display: none
 
     .person
       display: inline-block
@@ -111,6 +130,32 @@
       
     .fa-chevron-right
       float: right
+
+    @include media-breakpoint-down(md)
+      .reviews
+        padding: 0 25px
+
+      .fa-chevron-left, .fa-chevron-right
+        display: none
+
+      .mobile-nav
+        display: inline
+
+        .fa
+          cursor: pointer
+          margin: 0 5px
+          color: $gray-dark
+          font-size: 16px
+          line-height: 100px
+
+      .person
+        padding: 10px 0
+        display: block
+      
+      .comment
+        p
+          font-size: 20px
+          line-height: 34px
 
   .bottom
     margin: 75px
