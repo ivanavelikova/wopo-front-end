@@ -158,8 +158,9 @@
           line-height: 34px
 
   .bottom
-    margin: 75px
-    padding: 50px 100px
+    margin-top: 75px
+    padding: 125px 50px
+    background-color: $gray
     
     h3
       font-weight: 400
@@ -168,3 +169,22 @@
       margin-top: 15px
       font-size: 22px
       font-weight: 300
+
+    @include media-breakpoint-down(md)
+      h3
+        font-size: 25px
+
+      .btn 
+        font-size: 20px
+
+    @include media-breakpoint-down(sm)
+      .bottom
+        margin: 0
+        padding: 100px 25px
+
+        h3
+          font-size: 18px
+
+        .btn
+          margin: 0
+          font-size: 14px
