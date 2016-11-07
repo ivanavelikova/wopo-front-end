@@ -6,8 +6,8 @@ export default BaseRoute.extend({
   },
 
   actions: {
-    reloadModel: function () {
-      this.refresh()
+    reloadModel () {
+      this.refresh();
     }
   }
 });

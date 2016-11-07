@@ -19,24 +19,28 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
-    select (theme) {
-      if (theme.get('active') === true) {
-        return;
-      }
-
-      theme.set('active', true);
+    install (theme) {
+      theme.set('installed', true);
 
       theme
         .save()
         .then(() => {
           this.send('reloadModel');
+          this.send('unloadThemes');
         })
         .catch(console.error);
     },
 
-    remove (theme) {
-      theme.destroyRecord();
-      this.send('reloadModel');
-    },
+    uninstall (theme) {
+      theme.set('installed', false);
+
+      theme
+        .save()
+        .then(() => {
+          this.send('reloadModel');
+          this.send('unloadThemes');
+        })
+        .catch(console.error);
+    }
   }
 });
