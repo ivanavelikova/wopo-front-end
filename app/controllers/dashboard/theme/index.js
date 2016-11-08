@@ -10,6 +10,8 @@ const {
 export default Ember.Controller.extend({
   store: service(),
 
+  disableRemove: false,
+
   themes: computed.sort('model', function (a, b) {
     if (parseInt(a.id) > parseInt(b.id)) {
       return -1;
@@ -35,8 +37,18 @@ export default Ember.Controller.extend({
     },
 
     remove (theme) {
-      theme.destroyRecord();
-      this.send('reloadModel');
+      this.set('disableRemove', true);
+
+      theme
+        .destroyRecord()
+        .then(() => {
+          this.send('reloadModel');
+          this.set('disableRemove', false);
+        })
+        .catch(() => {
+          this.send('reloadModel');
+          this.set('disableRemove', false);
+        });
     },
   }
 });
