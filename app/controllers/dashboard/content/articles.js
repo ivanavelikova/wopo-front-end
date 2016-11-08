@@ -42,7 +42,9 @@ export default Ember.Controller.extend({
   editArticlesModalVisible: null,
 
   haveArticles: computed('articles', function () {
-    return Array.isArray(this.get('articles'));
+    const articles = this.get('articles');
+
+    return Array.isArray(articles) && articles.length > 0;
   }),
 
   actions: {
@@ -59,7 +61,9 @@ export default Ember.Controller.extend({
         })
         .save()
         .then(() => {
-          this.set('addArticlesModalVisible', false);
+          setTimeout(() => {
+            this.set('addArticlesModalVisible', false);
+          }, 500);
         })
         .catch(reason => {
           let alertContent = this.get('intl').t('errors.serverFail');
@@ -77,13 +81,8 @@ export default Ember.Controller.extend({
         });
     },
 
-    delete (id) {
-      this
-        .get('store')
-        .findRecord('article', id)
-        .then(article => {
-          article.destroyRecord();
-        });
+    delete (article) {
+      article.destroyRecord();
     },
 
     updateEdit (id) {

@@ -7,27 +7,33 @@
       {{fa-icon "shopping-cart"}} Магазин
     {{/link-to}}
   </div>
-  <div class="row">
-    {{#each themes as |theme|}}
-      <div class="col-xl-4 col-md-6">
-        <div class="card card-block">
-          <div class="card-title">
-            <h4 title="{{theme.name}}">{{theme.name}}</h4>
-            <button class="btn btn-{{if theme.active 'success' 'secondary'}}" {{action "select" theme}}>
-              {{#if theme.active}}
-                Приложена
-              {{else}}
-                Приложи
-              {{/if}}
-            </button>
+  {{#if haveThemes}}
+    <div class="row">
+      {{#each themes as |theme|}}
+        <div class="col-xl-4 col-md-6">
+          <div class="card card-block">
+            <div class="card-title">
+              <h4 title="{{theme.name}}">{{theme.name}}</h4>
+              <button class="btn btn-{{if theme.active 'success' 'secondary'}}" {{action "select" theme}}>
+                {{#if theme.active}}
+                  Приложена
+                {{else}}
+                  Приложи
+                {{/if}}
+              </button>
+            </div>
+            <div class="card-img">
+              <img class="img-fluid m-x-auto d-block" src="{{theme.cover}}" alt="">
+            </div>
+            {{#link-to "dashboard.theme.index" class="card-link"}}Персонализирай{{/link-to}}
+            <button class="btn btn-link card-link" {{action "remove" theme}} disabled={{disableRemove}}>Деинсталирай</button>
           </div>
-          <div class="card-img">
-            <img class="img-fluid m-x-auto d-block" src="{{theme.cover}}" alt="">
-          </div>
-          {{#link-to "dashboard.theme.index" class="card-link"}}Персонализирай{{/link-to}}
-          <button class="btn btn-link card-link" {{action "remove" theme}} disabled={{disableRemove}}>Деинсталирай</button>
         </div>
-      </div>
-    {{/each}}
-  </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="alert alert-info" role="alert">
+      Няма инсталирани теми. Можете да инсталирате от страницата Магазин за теми.
+    </div>
+  {{/if}}
 </div>
