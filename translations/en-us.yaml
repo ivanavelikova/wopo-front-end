@@ -47,3 +47,4 @@ errors:
 success:
   registration: "Please verify your account using link which we sent to your email."
   forgotPassword: "Your link for resetting the password is sent to your e-mail."
+  portfolioUpdate: "Your portfolio settings are updated successfully."
