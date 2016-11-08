@@ -3,38 +3,69 @@
   <h2 class="float-xs-left">Настройки на портфолиото</h2>
 </div>
 <section class="form-section">
-  <div class="section-title">
-    <h4 class="float-xs-left">Главни</h4>
-  </div>
-  <div class="form-group">
+  <div class="form-group {{if (v-get this "title" "isValid") "has-success" (if (not-eq title null) "has-danger")}}">
     <label for="title">Заглавие</label>
-    <input type="text" class="form-control" id="title" placeholder="Моето страхотно заглавие...">
-  </div>
-  <div class="form-group">
-    <label for="description">Описание</label>
-    <textarea class="form-control" id="description" rows="3" placeholder="Моето страхотно описание..."></textarea>
-  </div>
-  <div class="form-group">
-    <label for="keywords">Ключови думи</label>
-    <input type="text" class="form-control" id="keywords" placeholder="Професионално, портфолио, работа">
-  </div>
-  <div class="form-group">
-    <div class="form-check">
-      <label for="optionsRadios">Получаване на предложения за работа от работодателите в wopo</label>
-      <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-        Да
-      </label>
+    {{input
+      type="text"
+      id="title"
+      class="form-control"
+      placeholder="Напишете заглавието на портфолиото Ви"
+      value=title
+    }}
+
+    <div class="form-control-feedback">
+      {{#if (if (not-eq title null) (v-get this "title" "isInvalid"))}}
+        {{v-get this "title" "message"}}
+      {{/if}}
     </div>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-        Не
-      </label>
+  </div>
+  <div class="form-group {{if (v-get this "description" "isValid") "has-success" (if (not-eq description null) "has-danger")}}">
+    <label for="description">Описание</label>
+    {{textarea
+      class="form-control"
+      id="description"
+      placeholder="Напишете описанието на портфолиото Ви"
+      value=description
+    }}
+
+    <div class="form-control-feedback">
+      {{#if (if (not-eq description null) (v-get this "description" "isInvalid"))}}
+        {{v-get this "description" "message"}}
+      {{/if}}
+    </div>
+  </div>
+  <div class="form-group {{if (v-get this "keywords" "isValid") "has-success" (if (not-eq keywords null) "has-danger")}}">
+    <label for="keywords">Ключови думи</label>
+    {{keywords-input
+      inputId="keywords"
+      placeholder="Напишете ключовите думи на портфолиото Ви"
+      value=keywords
+    }}
+
+    <div class="form-control-feedback">
+      {{#if (if (not-eq keywords null) (v-get this "keywords" "isInvalid"))}}
+        {{v-get this "keywords" "message"}}
+      {{/if}}
+    </div>
+  </div>
+  <div class="form-group {{if (v-get this "jobOffers" "isInvalid") (if (not-eq jobOffers null) "has-danger")}}">
+    <label class="custom-control custom-checkbox">
+      {{input
+        class="custom-control-input"
+        type="checkbox"
+        checked=jobOffers
+      }}
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Получаване на предложения за работа от работодателите в wopo</span>
+    </label>
+    <div class="form-control-feedback">
+      {{#if (if (not-eq jobOffers null) (v-get this "jobOffers" "isInvalid"))}}
+          {{v-get this "jobOffers" "message"}}
+      {{/if}}
     </div>
   </div>
 </section>
-<section class="form-section">
+{{!-- <section class="form-section">
   <div class="section-title">
     <h4 class="float-xs-left">Абонаменти</h4>
   </div>
@@ -84,7 +115,7 @@
   <div class="btn btn-success download">
     Изтегли
   </div>
-</section>
+</section> --}}
 <section class="form-section">
   <div class="section-title">
     <h4 class="float-xs-left">Изтриване на портфолиото</h4>
