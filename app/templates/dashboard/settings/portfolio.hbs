@@ -9,8 +9,8 @@
   </div>
 {{/if}}
 
-<form {{action "submitForm" on="submit"}}>
-  <section class="form-section">
+<section class="form-section">
+  <form {{action "submitForm" on="submit"}}>
     <div class="form-group {{if (v-get this "model.title" "isValid") "has-success" (if (not-eq model.title null) "has-danger")}}">
       <label for="title">Заглавие</label>
       {{input
@@ -60,62 +60,62 @@
         {{/if}}
       </div>
     </div>
-  </section>
-  {{!-- <section class="form-section">
-    <div class="section-title">
-      <h4 class="float-xs-left">Абонаменти</h4>
+    <div class="form-bottom">
+      <button role="submit" class="btn btn-success btn-form float-xs-right">Запази</button>
     </div>
-    <div class="form-group">
-      <label for="email">E-mail абонамента система</label>
-    </div>
-    <div class="form-group">
-      <label for="email">RSS абонамента система</label>
-    </div>
-  </section>
-  <section class="form-section">
-    <div class="section-title">
-      <h4 class="float-xs-left">Публикуване</h4>
-    </div>
-    <div class="form-group">
-      <label for="wopo">Wopo</label>
-      <input type="text" class="form-control" id="wopo" placeholder="example.wopo.io">
-    </div>
-    <div class="form-group">
-      <label for="github">Github</label>
-      <input type="text" class="form-control" id="github" placeholder="example.github.io">
-    </div>
-    <div class="form-group">
-      <label for="hosting">Собствен хостинг</label>
-      <input type="text" class="form-control" id="hosting" placeholder="example.com">
-    </div>
-  </section>
-  <section class="form-section">
-    <div class="section-title">
-      <h4 class="float-xs-left">Изтегляне</h4>
-    </div>
-    <div class="form-group">
-      <div class="form-check">
-        <label for="optionsRadios">Изберете формат на изтегляне</label>
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-          PDF
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-          Word
-        </label>
-      </div>
-    </div>
-    <div class="btn btn-success btn-form">
-      Изтегли
-    </div>
-  </section> --}}
-  <div class="form-bottom">
-    <button role="submit" class="btn btn-success float-xs-right">Запази</button>
+  </form>
+</section>
+{{!-- <section class="form-section">
+  <div class="section-title">
+    <h4 class="float-xs-left">Абонаменти</h4>
   </div>
-</form>
+  <div class="form-group">
+    <label for="email">E-mail абонамента система</label>
+  </div>
+  <div class="form-group">
+    <label for="email">RSS абонамента система</label>
+  </div>
+</section>
+<section class="form-section">
+  <div class="section-title">
+    <h4 class="float-xs-left">Публикуване</h4>
+  </div>
+  <div class="form-group">
+    <label for="wopo">Wopo</label>
+    <input type="text" class="form-control" id="wopo" placeholder="example.wopo.io">
+  </div>
+  <div class="form-group">
+    <label for="github">Github</label>
+    <input type="text" class="form-control" id="github" placeholder="example.github.io">
+  </div>
+  <div class="form-group">
+    <label for="hosting">Собствен хостинг</label>
+    <input type="text" class="form-control" id="hosting" placeholder="example.com">
+  </div>
+</section>
+<section class="form-section">
+  <div class="section-title">
+    <h4 class="float-xs-left">Изтегляне</h4>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <label for="optionsRadios">Изберете формат на изтегляне</label>
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        PDF
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+        Word
+      </label>
+    </div>
+  </div>
+  <div class="btn btn-success btn-form">
+    Изтегли
+  </div>
+</section> --}}
 
 <section class="form-section">
   <div class="section-title">
@@ -133,7 +133,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="deletePortfolioLabel">Наистина ли искате да изтриете портфолио Ви?</h4>
+          <h4 class="modal-title" id="deletePortfolioLabel">Наистина ли искате да изтриете портфолиото си?</h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Отказ</button>

@@ -2,8 +2,10 @@
   @include clearfix()
 
 .form-section
-  border-bottom: 1px solid $gray-lightest
   margin-bottom: 20px
+
+  &:not(:last-child)
+    border-bottom: 1px solid $gray-lightest
 
   .form-group
     &.row, &.no-margin
@@ -20,3 +22,4 @@
 
 .form-bottom
   @include clearfix()
+  padding-top: 14px

@@ -2,53 +2,109 @@
 <div class="page-title">
   <h2 class="float-xs-left">Настройки на профила</h2>
 </div>
+
+{{#if showAlert}}
+  <div class="alert alert-{{alert.type}}" role="alert">
+    {{alert.content}}
+  </div>
+{{/if}}
+
 <section class="form-section">
-  <div class="section-title">
-    <h4 class="float-xs-left">Главни</h4>
-  </div>
-  <div class="form-group">
-    <label for="picture">Профилна снимка</label>
-    <input type="file" class="form-control-file" id="picture">
-  </div>
-  <div class="form-group">
-    <label for="name">Име</label>
-    <input type="text" class="form-control" id="name" placeholder="John Doe">
-  </div>
-  <div class="form-group">
-    <label for="email">E-mail</label>
-    <input type="text" class="form-control" id="email" placeholder="example@example.com">
-  </div>
-  <div class="form-group">
-    <label for="password">Сегашна парола</label>
-    <input type="password" class="form-control" id="password">
-  </div>
-  <div class="form-group">
-    <label for="password">Нова парола</label>
-    <input type="password" class="form-control" id="password">
-  </div>
+  <form {{action "submitGeneral" on="submit"}}>
+    <div class="section-title">
+      <h4 class="float-xs-left">Главни</h4>
+    </div>
+    <div class="form-group">
+      <label for="profile_pic">Профилна снимка</label>
+      <div class="input-group">
+        {{input
+          type="text"
+          name="profile_pic"
+          class="form-control"
+          id="profile_pic"
+          placeholder="http://..."
+          value=model.profile_pic
+          autocomplete="off"
+        }}
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" {{action "openMediaManager"}}>Мениджър на снимки</button>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Име</label>
+      <input type="text" class="form-control" id="name" placeholder="Напишете името си">
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="text" class="form-control" id="email" placeholder="Напишете е-mail адреса си">
+    </div>
+
+    {{!-- <section class="form-section">
+      <div class="section-title">
+        <h4 class="float-xs-left">Държава</h4>
+      </div>
+      <div class="form-group">
+        {{x-select2 options=countries}}
+      </div>
+    </section>
+    <section class="form-section">
+      <div class="section-title">
+        <h4 class="float-xs-left">Език</h4>
+      </div>
+      <div class="form-group">
+        {{x-select2 options=languages}}
+      </div>
+    </section> --}}
+
+    <div class="form-bottom">
+      <button role="submit" class="btn btn-success btn-form float-xs-right">Запази</button>
+    </div>
+  </form>
 </section>
+
 <section class="form-section">
-  <div class="section-title">
-    <h4 class="float-xs-left">Държава</h4>
-  </div>
-  <div class="form-group">
-    {{x-select2 options=countries}}
-  </div>
+  <form {{action "submitPassword" on="submit"}}>
+    <div class="section-title">
+      <h4 class="float-xs-left">Парола</h4>
+    </div>
+    <div class="form-group">
+      <label for="password">Сегашна парола</label>
+      <input type="password" class="form-control" id="old_pass" placeholder="Напишете сегашната Ви парола">
+    </div>
+    <div class="form-group">
+      <label for="password">Нова парола</label>
+      <input type="password" class="form-control" id="new_pass" placeholder="Напишете новата Ви парола">
+    </div>
+    <div class="form-bottom">
+      <button role="submit" class="btn btn-success btn-form float-xs-right">Смени</button>
+    </div>
+  </form>
 </section>
-<section class="form-section">
-  <div class="section-title">
-    <h4 class="float-xs-left">Език</h4>
-  </div>
-  <div class="form-group">
-    {{x-select2 options=languages}}
-  </div>
-</section>
+
 <section class="form-section">
   <div class="section-title">
     <h4 class="float-xs-left">Изтриване на профила</h4>
   </div>
-  <div class="btn btn-danger">
-    Изтриване
+
+  <button type="button" class="btn btn-danger btn-form" data-toggle="modal" data-target="#deleteProfile">
+    Изтрий
+  </button>
+
+  <div class="modal fade" id="deleteProfile" tabindex="-1" role="dialog" aria-labelledby="deleteProfileLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="deleteProfileLabel">Наистина ли искате да изтриете профила си?</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Отказ</button>
+          <button type="button" class="btn btn-danger" {{action "delete"}}>Изтрий</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-<div class="btn btn-success float-xs-right">Запазване</div>
