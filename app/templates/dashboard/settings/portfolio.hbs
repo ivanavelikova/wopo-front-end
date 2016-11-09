@@ -108,7 +108,7 @@
         </label>
       </div>
     </div>
-    <div class="btn btn-success download">
+    <div class="btn btn-success btn-form">
       Изтегли
     </div>
   </section> --}}
@@ -121,7 +121,25 @@
   <div class="section-title">
     <h4 class="float-xs-left">Изтриване на портфолиото</h4>
   </div>
-  <div class="btn btn-danger">
+
+  <button type="button" class="btn btn-danger btn-form" data-toggle="modal" data-target="#deletePortfolio">
     Изтрий
+  </button>
+
+  <div class="modal fade" id="deletePortfolio" tabindex="-1" role="dialog" aria-labelledby="deletePortfolioLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="deletePortfolioLabel">Наистина ли искате да изтриете портфолио Ви?</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Отказ</button>
+          <button type="button" class="btn btn-danger" {{action "delete"}}>Изтрий</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

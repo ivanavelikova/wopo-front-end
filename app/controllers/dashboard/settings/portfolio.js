@@ -3,7 +3,6 @@ import Validations from '../../../validations/portfolio-settings';
 
 const {
   computed,
-  $: jQuery,
   inject: {
     service
   }
@@ -11,6 +10,8 @@ const {
 
 export default Ember.Controller.extend(Validations, {
   intl: service(),
+  session: service(),
+  _routing: service('-routing'),
 
   null: null,
 
@@ -59,12 +60,35 @@ export default Ember.Controller.extend(Validations, {
             alertContent = reason.errors[0].detail;
           }
 
-          this.set('addArticlesAlert', {
+          this.set('alert', {
             type: 'danger',
             content: alertContent
           });
+        });
+    },
 
-          jQuery('.modal.addArticles').animate({ scrollTop: 0 });
+    delete () {
+      const deletePortfolioModal = $('#deletePortfolio');
+
+      this
+        .get('model')
+        .destroyRecord()
+        .then(() => {
+          deletePortfolioModal.modal('hide');
+
+          this.get('session').set('data.firstSteps', {
+            currentStep: 1
+          });
+          
+          this.get('_routing').transitionTo('welcome');
+        })
+        .catch(() => {
+          deletePortfolioModal.modal('hide');
+
+          this.set('alert', {
+            type: 'danger',
+            content: this.get('intl').t('errors.serverFail')
+          });
         });
     }
   }

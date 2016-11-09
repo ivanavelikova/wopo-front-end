@@ -77,6 +77,7 @@ export default Ember.Component.extend(Validations, {
           .get('network')
           .post('portfolios', portfolioData, true)
           .then(() => {
+            this.sendAction('resetData');
             this.get('session').set('data.firstSteps', null);
             this.get('_routing').transitionTo('dashboard.index');
           })

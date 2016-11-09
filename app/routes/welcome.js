@@ -24,5 +24,11 @@ export default BaseRoute.extend(AuthenticatedRouteMixin, {
     return RSVP.hash({
       themes: this.get('store').findAll('theme')
     });
+  },
+
+  actions: {
+    didTransition () {
+      this.controllerFor('welcome').init();
+    } 
   }
 });

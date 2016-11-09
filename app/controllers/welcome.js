@@ -110,6 +110,34 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
+    resetData () {
+      const data = this.get('data');
+
+      data.set('currentStep', null);
+      data.set('themeId', null);
+      data.set('about', null);
+      data.set('skills', null);
+      data.set('workExperiences', null);
+      data.set('education', null);
+      data.set('certificates', null);
+      data.set('projects', null);
+      data.set('jobOffers', true);
+      data.set('selectedHosting', 'wopo');
+      data.set('wopoHosting', {
+        domain: {
+          type: 'subdomain',
+          subdomain: null,
+          domain: null
+        }
+      });
+      data.set('githubPagesHosting', {
+        // TODO
+      });
+      data.set('ftpHosting', {
+        // TODO
+      });
+    },
+
     start () {
       this.set('data.currentStep', 1);
       window.scrollTo(0, 0);
