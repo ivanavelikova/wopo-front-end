@@ -3,18 +3,19 @@
   <h2 class="float-xs-left">Настройки на профила</h2>
 </div>
 
-{{#if showAlert}}
-  <div class="alert alert-{{alert.type}}" role="alert">
-    {{alert.content}}
-  </div>
-{{/if}}
-
-<section class="form-section">
+<section class="form-section form-general-section">
   <form {{action "submitGeneral" on="submit"}}>
     <div class="section-title">
       <h4 class="float-xs-left">Главни</h4>
     </div>
-    <div class="form-group">
+
+    {{#if showGeneralAlert}}
+      <div class="alert alert-general alert-{{generalAlert.type}}" role="alert">
+        {{generalAlert.content}}
+      </div>
+    {{/if}}
+
+    <div class="form-group {{if (v-get this "model.profile_pic" "isValid") "has-success" (if (not-eq model.profile_pic null) "has-danger")}}">
       <label for="profile_pic">Профилна снимка</label>
       <div class="input-group">
         {{input
@@ -30,14 +31,44 @@
           <button class="btn btn-secondary" type="button" {{action "openMediaManager"}}>Мениджър на снимки</button>
         </span>
       </div>
+
+      <div class="form-control-feedback">
+        {{#if (if (not-eq model.profile_pic null) (v-get this "model.profile_pic" "isInvalid"))}}
+          {{v-get this "model.profile_pic" "message"}}
+        {{/if}}
+      </div>
     </div>
-    <div class="form-group">
+    <div class="form-group {{if (v-get this "model.name" "isValid") "has-success" (if (not-eq model.name null) "has-danger")}}">
       <label for="name">Име</label>
-      <input type="text" class="form-control" id="name" placeholder="Напишете името си">
+      {{input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Напишете името си"
+        value=model.name
+      }}
+
+      <div class="form-control-feedback">
+        {{#if (if (not-eq model.name null) (v-get this "model.name" "isInvalid"))}}
+          {{v-get this "model.name" "message"}}
+        {{/if}}
+      </div>
     </div>
-    <div class="form-group">
+    <div class="form-group {{if (v-get this "model.email" "isValid") "has-success" (if (not-eq model.email null) "has-danger")}}">
       <label for="email">E-mail</label>
-      <input type="text" class="form-control" id="email" placeholder="Напишете е-mail адреса си">
+      {{input
+        type="text"
+        class="form-control"
+        id="email"
+        placeholder="Напишете е-mail адреса си"
+        value=model.email
+      }}
+
+      <div class="form-control-feedback">
+        {{#if (if (not-eq model.email null) (v-get this "model.email" "isInvalid"))}}
+          {{v-get this "model.email" "message"}}
+        {{/if}}
+      </div>
     </div>
 
     {{!-- <section class="form-section">
@@ -63,18 +94,49 @@
   </form>
 </section>
 
-<section class="form-section">
+<section class="form-section form-password-section">
   <form {{action "submitPassword" on="submit"}}>
     <div class="section-title">
       <h4 class="float-xs-left">Парола</h4>
     </div>
-    <div class="form-group">
-      <label for="password">Сегашна парола</label>
-      <input type="password" class="form-control" id="old_pass" placeholder="Напишете сегашната Ви парола">
+
+    {{#if showPasswordAlert}}
+      <div class="alert alert-{{passwordAlert.type}}" role="alert">
+        {{passwordAlert.content}}
+      </div>
+    {{/if}}
+
+    <div class="form-group {{if (v-get this "old_password" "isValid") "has-success" (if (not-eq old_password null) "has-danger")}}">
+      <label for="old_password">Сегашна парола</label>
+      {{input
+        type="password"
+        class="form-control"
+        id="old_password"
+        placeholder="Напишете сегашната Ви парола"
+        value=old_password
+      }}
+
+      <div class="form-control-feedback">
+        {{#if (if (not-eq old_password null) (v-get this "old_password" "isInvalid"))}}
+          {{v-get this "old_password" "message"}}
+        {{/if}}
+      </div>
     </div>
-    <div class="form-group">
-      <label for="password">Нова парола</label>
-      <input type="password" class="form-control" id="new_pass" placeholder="Напишете новата Ви парола">
+    <div class="form-group {{if (v-get this "new_password" "isValid") "has-success" (if (not-eq new_password null) "has-danger")}}">
+      <label for="new_password">Нова парола</label>
+      {{input
+        type="password"
+        class="form-control"
+        id="new_password"
+        placeholder="Напишете новата Ви парола"
+        value=new_password
+      }}
+
+      <div class="form-control-feedback">
+        {{#if (if (not-eq new_password null) (v-get this "new_password" "isInvalid"))}}
+          {{v-get this "new_password" "message"}}
+        {{/if}}
+      </div>
     </div>
     <div class="form-bottom">
       <button role="submit" class="btn btn-success btn-form float-xs-right">Смени</button>
@@ -82,10 +144,16 @@
   </form>
 </section>
 
-<section class="form-section">
+<section class="form-section form-delete-section">
   <div class="section-title">
     <h4 class="float-xs-left">Изтриване на профила</h4>
   </div>
+    
+  {{#if showDeleteAlert}}
+    <div class="alert alert-general alert-{{deleteAlert.type}}" role="alert">
+      {{deleteAlert.content}}
+    </div>
+  {{/if}}
 
   <button type="button" class="btn btn-danger btn-form" data-toggle="modal" data-target="#deleteProfile">
     Изтрий

@@ -9,12 +9,16 @@ export default Ember.Service.extend({
   intl: service(),
   session: service(),
   
-  getData (path,  authorization, assignHeaders) {
+  getData (path, authorization, assignHeaders) {
     return this._fetch('GET', path, null, authorization, assignHeaders);
   },
   
   post (path, data, authorization, assignHeaders) {
     return this._fetch('POST', path, data, authorization, assignHeaders);
+  },
+  
+  put (path, data, authorization, assignHeaders) {
+    return this._fetch('PUT', path, data, authorization, assignHeaders);
   },
   
   delete (path, data, authorization, assignHeaders) {
