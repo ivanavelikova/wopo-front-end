@@ -50,3 +50,4 @@ success:
   portfolioUpdate: "Your portfolio settings are updated successfully."
   profileUpdate: "Your profile settings are updated successfully."
   passwordUpdate: "Your password is updated successfully."
+  aboutUpdate: "About you information is updated successfully."

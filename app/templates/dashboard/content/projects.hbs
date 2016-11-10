@@ -23,7 +23,6 @@
         index=project.id
         section="projects"
       }}
-        {{#link-to "dashboard.content.projects" class="card-link"}}Посети{{/link-to}}
         <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editProjects" {{action "updateEdit" project}}>Редактирай</button>
         <button class="btn btn-link card-link" {{action "delete" project}}>Изтрий</button>
       {{/project-card}}

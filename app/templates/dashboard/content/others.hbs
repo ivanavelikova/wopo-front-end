@@ -2,12 +2,33 @@
 <div class="page-title">
   <h2 class="float-xs-left">Други</h2>
 </div>
-<section class="form-section">
+<section class="form-section form-about-section">
   <div class="section-title">
     <h4 class="float-xs-left">За Вас</h4>
   </div>
-  <div class="form-group">
-    <textarea class="form-control" id="description" rows="3" placeholder="Моето страхотно описание..."></textarea>
+  <div class="form-group {{if (v-get this "model.portfolio.about" "isValid") "has-success" (if (not-eq model.portfolio.about null) "has-danger")}}">
+    <form {{action "submitAbout" on="submit"}}>
+      {{#if showAboutAlert}}
+        <div class="alert alert-{{aboutAlert.type}}" role="alert">
+          {{aboutAlert.content}}
+        </div>
+      {{/if}}
+
+      {{text-editor
+        editorId="about"
+        placeholder="Напишете накратко за Вас"
+        value=model.portfolio.about
+      }}
+
+      <div class="form-control-feedback">
+        {{#if (if (not-eq model.portfolio.about null) (v-get this "model.portfolio.about" "isInvalid"))}}
+            {{v-get this "model.portfolio.about" "message"}}
+        {{/if}}
+      </div>
+      <div class="form-bottom">
+        <button role="submit" class="btn btn-success btn-form float-xs-right">Запази</button>
+      </div>
+    </form>
   </div>
 </section>
 <section class="form-section">
@@ -84,6 +105,3 @@
     </div>
   </div>
 </section>
-<div class="btn btn-success float-xs-right">
-  Запази
-</div>
