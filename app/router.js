@@ -16,11 +16,9 @@ Router.map(function() {
     this.route('content', function() {
       this.route('articles');
 
-      this.route('jobs', function() {
-        this.route('new');
-      });
+      this.route('projects');
 
-      this.route('projects', function() {
+      this.route('jobs', function() {
         this.route('new');
       });
 

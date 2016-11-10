@@ -1,0 +1,47 @@
+{{title "Моите проекти"}}
+<div class="page-title">
+  <h2 class="float-xs-left">Моите проекти</h2>
+  <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addProjects">Нов проект</div>
+
+  {{project-modal
+    success=(action "add")
+    data=addProjects
+    modalVisible=addProjectsModalVisible
+    alert=addProjectsAlert
+    section="projects"
+    modalTarget="addProjects"
+    modalTitle="Нов проект"
+    modalActionName="Добави"
+  }}
+</div>
+
+{{#if haveProjects}}
+  <div class="row">
+    {{#each projects as |project|}}
+      {{#project-card
+        data=project
+        index=project.id
+        section="projects"
+      }}
+        {{#link-to "dashboard.content.projects" class="card-link"}}Посети{{/link-to}}
+        <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editProjects" {{action "updateEdit" project}}>Редактирай</button>
+        <button class="btn btn-link card-link" {{action "delete" project}}>Изтрий</button>
+      {{/project-card}}
+    {{/each}}
+  </div>
+{{else}}
+  <div class="alert alert-info" role="alert">
+    Няма добавени проекти. Можете да добавите, използвайки бутона "Нов проект".
+  </div>
+{{/if}}
+
+{{project-modal
+  success=(action "edit")
+  data=editProjects
+  modalVisible=editProjectsModalVisible
+  alert=editProjectsAlert
+  section="projects"
+  modalTarget="editProjects"
+  modalTitle="Редактиране на проект"
+  modalActionName="Редактирай"
+}}

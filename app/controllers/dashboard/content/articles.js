@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 const {
   computed,
-  $: jQuery,
   inject: {
     service
   }
@@ -40,6 +39,10 @@ export default Ember.Controller.extend({
     tags: null
   },
   editArticlesModalVisible: null,
+  editArticlesAlert: {
+    type: null,
+    content: null
+  },
 
   haveArticles: computed('articles', function () {
     const articles = this.get('articles');
@@ -76,8 +79,6 @@ export default Ember.Controller.extend({
             type: 'danger',
             content: alertContent
           });
-
-          jQuery('.modal.addArticles').animate({ scrollTop: 0 });
         });
     },
 
@@ -128,12 +129,10 @@ export default Ember.Controller.extend({
                 alertContent = reason.errors[0].detail;
               }
 
-              this.set('addArticlesAlert', {
+              this.set('editArticlesAlert', {
                 type: 'danger',
                 content: alertContent
               });
-
-              jQuery('.modal.addArticles').animate({ scrollTop: 0 });
             });
         });
     }

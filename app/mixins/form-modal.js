@@ -4,8 +4,7 @@ const {
   computed,
   observer,
   defineProperty,
-  inject: { service },
-  $: jQuery
+  inject: { service }
 } = Ember;
 
 export default Ember.Mixin.create({
@@ -52,7 +51,12 @@ export default Ember.Mixin.create({
   }),
 
   showAlert: Ember.computed('alert.{type,content}', function () {
-    return this.get('alert.type') !== null && this.get('alert.content') !== null;
+    if (this.get('alert.type') !== null && this.get('alert.content') !== null) {
+      $(`.modal.${this.get('modalTarget')}`).animate({ scrollTop: 0 });
+      return true;
+    }
+
+    return false;
   }),
 
   actions: {
@@ -63,12 +67,10 @@ export default Ember.Mixin.create({
           content: this.get('intl').t('errors.fill')
         });
 
-        jQuery(`.modal.${this.get('modalTarget')}`).animate({ scrollTop: 0 });
-
         return;
       }
       
-      jQuery(':focus').blur();
+      $(':focus').blur();
       
       if (this.get('index')) {
         this.sendAction('success', this.get('section'), this.get('index'));
