@@ -13,7 +13,8 @@ export default BaseRoute.extend({
       portfolio: store.findRecord('portfolio', 1),
       skills: store.findAll('skill'),
       workExperiences: store.findAll('work-experience'),
-      educations: store.findAll('education')
+      educations: store.findAll('education'),
+      certificates: store.findAll('certificate')
     });
   }
 });

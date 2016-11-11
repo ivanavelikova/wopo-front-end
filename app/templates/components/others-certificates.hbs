@@ -1,0 +1,46 @@
+<section class="form-section">
+  <div class="section-title">
+    <h5 class="float-xs-left">Сертификати и отличия</h5>
+    <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addCertificates">Нов сертификат/отличие</div>
+
+    {{certificate-modal
+      success=(action "add")
+      data=addCertificates
+      modalVisible=addCertificatesModalVisible
+      alert=addCertificatesAlert
+      section="certificates"
+      modalTarget="addCertificates"
+      modalTitle="Нов сертификат/отличие"
+      modalActionName="Добави"
+    }}
+  </div>
+  
+  {{#if haveCertificates}}
+    <div class="row">
+      {{#each certificates as |certificate|}}
+        {{#certificate-card
+          data=certificate
+          section="certificates"
+        }}
+          <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editCertificates" {{action "updateEdit" certificate}}>Редактирай</button>
+          <button class="btn btn-link card-link" {{action "delete" certificate}}>Изтрий</button>
+        {{/certificate-card}}
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="alert alert-info" role="alert">
+      Не сте добавили сертификати/отличия. Можете да добавите, използвайки бутона "Нов сертификат/отличие".
+    </div>
+  {{/if}}
+
+  {{certificate-modal
+    success=(action "edit")
+    data=editCertificates
+    modalVisible=editCertificatesModalVisible
+    alert=editCertificatesAlert
+    section="certificates"
+    modalTarget="editCertificates"
+    modalTitle="Редактиране на сертификат/отличие"
+    modalActionName="Редактирай"
+  }}
+</section>
