@@ -31,23 +31,9 @@
     </form>
   </div>
 </section>
-<section class="form-section">
-  <div class="section-title">
-    <h4 class="float-xs-left">Умения</h4>
-    {{#link-to "dashboard.content.skills.new" class="btn btn-success float-xs-right"}}
-      Ново умение
-    {{/link-to}}
-  </div>
-  <div class="row">
-    <div class="col-xl-4 col-md-6">
-      <div class="card card-block">
-        <h4 class="card-title">Photoshop</h4>
-        {{#link-to "dashboard.content.others" class="card-link"}}Редактирай{{/link-to}}
-        {{#link-to "dashboard.content.others" class="card-link"}}Изтрий{{/link-to}}
-      </div>
-    </div>
-  </div>
-</section>
+
+{{others-skills skillsData=model.skills}}
+
 <section class="form-section">
   <div class="section-title">
     <h4 class="float-xs-left">Работни места</h4>

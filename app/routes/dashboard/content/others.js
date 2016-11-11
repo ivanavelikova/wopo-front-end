@@ -8,7 +8,8 @@ const {
 export default BaseRoute.extend({
   model () {
     return RSVP.hash({
-      portfolio: this.get('store').findRecord('portfolio', 1)
+      portfolio: this.get('store').findRecord('portfolio', 1),
+      skills: this.get('store').findAll('skill')
     });
   }
 });
