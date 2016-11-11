@@ -1,0 +1,46 @@
+<section class="form-section">
+  <div class="section-title">
+    <h5 class="float-xs-left">Трудов стаж</h5>
+    <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addWorkExperiences">Нов трудов стаж</div>
+
+    {{work-experience-modal
+      success=(action "add")
+      data=addWorkExperiences
+      modalVisible=addWorkExperiencesModalVisible
+      alert=addWorkExperiencesAlert
+      section="workExperiences"
+      modalTarget="addWorkExperiences"
+      modalTitle="Нов трудов стаж"
+      modalActionName="Добави"
+    }}
+  </div>
+  
+  {{#if haveWorkExperiences}}
+    <div class="row">
+      {{#each workExperiences as |workExperience|}}
+        {{#work-experience-card
+          data=workExperience
+          section="workExperiences"
+        }}
+          <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editWorkExperiences" {{action "updateEdit" workExperience}}>Редактирай</button>
+          <button class="btn btn-link card-link" {{action "delete" workExperience}}>Изтрий</button>
+        {{/work-experience-card}}
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="alert alert-info" role="alert">
+      Не сте добавили трудов стаж. Можете да добавите, използвайки бутона "Нов трудов стаж".
+    </div>
+  {{/if}}
+
+  {{work-experience-modal
+    success=(action "add")
+    data=editWorkExperiences
+    modalVisible=editWorkExperiencesModalVisible
+    alert=addWorkExperiencesAlert
+    section="workExperiences"
+    modalTarget="editWorkExperiences"
+    modalTitle="Редактиране на трудов стаж"
+    modalActionName="Редактирай"
+  }}
+</section>
