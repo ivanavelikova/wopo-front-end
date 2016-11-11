@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Validations from '../../../validations/content-others';
 
 const {
   inject: {
@@ -6,7 +7,7 @@ const {
   }
 } = Ember;
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(Validations, {
   intl: service(),
 
   null: null,
@@ -29,6 +30,19 @@ export default Ember.Controller.extend({
 
   actions: {
     submitAbout () {
+      if (!this.get('validations.isValid')) {
+        this.set('aboutAlert', {
+          type: 'info',
+          content: this.get('intl').t('errors.fill')
+        });
+        return;
+      }
+
+      this.set('aboutAlert', {
+        type: null,
+        content: null
+      });
+
       this
         .get('model.portfolio')
         .save()

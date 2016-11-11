@@ -18,23 +18,15 @@ Router.map(function() {
 
       this.route('projects');
 
-      this.route('jobs', function() {
-        this.route('new');
-      });
+      this.route('jobs', function() {});
 
       this.route('others');
 
-      this.route('skills', function() {
-        this.route('new');
-      });
+      this.route('skills', function() {});
 
-      this.route('education', function() {
-        this.route('new');
-      });
+      this.route('education', function() {});
 
-      this.route('certificates', function() {
-        this.route('new');
-      });
+      this.route('certificates', function() {});
     });
 
     this.route('theme', function() {
