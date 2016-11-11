@@ -107,16 +107,16 @@ export default Ember.Component.extend({
     },
 
     edit () {
-      const editedWorkExperiences = this.get('editWorkExperiences');
+      const editedWorkExperience = this.get('editWorkExperiences');
 
       const workExperience = this
         .get('store')
-        .peekRecord('work-experience', editedWorkExperiences.id);
-      workExperience.set('position', editedWorkExperiences.position);
-      workExperience.set('start_date', editedWorkExperiences.startDate);
-      workExperience.set('end_date', editedWorkExperiences.endDate);
-      workExperience.set('employer', editedWorkExperiences.employer);
-      workExperience.set('responsibilities', editedWorkExperiences.responsibilities);
+        .peekRecord('work-experience', editedWorkExperience.id);
+      workExperience.set('position', editedWorkExperience.position);
+      workExperience.set('start_date', editedWorkExperience.startDate);
+      workExperience.set('end_date', editedWorkExperience.endDate);
+      workExperience.set('employer', editedWorkExperience.employer);
+      workExperience.set('responsibilities', editedWorkExperience.responsibilities);
 
       workExperience
         .save()

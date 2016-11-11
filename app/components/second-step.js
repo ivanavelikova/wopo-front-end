@@ -68,7 +68,7 @@ export default Ember.Component.extend(Validations, {
   }),
 
   addEducation: {
-    organisation: null,
+    organization: null,
     startDate: null,
     endDate: null
   },
@@ -76,7 +76,7 @@ export default Ember.Component.extend(Validations, {
 
   editEducation: {
     index: null,
-    organisation: null,
+    organization: null,
     startDate: null,
     endDate: null
   },

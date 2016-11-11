@@ -1,0 +1,46 @@
+<section class="form-section">
+  <div class="section-title">
+    <h5 class="float-xs-left">Образование и обучение</h5>
+    <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addEducations">Ново образование/обучение</div>
+
+    {{education-modal
+      success=(action "add")
+      data=addEducations
+      modalVisible=addEducationsModalVisible
+      alert=addEducationsAlert
+      section="educations"
+      modalTarget="addEducations"
+      modalTitle="Ново образование/обучение"
+      modalActionName="Добави"
+    }}
+  </div>
+  
+  {{#if haveEducations}}
+    <div class="row">
+      {{#each educations as |education|}}
+        {{#education-card
+          data=education
+          section="educations"
+        }}
+          <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editEducations" {{action "updateEdit" education}}>Редактирай</button>
+          <button class="btn btn-link card-link" {{action "delete" education}}>Изтрий</button>
+        {{/education-card}}
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="alert alert-info" role="alert">
+      Не сте добавили образование/обучение. Можете да добавите, използвайки бутона "Ново образование/обучение".
+    </div>
+  {{/if}}
+
+  {{education-modal
+    success=(action "edit")
+    data=editEducations
+    modalVisible=editEducationsModalVisible
+    alert=editEducationsAlert
+    section="educations"
+    modalTarget="editEducations"
+    modalTitle="Редактиране на образование/обучение"
+    modalActionName="Редактирай"
+  }}
+</section>

@@ -1,10 +1,14 @@
 <div class="col-xl-4 col-md-6">
   <div class="card card-block">
     <div class="card-title">
-      <h4 title="{{data.organisation}}" class="text-xs-center">{{data.organisation}}</h4>
+      <h4 title="{{data.organization}}" class="text-xs-center">{{data.organization}}</h4>
     </div>
     <h6 title="{{date}}" class="card-subtitle text-muted">{{date}}</h6>
-    <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editEducation" {{action edit section index}}>Редактирай</button>
-    <button class="btn btn-link card-link" {{action delete section index}}>Изтрий</button>
+    {{#if hasBlock}}
+      {{yield}}
+    {{else}}
+      <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editEducation" {{action edit section index}}>Редактирай</button>
+      <button class="btn btn-link card-link" {{action delete section index}}>Изтрий</button>
+    {{/if}}
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
-  'data.organisation': [
+  'data.organization': [
     validator('presence', true)
   ],
   'data.startDate': [

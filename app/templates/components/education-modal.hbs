@@ -12,21 +12,21 @@
         </div>
       {{/if}}
       
-      <div class="form-group {{if (v-get this "data.organisation" "isValid") "has-success" (if organisationShowErrorMessage "has-danger")}}">
-        <label for="{{modalTarget}}Organisation">Образователна институция</label>
+      <div class="form-group {{if (v-get this "data.organization" "isValid") "has-success" (if organizationShowErrorMessage "has-danger")}}">
+        <label for="{{modalTarget}}Organization">Образователна институция</label>
         {{input
           type="text"
-          name="organisation"
+          name="organization"
           class="form-control"
-          id=(concat modalTarget "Organisation")
+          id=(concat modalTarget "Organization")
           placeholder="Напишете образователната институция"
-          value=data.organisation
+          value=data.organization
           autocomplete="off"
         }}
 
         <div class="form-control-feedback">
-          {{#if organisationShowErrorMessage}}
-              {{v-get this "data.organisation" "message"}}
+          {{#if organizationShowErrorMessage}}
+              {{v-get this "data.organization" "message"}}
           {{/if}}
         </div>
       </div>

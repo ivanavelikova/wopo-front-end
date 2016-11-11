@@ -12,7 +12,8 @@ export default BaseRoute.extend({
     return RSVP.hash({
       portfolio: store.findRecord('portfolio', 1),
       skills: store.findAll('skill'),
-      workExperiences: store.findAll('work-experience')
+      workExperiences: store.findAll('work-experience'),
+      educations: store.findAll('education')
     });
   }
 });
