@@ -11,12 +11,12 @@ export default Ember.Mixin.create({
     const isStartDateFormatted = moment(startDate, 'MM/DD/YYYY', true).isValid();
     const isEndDateFormatted = moment(endDate, 'MM/DD/YYYY', true).isValid();
 
-    if (!isStartDateFormatted || !isEndDateFormatted) {
+    if (!isStartDateFormatted) {
       startDate = moment(startDate).format('MM/DD/YYYY');
+    }
 
-      if (endDate) {
-        endDate = moment(endDate).format('MM/DD/YYYY');
-      }
+    if (endDate && !isEndDateFormatted) {
+      endDate = moment(endDate).format('MM/DD/YYYY');
     }
 
     return (endDate) ? `${startDate} - ${endDate}` : startDate;
