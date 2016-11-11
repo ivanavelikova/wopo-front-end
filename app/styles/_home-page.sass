@@ -17,16 +17,20 @@
     .profesional-portfolio, .work
       .description
         float: left
+        animation: slideLeftReturn 1.5s ease-in-out 0s
 
       .icon
         text-align: right
+        animation: slideRightReturn 1.5s ease-in-out 0s
 
     .full-control
       .description
-        float: right    
+        float: right
+        animation: slideRightReturn 1.5s ease-in-out 0s
 
       .icon
         text-align: left
+        animation: slideLeftReturn 1.5s ease-in-out 0s
 
     h2
       line-height: 60px
@@ -101,6 +105,7 @@
     .person
       display: inline-block
       padding-right: 35px
+      animation: slideLeftReturn 1.5s ease-in-out 0s
 
       img
         max-width: 125px
@@ -116,6 +121,7 @@
     .comment
       display: inline-block
       max-width: 500px
+      animation: slideRightReturn 1.5s ease-in-out 0s
 
       p
         font-size: 24px
@@ -131,9 +137,11 @@
         
     .fa-chevron-left
       float: left
+      animation: slideLeftReturn 1.5s ease-in-out 0s
       
     .fa-chevron-right
       float: right
+      animation: slideRightReturn 1.5s ease-in-out 0s
 
     @include media-breakpoint-down(md)
       .reviews
@@ -162,19 +170,24 @@
           line-height: 34px
 
   .bottom
-    margin-top: 75px
+    margin-top: 250px
     padding: 125px 50px
     background-color: $gray
     
     h3
       font-weight: 400
+      animation: slideUpReturn 1.5s ease-in-out
 
     .btn
       margin-top: 15px
       font-size: 22px
       font-weight: 300
+      animation: slideUpReturn 1.5s ease-in-out
 
     @include media-breakpoint-down(md)
+    .bottom
+      margin-top: 150px
+
       h3
         font-size: 25px
 
