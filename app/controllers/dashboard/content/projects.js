@@ -91,7 +91,11 @@ export default Ember.Controller.extend({
 
     updateEdit (project) {
       const startDate = moment(project.get('start_date')).format('MM/DD/YYYY');
-      const endDate = moment(project.get('end_date')).format('MM/DD/YYYY');
+      let endDate = project.get('end_date');
+
+      if (endDate) {
+        endDate = moment(endDate).format('MM/DD/YYYY');
+      }
 
       this.set('editProjects.id', project.get('id'));
       this.set('editProjects.name', project.get('name'));

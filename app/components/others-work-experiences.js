@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 
 const {
   computed,
@@ -90,25 +91,32 @@ export default Ember.Component.extend({
     },
 
     updateEdit (workExperience) {
+      const startDate = moment(workExperience.get('start_date')).format('MM/DD/YYYY');
+      let endDate = workExperience.get('end_date');
+
+      if (endDate) {
+        endDate = moment(endDate).format('MM/DD/YYYY');
+      }
+
       this.set('editWorkExperiences.id', workExperience.get('id'));
       this.set('editWorkExperiences.position', workExperience.get('position'));
-      this.set('editWorkExperiences.startDate', workExperience.get('start_date'));
-      this.set('editWorkExperiences.endDate', workExperience.get('end_date'));
+      this.set('editWorkExperiences.startDate', startDate);
+      this.set('editWorkExperiences.endDate', endDate);
       this.set('editWorkExperiences.employer', workExperience.get('employer'));
       this.set('editWorkExperiences.responsibilities', workExperience.get('responsibilities'));
     },
 
     edit () {
-      const editedWorkExperiencesl = this.get('editWorkExperiences');
+      const editedWorkExperiences = this.get('editWorkExperiences');
 
       const workExperience = this
         .get('store')
-        .peekRecord('work-experience', editedSkill.id);
-      workExperience.set('position', editedSkill.position);
-      workExperience.set('start_date', editedSkill.startDate);
-      workExperience.set('end_date', editedSkill.endDate);
-      workExperience.set('employer', editedSkill.employer);
-      workExperience.set('responsibilities', editedSkill.responsibilities);
+        .peekRecord('work-experience', editedWorkExperiences.id);
+      workExperience.set('position', editedWorkExperiences.position);
+      workExperience.set('start_date', editedWorkExperiences.startDate);
+      workExperience.set('end_date', editedWorkExperiences.endDate);
+      workExperience.set('employer', editedWorkExperiences.employer);
+      workExperience.set('responsibilities', editedWorkExperiences.responsibilities);
 
       workExperience
         .save()
