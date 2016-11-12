@@ -17,20 +17,20 @@
     .profesional-portfolio, .work
       .description
         float: left
-        animation: slideLeftReturn 1.5s ease-in-out 0s
+        animation: slideLeftReturn 1.5s ease-in-out
 
       .icon
         text-align: right
-        animation: slideRightReturn 1.5s ease-in-out 0s
+        animation: slideRightReturn 1.5s ease-in-out
 
     .full-control
       .description
         float: right
-        animation: slideRightReturn 1.5s ease-in-out 0s
+        animation: slideRightReturn 1.5s ease-in-out
 
       .icon
         text-align: left
-        animation: slideLeftReturn 1.5s ease-in-out 0s
+        animation: slideLeftReturn 1.5s ease-in-out
 
     h2
       line-height: 60px
@@ -105,7 +105,7 @@
     .person
       display: inline-block
       padding-right: 35px
-      animation: slideLeftReturn 1.5s ease-in-out 0s
+      animation: slideLeftReturn 1.5s ease-in-out
 
       img
         max-width: 125px
@@ -121,7 +121,7 @@
     .comment
       display: inline-block
       max-width: 500px
-      animation: slideRightReturn 1.5s ease-in-out 0s
+      animation: slideRightReturn 1.5s ease-in-out
 
       p
         font-size: 24px
@@ -137,11 +137,11 @@
         
     .fa-chevron-left
       float: left
-      animation: slideLeftReturn 1.5s ease-in-out 0s
+      animation: slideLeftReturn 1.5s ease-in-out
       
     .fa-chevron-right
       float: right
-      animation: slideRightReturn 1.5s ease-in-out 0s
+      animation: slideRightReturn 1.5s ease-in-out
 
     @include media-breakpoint-down(md)
       .reviews
@@ -152,6 +152,7 @@
 
       .mobile-nav
         display: inline
+        animation: slideUpReturn 2s ease-in-out
 
         .fa
           cursor: pointer
@@ -174,7 +175,6 @@
     padding: 125px 50px
     position: relative
     overflow: hidden
-    min-height: 400px
     display: flex
     justify-content: center
     align-content: space-around
@@ -182,7 +182,7 @@
     h3
       font-weight: 400
       animation: slideUpReturn 1.5s ease-in-out
-      color: #727272
+      color: #212121
 
     .btn
       margin-top: 15px
@@ -195,22 +195,31 @@
       left: 0
       top: 0
       z-index: -1
-      margin-top: -240px
+      margin-top: -280px
+
+    @include media-breakpoint-down(lg)
+      svg
+        margin-top: -200px
 
     @include media-breakpoint-down(md)
-    .bottom
-      margin-top: 150px
+      .bottom
+        margin-top: 150px
+        max-height: 300px
 
-      h3
-        font-size: 25px
+        h3
+          font-size: 25px
 
-      .btn 
-        font-size: 20px
+        .btn 
+          font-size: 20px
+
+        svg
+          margin-top: -140px
 
     @include media-breakpoint-down(sm)
       .bottom
         margin: 0
         padding: 100px 25px
+        max-height: 260px
 
         h3
           font-size: 18px
@@ -218,3 +227,6 @@
         .btn
           margin: 0
           font-size: 14px
+
+        svg
+          margin-top: -130px

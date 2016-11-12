@@ -2,8 +2,10 @@
 {{index-navbar}}
 <div class="container home-page text-xs-center">
   <div class="jumbotron">
-    <h2>Портфолио за всеки!</h2>
-    {{#link-to "registration" class="btn btn-primary"}} Регистрирай се сега! {{/link-to}}
+    <div class="register">
+      <h2>Портфолио за всеки!</h2>
+      {{#link-to "registration" class="btn btn-primary"}} Регистрирай се сега! {{/link-to}}
+    </div>
     <div class="themes">
       <div class="secondary-theme first">
         {{second-theme}}
@@ -58,10 +60,10 @@
     {{site-reviews}}
   </div>
   <div class="bottom">
-    {{x-bottom}}
-    <div class="workspace">
-      {{work-space}}
+    <div class="register">
+      {{x-bottom}}
     </div>
+    {{work-space}}
   </div>
   <div class="footer">
     {{x-footer}}
