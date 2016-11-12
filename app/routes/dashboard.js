@@ -7,6 +7,10 @@ const { inject: { service } } = Ember;
 export default BaseRoute.extend(AuthenticatedRouteMixin, {
   session: service(),
 
+  model () {
+    return this.get('store').findRecord('profile', 1);
+  },
+
   beforeModel () {
     this._super(...arguments);
 

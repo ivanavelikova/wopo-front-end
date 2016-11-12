@@ -1,15 +1,33 @@
 import Ember from 'ember';
 
-const { inject: { service } } = Ember;
+const {
+  computed,
+  inject: {
+    service
+  }
+} = Ember;
 
 export default Ember.Component.extend({
-  session: service('session'),
+  session: service(),
+  store: service(),
 
-  actions: {
-    logout() {
-      this.get('session').invalidate();
+  profilePicCache: null,
+
+  profilePic: computed('profileData.hasDirtyAttributes', function () {
+    if (this.get('profileData.hasDirtyAttributes')) {
+      return this.get('profilePicCache');
     }
-  },
+
+    let profilePic = this.get('profileData.profile_pic');
+
+    if (!profilePic) {
+      profilePic = 'images/default-profile-pic.jpg';
+    }
+
+    this.set('profilePicCache', profilePic);
+
+    return profilePic;
+  }),
 
   didInsertElement () {
     const notifications = this.$('.notifications-desktop');
@@ -34,5 +52,11 @@ export default Ember.Component.extend({
   willDestroyElement () {
     this.get('notificationsDropdown').off('click', this.get('preventClosing'));
     this.get('notificationsContent').perfectScrollbar('destroy');
+  },
+
+  actions: {
+    logout() {
+      this.get('session').invalidate();
+    }
   }
 });

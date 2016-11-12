@@ -22,7 +22,8 @@ export default BaseRoute.extend(AuthenticatedRouteMixin, {
 
   model () {
     return RSVP.hash({
-      themes: this.get('store').findAll('theme')
+      themes: this.get('store').findAll('theme'),
+      profile: this.get('store').findRecord('profile', 1)
     });
   },
 

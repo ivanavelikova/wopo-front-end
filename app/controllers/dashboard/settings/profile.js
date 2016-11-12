@@ -3,6 +3,7 @@ import Validations from '../../../validations/profile-settings';
 
 const {
   computed,
+  observer,
   inject: {
     service
   }
@@ -73,6 +74,12 @@ export default Ember.Controller.extend(Validations, {
     }
 
     return false;
+  }),
+
+  onProfilePicIsEmpty: observer('model.profile_pic', function () {
+    if (this.get('model.profile_pic') === '') {
+      this.set('model.profile_pic', null);
+    }
   }),
 
   actions: {
