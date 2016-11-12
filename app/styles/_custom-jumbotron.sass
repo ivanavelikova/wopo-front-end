@@ -16,12 +16,13 @@
 
   .themes
     margin: 40px
-    animation: slideDownReturn 1.5s ease-in-out 0s
 
     .primary-theme
+      z-index: 1
       width: 550px
       position: relative
       display: inline-block
+      animation: slideDownReturn 1.5s ease-in-out 0s
 
     .secondary-theme
       width: 475px
@@ -30,6 +31,12 @@
 
       svg
         margin-bottom: 20px
+
+    .first
+      animation: slideLeftReturn 1.5s ease-in-out 0s
+
+    .second
+      animation: slideRightReturn 1.5s ease-in-out 0s
 
   @include media-breakpoint-down(lg)
     .primary-theme

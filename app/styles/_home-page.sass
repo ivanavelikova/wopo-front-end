@@ -172,17 +172,30 @@
   .bottom
     margin-top: 250px
     padding: 125px 50px
-    background-color: $gray
-    
+    position: relative
+    overflow: hidden
+    min-height: 400px
+    display: flex
+    justify-content: center
+    align-content: space-around
+        
     h3
       font-weight: 400
       animation: slideUpReturn 1.5s ease-in-out
+      color: #727272
 
     .btn
       margin-top: 15px
       font-size: 22px
       font-weight: 300
       animation: slideUpReturn 1.5s ease-in-out
+
+    svg
+      position: absolute
+      left: 0
+      top: 0
+      z-index: -1
+      margin-top: -240px
 
     @include media-breakpoint-down(md)
     .bottom
