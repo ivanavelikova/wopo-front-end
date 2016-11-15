@@ -49,6 +49,7 @@ module.exports = function(defaults) {
     app.import(app.bowerDirectory + '/bootstrap-tagsinput/dist/bootstrap-tagsinput.css');
     app.import(app.bowerDirectory + '/bootstrap-tagsinput/dist/bootstrap-tagsinput-typeahead.css');
     app.import(app.bowerDirectory + '/typeahead.js/dist/typeahead.bundle.min.js');
+    app.import(app.bowerDirectory + '/scrollreveal/dist/scrollreveal.min.js');
 
     var ckeditorAssets = new Funnel(app.bowerDirectory, {
       srcDir: 'ckeditor',
