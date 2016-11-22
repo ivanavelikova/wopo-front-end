@@ -1,7 +1,9 @@
 .footer
   max-height: 200px
   background-color: #56565e
-  position: static
+  position: absolute
+  left: 0
+  right: 0
   padding: 15px 100px
 
   h6
@@ -11,22 +13,6 @@
     display: inline
     float: left
     margin: 0 30px 0 0
-  
-  .social-media
-    display: inline-block
-    margin: 10px
-    
-    .icon
-      display: inline-block
-      background: $gray
-      color: #56565e
-      height: 28px
-      width: 28px
-      border-radius: 50%
-      margin: 0 5px
-
-      &:hover, &:focus
-        opacity: 0.7
 
   .links
     font-size: 12px
@@ -49,12 +35,6 @@
 @include media-breakpoint-down(sm)
   .footer
     padding: 15px 25px
-  
-    .social-media
-      display: block
-
-      .icon
-        padding: 2px
         
     h6, .links
       margin: 0
