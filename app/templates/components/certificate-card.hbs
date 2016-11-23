@@ -4,7 +4,7 @@
       <h4 title="{{data.name}}" class="text-xs-center">{{data.name}}</h4>
     </div>
     <div class="card-img">
-      <img class="img-fluid m-x-auto d-block" src="{{data.image_url}}" alt="">
+      <img class="img-fluid m-x-auto d-block" src="{{if isImageUrlOrCover data.image_url data.cover}}" alt="">
     </div>
     {{#if hasBlock}}
       {{yield}}
