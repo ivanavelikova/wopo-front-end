@@ -8,7 +8,7 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
   cookies: service(),
   intl: service(),
 
-  host: 'http://localhost:3333',
+  host: 'http://api.wopo.dev',
   headers: Ember.computed(function() {
     const csrfToken = this.get('cookies').read('XSRF-TOKEN');
     return {
