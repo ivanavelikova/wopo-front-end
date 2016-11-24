@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   didInsertElement () {
     let labels = [...Array(31).keys()];
     labels.shift();
+    labels.reverse();
 
     let visitsCountChart = new Chart(this.$('#visitsCountChart'), {
       type: 'line',
@@ -25,8 +26,11 @@ export default Ember.Component.extend({
         },
         tooltips: {
           callbacks: {
-            label: function(tooltipItem) {
-              return tooltipItem.yLabel;
+            title () {
+              return;
+            },
+            label (tooltipItem) {
+              return tooltipItem.yLabel ? tooltipItem.yLabel : '0';
             }
           }
         }
