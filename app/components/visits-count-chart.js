@@ -1,14 +1,19 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  data: [],
+
   didInsertElement () {
+    let labels = [...Array(31).keys()];
+    labels.shift();
+
     let visitsCountChart = new Chart(this.$('#visitsCountChart'), {
       type: 'line',
       data: {
-        labels: ["8.08.", "15.08.", "22.08.", "29.08.", "5.09.", "12.09."],
+        labels,
         datasets: [{
           label: 'Посещения на портфолиото',
-          data: [1, 5, 14, 20, 35, 30],
+          data: this.get('data'),
           backgroundColor: 'rgba(249, 148, 62, 0.2)',
           borderColor: 'rgba(249, 148, 62, 1)',
           borderWidth: 1

@@ -5,5 +5,6 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   keywords: DS.attr('string'),
   job_offers: DS.attr('boolean'),
-  about: DS.attr('string')
+  about: DS.attr('string'),
+  domain: DS.attr('string')
 });

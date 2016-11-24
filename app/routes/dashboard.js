@@ -2,13 +2,26 @@ import Ember from 'ember';
 import BaseRoute from 'front-end/routes/base';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const { inject: { service } } = Ember;
+const {
+  RSVP,
+  inject: {
+    service
+  }
+} = Ember;
 
 export default BaseRoute.extend(AuthenticatedRouteMixin, {
   session: service(),
 
   model () {
-    return this.get('store').findRecord('profile', 1);
+    const store = this.get('store');
+
+    return RSVP.hash({
+      portfolio: store.findRecord('portfolio', 1),
+      profile: store.findRecord('profile', 1),
+      workExperiences: store.findAll('work-experience'),
+      educations: store.findAll('education'),
+      certificates: store.findAll('certificate')
+    });
   },
 
   beforeModel () {

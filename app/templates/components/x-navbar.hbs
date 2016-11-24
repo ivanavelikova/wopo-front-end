@@ -7,9 +7,7 @@
   <ul class="nav navbar-nav float-sm-right">
     {{#if dashboard}}
       <li class="nav-item button">
-        {{#link-to "index" class="btn btn-primary"}}
-          Моето портфолио
-        {{/link-to}}
+        <a href="{{portfolioData.domain}}" target="_blank" class="btn btn-primary">Моето портфолио</a>
       </li>
       <li class="dropdown nav-item notifications-desktop">
         <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

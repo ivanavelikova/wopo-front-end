@@ -9,7 +9,7 @@
         <div class="card-block">
           {{fa-icon "user"}}
           <div class="details">
-            <h1>140</h1>
+            <h1>{{model.todaysVisitsCount}}</h1>
             <span>посещения от днес</span>
           </div>
         </div>
@@ -20,7 +20,7 @@
         <div class="card-block">
           {{fa-icon "pencil"}}
           <div class="details">
-            <h1>10</h1>
+            <h1>{{model.articlesCount}}</h1>
             <span>статии</span>
           </div>
         </div>
@@ -31,7 +31,7 @@
         <div class="card-block">
           {{fa-icon "briefcase"}}
           <div class="details">
-            <h1>5</h1>
+            <h1>{{model.projectsCount}}</h1>
             <span>проекта</span>
           </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="card-block">
           {{fa-icon "laptop"}}
           <div class="details">
-            <h1>3</h1>
+            <h1>{{model.workExperiencesCount}}</h1>
             <span>трудови стажа</span>
           </div>
         </div>
@@ -53,10 +53,10 @@
     <div class="col-xs-12">
       <div class="card">
         <div class="card-header">
-          Посещения на портфолиото
+          Посещения на портфолиото (последните 30 дена)
         </div>
         <div class="card-block">
-          {{visits-count-chart}}
+          {{visits-count-chart data=model.visitsMonth}}
         </div>
       </div>
     </div>     
