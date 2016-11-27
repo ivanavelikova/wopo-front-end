@@ -9,7 +9,9 @@
     "toMarkdown",
     "Dropzone",
     "showdown",
-    "Bloodhound"
+    "Bloodhound",
+    "ScrollMagic",
+    "TweenMax"
   ],
   "browser": true,
   "boss": true,

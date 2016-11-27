@@ -8,6 +8,9 @@
       margin: 150px 0
       padding: 125px 100px
 
+    .fade
+      opacity: 0
+
     .full-control
       background-color: $gray-lightest
 
@@ -96,11 +99,17 @@
         .icon
           max-width: 220px
 
-  .reviews
-    padding: 0 50px
+  .unslider
+    margin: 0 50px
+    position: relative
 
-    .mobile-nav
-      display: none
+    .unslider-nav li
+      border-color: #585858
+      width: 10px
+      height: 10px
+
+      &.unslider-active
+        background: #585858
 
     .person
       display: inline-block
@@ -131,35 +140,25 @@
       cursor: pointer
       font-size: 75px
       line-height: 236px
+      position: absolute
+      top: 0
+      animation: slideLeftReturn 1.5s ease-in-out
 
-      &:focus, &:hover
+      &:hover
         opacity: 0.7
         
     .fa-chevron-left
-      float: left
-      animation: slideLeftReturn 1.5s ease-in-out
+      left: 0
       
     .fa-chevron-right
-      float: right
-      animation: slideRightReturn 1.5s ease-in-out
+      right: 0
 
     @include media-breakpoint-down(md)
-      .reviews
+      .unslider
         padding: 0 25px
 
       .fa-chevron-left, .fa-chevron-right
         display: none
-
-      .mobile-nav
-        display: inline
-        animation: slideUpReturn 2s ease-in-out
-
-        .fa
-          cursor: pointer
-          margin: 0 5px
-          color: $gray-dark
-          font-size: 16px
-          line-height: 100px
 
       .person
         padding: 10px 0

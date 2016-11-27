@@ -52,8 +52,11 @@ module.exports = function(defaults) {
     app.import(app.bowerDirectory + '/bootstrap-tagsinput/dist/bootstrap-tagsinput.css');
     app.import(app.bowerDirectory + '/bootstrap-tagsinput/dist/bootstrap-tagsinput-typeahead.css');
     app.import(app.bowerDirectory + '/typeahead.js/dist/typeahead.bundle.min.js');
-    app.import(app.bowerDirectory + '/aos/dist/aos.js');
-    app.import(app.bowerDirectory + '/aos/dist/aos.css');
+    app.import(app.bowerDirectory + '/jquery.event.move/js/jquery.event.move.js');
+    app.import(app.bowerDirectory + '/jquery.event.swipe/js/jquery.event.swipe.js');
+    app.import(app.bowerDirectory + '/unslider/dist/js/unslider-min.js');
+    app.import(app.bowerDirectory + '/unslider/dist/css/unslider.css');
+    app.import(app.bowerDirectory + '/unslider/dist/css/unslider-dots.css');
 
     var ckeditorAssets = new Funnel(app.bowerDirectory, {
       srcDir: 'ckeditor',
