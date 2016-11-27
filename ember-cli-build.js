@@ -11,6 +11,9 @@ module.exports = function(defaults) {
     },
     fingerprint: {
       extensions: ['js', 'css', 'map']
+    },
+    dotEnv: {
+      clientAllowedKeys: ['URI']
     }
   });
 

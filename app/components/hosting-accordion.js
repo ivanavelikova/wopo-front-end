@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
 import Validations from '../validations/hosting-accordion';
 
 const {
@@ -7,6 +8,7 @@ const {
 } = Ember;
 
 export default Ember.Component.extend(Validations, {
+  appUri: ENV.URI,
   availableHostings: ['wopo', 'githubPages', 'ftp'],
 
   wopoHosting: {

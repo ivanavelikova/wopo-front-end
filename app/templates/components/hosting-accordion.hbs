@@ -3,7 +3,7 @@
     <div class="card-header" role="tab" id="wopoHeading">
       <h5 class="mb-0">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#wopoCollapse" aria-expanded="false" aria-controls="wopoCollapse">
-          wopo.io
+          {{appUri}}
         </a>
       </h5>
     </div>
@@ -20,7 +20,7 @@
                 radioId="wopo-subdomain"
                 radioClass="custom-control-input"}}
               <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">wopo.io адрес (безплатно)</span>
+              <span class="custom-control-description">{{appUri}} адрес (безплатно)</span>
             </label>
             <label class="custom-control custom-radio">
               {{radio-button
@@ -42,10 +42,10 @@
                 value=wopoHosting.domain.subdomain
                 class="form-control"
                 placeholder="Напишете адреса, чрез който искате портфолиото Ви да се достъпва"}}
-              <div class="input-group-addon">.wopo.dev</div>
+              <div class="input-group-addon">.{{appUri}}</div>
             </div>
             {{#if showWopoSubdomainFullUrl}}
-              <p class="form-text text-muted">Адресът ви ще е <strong>{{wopoHosting.domain.subdomain}}.wopo.dev</strong></p>
+              <p class="form-text text-muted">Адресът ви ще е <strong>{{wopoHosting.domain.subdomain}}.{{appUri}}</strong></p>
             {{/if}}
           {{else}}
             Comming soon..
