@@ -13,7 +13,7 @@ module.exports = function(defaults) {
       extensions: ['js', 'css', 'map']
     },
     dotEnv: {
-      clientAllowedKeys: ['URI']
+      clientAllowedKeys: ['URI', 'HOST_URL']
     }
   });
 
