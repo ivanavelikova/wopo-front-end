@@ -10,6 +10,7 @@ module.exports = function(defaults) {
       extension: 'sass'
     },
     fingerprint: {
+      exclude: ['ckeditor'],
       extensions: ['js', 'css', 'map']
     },
     dotEnv: {
