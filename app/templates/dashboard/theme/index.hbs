@@ -26,7 +26,9 @@
               <img class="img-fluid m-x-auto d-block" src="{{theme.cover}}" alt="">
             </div>
             {{!-- {{#link-to "dashboard.theme.index" class="card-link"}}Персонализирай{{/link-to}} --}}
-            <button class="btn btn-link card-link" {{action "remove" theme}} disabled={{disableRemove}}>Деинсталирай</button>
+            {{#if canUninstall}}
+              <button class="btn btn-link card-link" {{action "remove" theme}} disabled={{disableRemove}}>Деинсталирай</button>
+            {{/if}}
           </div>
         </div>
       {{/each}}

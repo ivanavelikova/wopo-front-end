@@ -20,6 +20,12 @@ export default Ember.Controller.extend({
     return 1;
   }),
 
+  canUninstall: computed('themes', function () {
+    const themes = this.get('themes');
+
+    return Array.isArray(themes) && themes.length > 1;
+  }),
+
   haveThemes: computed('themes', function () {
     const themes = this.get('themes');
 
