@@ -4,31 +4,30 @@ import FormModal from '../mixins/form-modal';
 import PeriodPicker from '../mixins/period-picker';
 
 const {
+  observer,
   inject: {
     service
   }
 } = Ember;
 
-const EducationModalMixin = Ember.Mixin.create(Validations, FormModal, PeriodPicker);
+const ProjectModalMixin = Ember.Mixin.create(Validations, FormModal, PeriodPicker);
 
-export default Ember.Component.extend(EducationModalMixin, {
+export default Ember.Component.extend(ProjectModalMixin, {
   mediaManager: service('media-manager'),
 
-  didInsertElement () {
-    const setImageUrl = (function setImageUrl (e) {
+  onModalVisibleChange: observer('modalVisible', function () {
+    const setImageUrl = (function (e) {
       const data = e.originalEvent.data;
 
       this.set('data.image_url', data.media);
     }).bind(this);
 
-    $(window).on('message', setImageUrl);
-    
-    this.set('setImageUrl', setImageUrl);
-  },
-
-  willDestroyElement () {
-    $(window).off('message', this.get('setImageUrl'));
-  },
+    if (this.get('modalVisible')) {
+      $(window).on('message', setImageUrl);      
+    } else {
+      $(window).off('message');
+    }
+  }),
 
   actions: {
     openMediaManager () {
