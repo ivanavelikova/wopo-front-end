@@ -40,6 +40,10 @@ Router.map(function() {
     });
   });
   this.route('media-manager');
+  this.route('contacts');
+  this.route('about');
+  this.route('privacy');
+  this.route('terms');
 });
 
 export default Router;
