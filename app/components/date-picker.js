@@ -12,6 +12,7 @@ export default Ember.Component.extend({
       parentEl: this.get('parentEl'),
       singleDatePicker: this.get('singleDatePicker'),
       showDropdowns: true,
+      minDate: '01/01/1900',
       locale: {
         applyLabel: 'Избери',
         cancelLabel: 'Отказ',

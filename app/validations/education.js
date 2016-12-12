@@ -6,10 +6,10 @@ const Validations = buildValidations({
   ],
   'data.startDate': [
     validator('presence', true),
-    validator('date')
+    validator('custom-date')
   ],
   'data.endDate': [
-    validator('date')
+    validator('custom-date')
   ]
 });
 
