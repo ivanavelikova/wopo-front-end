@@ -1,17 +1,17 @@
-import Ember from 'ember';
 import BaseRoute from 'front-end/routes/base';
 
 const {
-  inject: {
-    service
-  }
+  RSVP
 } = Ember;
 
 export default BaseRoute.extend({
-  store: service(),
-
   model () {
-    return this.get('store').findAll('store');
+    const store = this.get('store');
+
+    return RSVP.hash({
+      store: store.findAll('store'),
+      portfolioTheme: store.findAll('portfolio-theme')
+    });
   },
 
   actions: {

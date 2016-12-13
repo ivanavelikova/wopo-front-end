@@ -10,13 +10,15 @@
         <div class="card card-block">
           <div class="card-title">
             <h4 title="{{theme.name}}">{{theme.name}}</h4>
-            <button class="btn btn-{{if theme.installed "secondary" "success"}}" {{action (if theme.installed "uninstall" "install") theme}}>
-              {{#if theme.installed}}
-                Деинсталирай
-              {{else}}
+            {{#if (not theme.installed)}}
+              <button disabled={{if (eq disableBtn theme.id) true false}} class="btn btn-success" {{action "install" theme}}>
                 Инсталирай
-              {{/if}}
-            </button>
+              </button>
+            {{else if canUninstall}}
+              <button disabled={{if (eq disableBtn theme.id) true false}} class="btn btn-secondary" {{action "uninstall" theme}}>
+                Деинсталирай
+              </button>
+            {{/if}}
           </div>
           <div class="card-img">
             <img class="img-fluid m-x-auto d-block" src="{{theme.cover}}" alt="">

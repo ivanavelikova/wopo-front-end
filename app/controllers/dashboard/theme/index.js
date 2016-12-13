@@ -45,7 +45,9 @@ export default Ember.Controller.extend({
         .then(() => {
           this.send('reloadModel');
         })
-        .catch(console.error);
+        .catch(() => {
+          this.send('reloadModel');
+        });
     },
 
     remove (theme) {
