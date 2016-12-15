@@ -5,13 +5,9 @@
     "-Promise",
     "Chart",
     "$",
-    "CKEDITOR",
-    "toMarkdown",
     "Dropzone",
-    "showdown",
     "Bloodhound",
-    "ScrollMagic",
-    "TweenMax"
+    "CKEDITOR"
   ],
   "browser": true,
   "boss": true,

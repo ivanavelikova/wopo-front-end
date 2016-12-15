@@ -27,9 +27,7 @@ export default Ember.Component.extend({
     const editor = CKEDITOR.instances[this.get('editorId')];
 
     if (this.get('updateValue') && editor && value) {
-      const converter = new showdown.Converter();
-      const html = converter.makeHtml(value);
-      editor.setData(html);
+      editor.setData(value);
     }
   }),
 
@@ -49,20 +47,16 @@ export default Ember.Component.extend({
         { name: 'others' }
       ],
       removeButtons: 'Underline,Subscript,Superscript,Strike,Styles,Table,Anchor',
-      extraPlugins: 'markdown',
       format_tags: 'p;h1;h2;h3;pre',
       filebrowserBrowseUrl: '/media-manager',
       disallowedContent: 'img{width,height,border*,margin*,float*}'
     };
     const editor = CKEDITOR.replace(this.get('editorId'), config);
-    
-    const converter = new showdown.Converter();
-    const html = converter.makeHtml(this.get('value'));
-    editor.setData(html);
+    editor.setData(this.get('value'));
 
     editor.on('change', () => {
       if (this.get('updateOnChange')) {
-        this.set('value', toMarkdown(editor.getData()));
+        this.set('value', editor.getData());
       }
     });
   },
