@@ -17,10 +17,7 @@ export default BaseRoute.extend(AuthenticatedRouteMixin, {
 
     return RSVP.hash({
       portfolio: store.findRecord('portfolio', 1),
-      profile: store.findRecord('profile', 1),
-      workExperiences: store.findAll('work-experience'),
-      educations: store.findAll('education'),
-      certificates: store.findAll('certificate')
+      profile: store.findRecord('profile', 1)
     });
   },
 

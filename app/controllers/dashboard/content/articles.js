@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
   store: service(),
   intl: service(),
 
-  articles: computed.sort('model', function (a, b) {
+  articles: computed.sort('model.article', function (a, b) {
     if (parseInt(a.id) > parseInt(b.id)) {
       return -1;
     }

@@ -6,7 +6,7 @@
     <div class="card-img">
       <img class="img-fluid m-x-auto d-block" src="{{data.cover}}" alt="">
     </div>
-    {{#link-to "dashboard.content.articles" class="card-link"}}Посети{{/link-to}}
+    <a href="{{concat portfolioDomain "/" data.path}}" target="_blank" class="card-link">Посети</a>
     <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editArticles" {{action edit data.id}}>Редактирай</button>
     <button class="btn btn-link card-link" {{action delete data}}>Изтрий</button>
   </div>

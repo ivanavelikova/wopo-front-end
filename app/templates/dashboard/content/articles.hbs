@@ -19,6 +19,7 @@
     {{#each articles as |article|}}
       {{article-card
         data=article
+        portfolioDomain=model.portfolio.domain
         delete=(action "delete")
         edit=(action "updateEdit")
       }}
