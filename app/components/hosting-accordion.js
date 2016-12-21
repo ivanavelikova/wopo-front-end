@@ -44,15 +44,26 @@ export default Ember.Component.extend(Validations, {
   }),
 
   onChangeWopoHosting: observer('wopoHosting.domain.{type,subdomain,domain}', function () {
+    this.set('hostingIsInvalid', true);
+
+    if (this.get('timeoutWopoHostingData')) {
+      clearTimeout(this.get('timeoutWopoHostingData'));
+    }
+
+    this.set('timeoutWopoHostingData', setTimeout(() => {
+      this.setWopoHostingData();
+    }, 100));
+  }),
+
+  setWopoHostingData () {
     if (this.get('data.selectedHosting') !== 'wopo') {
       return;
     }
 
     this.set('data.wopoHosting', null);
     this.set('data.wopoHosting', this.get('wopoHosting'));
-
-    this._wopoHostingSetValidation();
-  }),
+    this.set('hostingIsInvalid', false);
+  },
 
   didInsertElement () {
     this._showHosting();
@@ -64,14 +75,33 @@ export default Ember.Component.extend(Validations, {
     //
   },
 
-  _wopoHostingSetValidation () {
-    setTimeout(() => {
-      const domainType = this.get('validations.attrs.data.wopoHosting.domain.type.isInvalid');
-      const selectedDomainType = this.get('wopoHosting.domain.type');
-      const domain = this.get(`validations.attrs.data.wopoHosting.domain.${selectedDomainType}.isInvalid`);
+  onHostingIsInvalidChange: observer(
+    'data.selectedHosting',
+    'wopoHosting.domain.type',
+    'validations.attrs.data.wopoHosting.domain.type.isInvalid',
+    'validations.attrs.data.wopoHosting.domain.domain.isInvalid',
+    'validations.attrs.data.wopoHosting.domain.subdomain.isInvalid',
 
-      this.set('hostingIsInvalid', domainType || domain);
-    }, 1000);
+    function () {
+      if (this.get('timeoutHostingIsInvalid')) {
+        clearTimeout(this.get('timeoutHostingIsInvalid'));
+      }
+
+      this.set('timeoutHostingIsInvalid', setTimeout(() => {
+        this.setHostingIsInvalid();
+      }, 100));
+    }
+  ),
+
+  setHostingIsInvalid () {
+    let hosting = this.get('data.selectedHosting');
+    const selectedDomainType = this.get(`${hosting}Hosting.domain.type`);
+    hosting = this.get(`validations.attrs.data.${hosting}Hosting`);
+
+    const domainType = hosting.get('domain.type.isInvalid');
+    const domain = hosting.get(`domain.${selectedDomainType}.isInvalid`);
+
+    this.set('hostingIsInvalid', domainType || domain);
   },
 
   _showHosting () {
@@ -94,10 +124,6 @@ export default Ember.Component.extend(Validations, {
     const setHosting = (hosting) => {
       $(`#${hosting}Collapse`).on('shown.bs.collapse', () => {
         this._syncFromLocalStorage(hosting);
-
-        if (hosting === 'wopo') {
-          this._wopoHostingSetValidation();
-        }
       });
 
       $(`#${hosting}Collapse`).on('show.bs.collapse', () => {

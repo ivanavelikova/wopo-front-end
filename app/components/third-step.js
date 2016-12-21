@@ -22,7 +22,9 @@ export default Ember.Component.extend(Validations, {
   hostingIsInvalid: true,
 
   onHostingIsInvalidChange: observer('hostingIsInvalid', function () {
-    this.set('finishDisabled', this.get('hostingIsInvalid'));
+    setTimeout(() => {
+      this.set('finishDisabled', this.get('hostingIsInvalid'));
+    }, 200);
   }),
 
   jobOffersNotNull: computed('data.jobOffers', function () {

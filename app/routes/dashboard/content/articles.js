@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import BaseRoute from 'front-end/routes/base';
 
 const {
