@@ -37,7 +37,7 @@
       &:hover, &:focus
         opacity: 0.8
 
-  .navbar-nav.pull-sm-right
+  .navbar-nav.float-sm-right
     text-align: right
 
   .nav-item + .nav-item
@@ -122,7 +122,8 @@
 
 @include media-breakpoint-down(xs)
   .navbar-nav
-    text-align: center
+    &:not(.nav-desktop)
+      text-align: center
 
     .nav-item
       display: inline-block
