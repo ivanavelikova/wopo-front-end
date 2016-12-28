@@ -2,8 +2,18 @@
 
 <div class="offcanvas">
   <div class="offcanvas-container container-fluid">
-    <div class="ps-content">
-      {{yield}}
+    <div class="offcanvas-header">
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      
+      <h2 class="offcanvas-title">{{title}}</h2>
+    </div>
+
+    <div class="offcanvas-content">
+      {{#perfect-scroll}}
+        {{yield}}
+      {{/perfect-scroll}}
     </div>
   </div>
 </div>

@@ -11,13 +11,34 @@ export default Ember.Controller.extend({
   store: service(),
   intl: service(),
 
-  articles: computed.sort('model.article', function (a, b) {
-    if (parseInt(a.id) > parseInt(b.id)) {
+  sortedArticles: computed.sort('model.article', function (a, b) {
+    if (parseInt(a.get('id')) > parseInt(b.get('id'))) {
       return -1;
     }
 
     return 1;
   }),
+
+  filteredTags: [],
+
+  articles: computed.filter('sortedArticles', function (article) {
+    const filteredTags = this.get('filteredTags');
+
+    if (Array.isArray(filteredTags) && filteredTags.length === 0) {
+      return true;
+    }
+
+    let tags = article.get('tags');
+    tags = tags.split(',');
+
+    for (let tag of tags) {
+      if (filteredTags.includes(tag)) {
+        return true;
+      }
+    }
+
+    return false;
+  }).property('model.article.@each.tags', 'filteredTags'),
 
   addArticles: {
     title: null,

@@ -8,6 +8,9 @@
   pointer-events: none
   z-index: 1040
 
+  .ember-view
+    height: 100%
+
 .offcanvas--visible
   pointer-events: auto
 
@@ -23,7 +26,20 @@
   will-change: transform
   z-index: 1050
   pointer-events: auto
-  padding: 16px
+
+.offcanvas-header
+  height: 56px
+  border-bottom: 1px solid $offcanvas-header-color
+
+  .close
+    margin-top: 12px
+
+.offcanvas-title
+  line-height: 56px
+
+.offcanvas-content
+  padding: 16px 0
+  height: calc(100% - 56px)
 
 .offcanvas--visible .offcanvas-container
   transform: none
@@ -51,8 +67,3 @@
 .offcanvas--visible.offcanvas:after
   opacity: 1
   pointer-events: auto
-
-.ps-content
-  overflow: hidden
-  position: relative
-  height: 100%

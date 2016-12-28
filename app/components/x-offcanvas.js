@@ -1,32 +1,28 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  psContent: null,
   offcanvas: null,
   btn: null,
   toggleOffcanvas: null,
-  removeClassAfterTransitionEnd: null,
+  onTransitionEnd: null,
 
   didInsertElement () {    
     const offcanvas = $('.offcanvas');
     this.set('offcanvas', offcanvas);
 
-    offcanvas.on('transitionend', removeClassAfterTransitionEnd);
+    offcanvas.on('transitionend', onTransitionEnd);
 
     offcanvas.on('click', toggleOffcanvas);
-
-    const psContent = offcanvas.find('.ps-content');
-    this.set('psContent', psContent);
-
-    psContent.perfectScrollbar();
 
     const btn = $('.btn-offcanvas');
     this.set('btn', btn);
 
     btn.on('click', toggleOffcanvas);
 
+    const closeBtn = offcanvas.find('.close');
+
     function toggleOffcanvas (e) {
-      if (e.target !== this) {
+      if (e.target !== this && e.target !== closeBtn.find('span')[0]) {
         return;
       }
 
@@ -34,18 +30,17 @@ export default Ember.Component.extend({
       offcanvas.toggleClass('offcanvas--visible');
     }
 
-    function removeClassAfterTransitionEnd () {
+    function onTransitionEnd () {
       offcanvas.removeClass('offcanvas--animatable');
     }
 
     this.set('toggleOffcanvas', toggleOffcanvas);
-    this.set('removeClassAfterTransitionEnd', removeClassAfterTransitionEnd);
+    this.set('onTransitionEnd', onTransitionEnd);
   },
 
   willDestroyElement () {
-    this.get('psContent').perfectScrollbar('destroy');
     this.get('btn').off(this.get('toggleOffcanvas'));
     this.get('offcanvas').off(this.get('toggleOffcanvas'));
-    this.get('offcanvas').off(this.get('removeClassAfterTransitionEnd'));
+    this.get('offcanvas').off(this.get('onTransitionEnd'));
   }
 });
