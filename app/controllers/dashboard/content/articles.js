@@ -11,6 +11,14 @@ export default Ember.Controller.extend({
   store: service(),
   intl: service(),
 
+  tags: computed.sort('model.tag', function (a, b) {
+    if (parseInt(a.get('id')) > parseInt(b.get('id'))) {
+      return -1;
+    }
+
+    return 1;
+  }),
+
   sortedArticles: computed.sort('model.article', function (a, b) {
     if (parseInt(a.get('id')) > parseInt(b.get('id'))) {
       return -1;
@@ -22,6 +30,7 @@ export default Ember.Controller.extend({
   filteredTags: [],
 
   articles: computed.filter('sortedArticles', function (article) {
+    console.log('here');
     const filteredTags = this.get('filteredTags');
 
     if (Array.isArray(filteredTags) && filteredTags.length === 0) {
@@ -72,6 +81,20 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
+    filterTags (tagName) {
+      const filteredTags = this.get('filteredTags');
+      const tagIndex = filteredTags.indexOf(tagName);
+
+      if (tagIndex > -1) {
+        filteredTags.splice(tagIndex, 1);
+      } else {
+        filteredTags.push(tagName);
+      }
+
+      this.set('filteredTags', null);
+      this.set('filteredTags', filteredTags);
+    },
+
     add () {
       const data = this.get('addArticles');
 

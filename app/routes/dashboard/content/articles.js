@@ -11,7 +11,8 @@ export default BaseRoute.extend({
 
     return RSVP.hash({
       portfolio: store.findRecord('portfolio', 1),
-      article: store.findAll('article')
+      article: store.findAll('article'),
+      tag: store.findAll('tag')
     });
   }
 });

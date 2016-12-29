@@ -9,31 +9,20 @@
     <div class="filter">
       <h3 class="filter-head">Тагове</h3>
       <div class="filter-content">
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
-        <h4>Tag</h4>
+        {{#each tags as |tag|}}
+          <div class="form-group">
+            <label class="custom-control custom-checkbox">
+              {{input
+                class="custom-control-input"
+                type="checkbox"
+                name="filterTags"
+                click=(action "filterTags" tag.name)
+              }}
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{tag.name}}</span>
+            </label>
+          </div>
+        {{/each}}
       </div>
     </div>
   {{/x-offcanvas}}
