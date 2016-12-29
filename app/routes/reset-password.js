@@ -12,7 +12,7 @@ export default BaseRoute.extend(Validations, {
     return this;
   },
 
-  renderTemplate(controller) {
+  renderTemplate (controller) {
     if (this.get('session.isAuthenticated')) {
       this.render('errors/four-oh-four');
       return;
