@@ -1,0 +1,24 @@
+{{title "Изпрати линк за потвърждение"}}
+
+{{#auth-form model=model
+  formName="Изпрати линк за потвърждение"
+  formActionName="Изпрати"
+  disableForm=disableForm
+  alert=alert
+  formAction=(action "resendConfirmationLink")
+  as |section|
+}}
+  {{#if section.isContent}}
+    {{validated-input model=model
+      label="E-mail"
+      value=email
+      valuePath="email"
+      type="email"
+      placeholder='Напишите е-mail адреса си'
+      autocomplete="off"
+      disabled=disableForm
+    }}
+  {{else if section.isBottom}}
+    <p>Нямате профил? {{#link-to "registration"}}Регистрация{{/link-to}}</p>
+  {{/if}}
+{{/auth-form}}

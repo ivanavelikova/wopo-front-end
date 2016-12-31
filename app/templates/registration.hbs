@@ -43,5 +43,6 @@
     </p>
   {{else if section.isBottom}}
     <p>Вече имате профил? {{#link-to "login"}}Вход{{/link-to}}</p>
+    {{#link-to "resend-confirmation"}}Не получихте линк за потвърждение?{{/link-to}}
   {{/if}}
 {{/auth-form}}

@@ -44,6 +44,7 @@ Router.map(function() {
   this.route('about');
   this.route('privacy');
   this.route('terms');
+  this.route('resend-confirmation');
 });
 
 export default Router;
