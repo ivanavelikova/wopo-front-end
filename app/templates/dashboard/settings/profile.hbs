@@ -54,22 +54,6 @@
         {{/if}}
       </div>
     </div>
-    <div class="form-group {{if (v-get this "model.email" "isValid") "has-success" (if (not-eq model.email null) "has-danger")}}">
-      <label for="email">E-mail</label>
-      {{input
-        type="text"
-        class="form-control"
-        id="email"
-        placeholder="Напишете е-mail адреса си"
-        value=model.email
-      }}
-
-      <div class="form-control-feedback">
-        {{#if (if (not-eq model.email null) (v-get this "model.email" "isInvalid"))}}
-          {{v-get this "model.email" "message"}}
-        {{/if}}
-      </div>
-    </div>
 
     {{!-- <section class="form-section">
       <div class="section-title">
@@ -94,10 +78,44 @@
   </form>
 </section>
 
+<section class="form-section form-email-section">
+  <form {{action "submitEmail" on="submit"}}>
+    <div class="section-title">
+      <h4 class="float-xs-left">Смяна на e-mail</h4>
+    </div>
+
+    {{#if showEmailAlert}}
+      <div class="alert alert-{{emailAlert.type}}" role="alert">
+        {{emailAlert.content}}
+      </div>
+    {{/if}}
+
+    <div class="form-group {{if (v-get this "email" "isValid") "has-success" (if (not-eq email null) "has-danger")}}">
+      <label for="email">E-mail</label>
+      {{input
+        type="text"
+        class="form-control"
+        id="email"
+        placeholder="Напишете е-mail адреса си"
+        value=email
+      }}
+
+      <div class="form-control-feedback">
+        {{#if (if (not-eq email null) (v-get this "email" "isInvalid"))}}
+          {{v-get this "email" "message"}}
+        {{/if}}
+      </div>
+    </div>
+    <div class="form-bottom">
+      <button role="submit" class="btn btn-success btn-form float-xs-right">Смени</button>
+    </div>
+  </form>
+</section>
+
 <section class="form-section form-password-section">
   <form {{action "submitPassword" on="submit"}}>
     <div class="section-title">
-      <h4 class="float-xs-left">Парола</h4>
+      <h4 class="float-xs-left">Смяна на парола</h4>
     </div>
 
     {{#if showPasswordAlert}}

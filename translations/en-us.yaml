@@ -51,3 +51,5 @@ success:
   profileUpdate: "Your profile settings are updated successfully."
   passwordUpdate: "Your password is updated successfully."
   aboutUpdate: "About you information is updated successfully."
+  emailUpdate: "In order to update settings, use the link which we sent to your email."
+  emailUpdateLogin: "Your email is changed successfully."

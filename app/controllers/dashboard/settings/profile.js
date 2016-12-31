@@ -16,6 +16,7 @@ export default Ember.Controller.extend(Validations, {
 
   old_password: null,
   new_password: null,
+  email: null,
   null: null,
 
   countries: [
@@ -37,6 +38,22 @@ export default Ember.Controller.extend(Validations, {
     if (this.get('generalAlert.type') !== null && this.get('generalAlert.content') !== null) {
       $('body, html').animate({
         scrollTop: $('.form-general-section').position().top - 50
+      });
+      return true;
+    }
+
+    return false;
+  }),
+
+  emailAlert: {
+    type: null,
+    content: null
+  },
+
+  showEmailAlert: computed('emailAlert.{type,content}', function() {
+    if (this.get('emailAlert.type') !== null && this.get('emailAlert.content') !== null) {
+      $('body, html').animate({
+        scrollTop: $('.form-email-section').position().top - 50
       });
       return true;
     }
@@ -87,9 +104,8 @@ export default Ember.Controller.extend(Validations, {
       const validations = this.get('validations.attrs.model');
       const profilePic = validations.get('profile_pic.isInvalid');
       const name = validations.get('name.isInvalid');
-      const email = validations.get('email.isInvalid');
 
-      if ((this.get('model.profile_pic') !== null && profilePic) || name || email) {
+      if ((this.get('model.profile_pic') !== null && profilePic) || name) {
         this.set('generalAlert', {
           type: 'info',
           content: this.get('intl').t('errors.fill')
@@ -121,6 +137,63 @@ export default Ember.Controller.extend(Validations, {
           this.set('generalAlert', {
             type: 'danger',
             content: alertContent
+          });
+        });
+    },
+
+    submitEmail () {
+      const validation = this.get('validations.attrs.email.isInvalid');
+
+      if (validation) {
+        this.set('emailAlert', {
+          type: 'info',
+          content: this.get('intl').t('errors.fill')
+        });
+        return;
+      }
+
+      this.set('emailAlert', {
+        type: null,
+        content: null
+      });
+
+      const data = {
+        email: this.get('email')
+      };
+
+      const failure = reason => {
+        let alertContent = this.get('intl').t('errors.serverFail');
+
+        if (reason.errors[0].detail) {
+          alertContent = reason.errors[0].detail;
+        }
+
+        this.set('emailAlert', {
+          type: 'danger',
+          content: alertContent
+        });
+      };
+
+      this
+        .get('network')
+        .post('profiles/email', data, true)
+        .then(() => {
+          $('input').blur();
+          this.set('email', null);
+
+          this.set('emailAlert', {
+            type: 'success',
+            content: this.get('intl').t('success.emailUpdate')
+          });
+        })
+        .catch(error => {
+          if (!error.response) {
+            failure(error);
+            return;
+          }
+
+          error.response.json().then(function(reason) {
+            failure(reason);
           });
         });
     },

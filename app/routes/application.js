@@ -24,5 +24,13 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     }
 
     this._super();
+  },
+
+  sessionInvalidated () {
+    if (this.get('session.skipRedirectOnInvalidation')) {
+      return;
+    }
+
+    this._super(...arguments);
   }
 });

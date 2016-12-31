@@ -45,6 +45,7 @@ Router.map(function() {
   this.route('privacy');
   this.route('terms');
   this.route('resend-confirmation');
+  this.route('email-update');
 });
 
 export default Router;

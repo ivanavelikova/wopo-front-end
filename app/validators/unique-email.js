@@ -13,39 +13,27 @@ const UniqueEmail = BaseValidator.extend({
   network: service(),
 
   validate(value, options) {
-    const checkEmail = () => {
-      let condition = true;
+    const intl = this.get('intl');
+    let condition = true;
 
-      if (options.unique === false) {
-        condition = false;
-      }
-
-      return this.get('store')
-        .queryRecord('user', { email: value })
-        .then(result => {
-          if (Ember.isEmpty(result) !== condition && condition === true) {
-            return this.get('intl').t('errors.uniqueEmail');
-          }
-
-          if (Ember.isEmpty(result) !== condition && condition === false) {
-            return this.get('intl').t('errors.notUniqueEmail');
-          }
-
-          return true;
-        });
-    };
+    if (options.unique === false) {
+      condition = false;
+    }
 
     return this
-      .get('network')
-      .getData('profiles/1', true)
-      .then(response => {
-        if (response.profile.email === value) {
-          return true;
+      .get('store')
+      .queryRecord('user', { email: value })
+      .then(result => {
+        if (Ember.isEmpty(result) !== condition && condition === true) {
+          return intl.t('errors.uniqueEmail');
         }
 
-        return checkEmail();
-      })
-      .catch(checkEmail);
+        if (Ember.isEmpty(result) !== condition && condition === false) {
+          return intl.t('errors.notUniqueEmail');
+        }
+
+        return true;
+      }, () => intl.t('errors.serverFail'));
   }
 });
 

@@ -9,7 +9,7 @@ const Validations = buildValidations({
   'model.name': [
     validator('presence', true)
   ],
-  'model.email': [
+  'email': [
     validator('presence', true),
     validator('format', {
       regex: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,

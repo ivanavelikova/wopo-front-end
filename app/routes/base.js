@@ -11,7 +11,7 @@ export default Ember.Route.extend({
   fastboot: service(),
   isFastboot: computed.reads('fastboot.isFastBoot'),
 
-  activate: function() {
+  activate () {
     this._super();
 
     if (!this.get('isFastboot')) {
