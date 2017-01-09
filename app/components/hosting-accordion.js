@@ -44,8 +44,6 @@ export default Ember.Component.extend(Validations, {
   }),
 
   onChangeWopoHosting: observer('wopoHosting.domain.{type,subdomain,domain}', function () {
-    this.set('hostingIsInvalid', true);
-
     if (this.get('timeoutWopoHostingData')) {
       clearTimeout(this.get('timeoutWopoHostingData'));
     }
@@ -62,7 +60,6 @@ export default Ember.Component.extend(Validations, {
 
     this.set('data.wopoHosting', null);
     this.set('data.wopoHosting', this.get('wopoHosting'));
-    this.set('hostingIsInvalid', false);
   },
 
   didInsertElement () {
@@ -95,8 +92,16 @@ export default Ember.Component.extend(Validations, {
 
   setHostingIsInvalid () {
     let hosting = this.get('data.selectedHosting');
+
+    if (!hosting) {
+      return;
+    }
+
+    console.log('1', hosting);
     const selectedDomainType = this.get(`${hosting}Hosting.domain.type`);
     hosting = this.get(`validations.attrs.data.${hosting}Hosting`);
+
+    console.log('1', hosting);
 
     const domainType = hosting.get('domain.type.isInvalid');
     const domain = hosting.get(`domain.${selectedDomainType}.isInvalid`);
