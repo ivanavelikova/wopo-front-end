@@ -97,11 +97,8 @@ export default Ember.Component.extend(Validations, {
       return;
     }
 
-    console.log('1', hosting);
     const selectedDomainType = this.get(`${hosting}Hosting.domain.type`);
     hosting = this.get(`validations.attrs.data.${hosting}Hosting`);
-
-    console.log('1', hosting);
 
     const domainType = hosting.get('domain.type.isInvalid');
     const domain = hosting.get(`domain.${selectedDomainType}.isInvalid`);
