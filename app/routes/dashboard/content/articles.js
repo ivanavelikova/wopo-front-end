@@ -14,5 +14,11 @@ export default BaseRoute.extend({
       article: store.findAll('article'),
       tag: store.findAll('tag')
     });
+  },
+
+  actions: {
+    reloadModel () {
+      this.refresh();
+    }
   }
 });

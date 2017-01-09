@@ -30,7 +30,6 @@ export default Ember.Controller.extend({
   filteredTags: [],
 
   articles: computed.filter('sortedArticles', function (article) {
-    console.log('here');
     const filteredTags = this.get('filteredTags');
 
     if (Array.isArray(filteredTags) && filteredTags.length === 0) {
@@ -110,6 +109,7 @@ export default Ember.Controller.extend({
         .then(() => {
           setTimeout(() => {
             this.set('addArticlesModalVisible', false);
+            this.send('reloadModel');
           }, 500);
         })
         .catch(reason => {
@@ -128,6 +128,7 @@ export default Ember.Controller.extend({
 
     delete (article) {
       article.destroyRecord();
+      this.send('reloadModel');
     },
 
     updateEdit (id) {
@@ -165,6 +166,8 @@ export default Ember.Controller.extend({
               this.set('editArticles.image_url', null);
               this.set('editArticles.content', null);
               this.set('editArticles.tags', null);
+              
+              this.send('reloadModel');
             })
             .catch(reason => {
               let alertContent = this.get('intl').t('errors.serverFail');
