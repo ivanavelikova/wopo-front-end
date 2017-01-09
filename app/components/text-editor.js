@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   updateData: observer('value', function () {
     const value = this.get('value');
     const editor = CKEDITOR.instances[this.get('editorId')];
-    
+
     if (value === null) {
       this.set('updateOnChange', false);
 
@@ -59,9 +59,5 @@ export default Ember.Component.extend({
         this.set('value', editor.getData());
       }
     });
-  },
-
-  willDestroyElement () {
-    CKEDITOR.instances[this.get('editorId')].destroy();
   }
 });
