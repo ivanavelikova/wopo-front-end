@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   toggleOffcanvas: null,
   onTransitionEnd: null,
 
-  didInsertElement () {    
+  didInsertElement () {
     const offcanvas = $('.offcanvas');
     this.set('offcanvas', offcanvas);
 
@@ -39,8 +39,8 @@ export default Ember.Component.extend({
   },
 
   willDestroyElement () {
-    this.get('btn').off(this.get('toggleOffcanvas'));
-    this.get('offcanvas').off(this.get('toggleOffcanvas'));
-    this.get('offcanvas').off(this.get('onTransitionEnd'));
+    this.get('btn').off('click', this.get('toggleOffcanvas'));
+    this.get('offcanvas').off('click', this.get('toggleOffcanvas'));
+    this.get('offcanvas').off('transitionend', this.get('onTransitionEnd'));
   }
 });
