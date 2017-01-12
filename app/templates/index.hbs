@@ -4,7 +4,9 @@
   <div class="jumbotron">
     <div class="register">
       <h2>Портфолио за всеки!</h2>
-      {{#link-to "registration" class="btn btn-primary"}} Регистрирай се сега! {{/link-to}}
+      {{#if (not session.isAuthenticated)}}
+        {{#link-to "registration" class="btn btn-primary"}} Регистрирай се сега! {{/link-to}}
+      {{/if}}
     </div>
     <div class="themes">
       <div class="secondary-theme first">
@@ -81,7 +83,10 @@
   {{/index-reviews}}
   <div class="bottom">
     <div class="register">
-      {{x-bottom}}
+      <h3>Създай твоето професионално портфолио сега!</h3>
+      {{#if (not session.isAuthenticated)}}
+        {{#link-to "registration" class="btn btn-primary"}} Регистрирай се сега! {{/link-to}}
+      {{/if}}
     </div>
     {{work-space}}
   </div>

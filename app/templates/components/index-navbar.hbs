@@ -5,8 +5,14 @@
   {{/link-to}}
 
   <ul class="nav navbar-nav float-sm-right index-login">
-    {{#link-to "login" class="btn btn-secondary"}}
-      Вход
-    {{/link-to}}
+    {{#if (not session.isAuthenticated)}}
+      {{#link-to "login" class="btn btn-secondary"}}
+        Вход
+      {{/link-to}}
+    {{else}}
+      {{#link-to "dashboard" class="btn btn-secondary"}}
+        Табло
+      {{/link-to}}
+    {{/if}}
   </ul>
 </nav>
