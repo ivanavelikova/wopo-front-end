@@ -9,6 +9,26 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   session: service(),
 
   beforeModel () {
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#efefef",
+          "text": "#404040"
+        },
+        "button": {
+          "background": "#4b81e8",
+          "text": "#ffffff"
+        }
+      },
+      "theme": "classic",
+      "position": "bottom-right",
+      "content": {
+        "message": "Този сайт използва \"бисквитки\", за да оптимизира опита на потребителите в сърфирането.",
+        "dismiss": "Разбрах!",
+        "link": "Научи повече"
+      }
+    });
+
     if (this.get('session.data.firstSteps')) {
       AuthConfiguration.routeAfterAuthentication = 'welcome';
       AuthConfiguration.routeIfAlreadyAuthenticated = 'welcome';
