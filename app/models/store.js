@@ -5,5 +5,6 @@ export default DS.Model.extend({
   slug: DS.attr('string'),
   cover: DS.attr('string'),
   description: DS.attr('string'),
-  installed: DS.attr('boolean')
+  installed: DS.attr('boolean'),
+  demo_url: DS.attr('string')
 });
