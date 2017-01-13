@@ -11,6 +11,7 @@ const {
 export default Ember.Controller.extend(Validations, {
   intl: service(),
   session: service(),
+  store: service(),
   _routing: service('-routing'),
 
   null: null,
@@ -79,7 +80,9 @@ export default Ember.Controller.extend(Validations, {
           this.get('session').set('data.firstSteps', {
             currentStep: 1
           });
-          
+
+          this.get('store').unloadAll();
+
           this.get('_routing').transitionTo('welcome');
         })
         .catch(() => {
