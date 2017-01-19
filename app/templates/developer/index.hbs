@@ -1,0 +1,32 @@
+{{title "Разработчици"}}
+
+<div class="container">
+  <div class="page-title">
+    <h2 class="pull-xs-left">Качи тема</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <form {{action "uploadTheme" on="submit"}}>
+        {{#if showAlert}}
+          <div class="alert alert-general alert-{{alert.type}}" role="alert">
+            {{alert.content}}
+          </div>
+        {{/if}}
+
+        <section class="form-section">
+          <div class="section-title">
+            <h4 class="float-xs-left">Избери тема</h4>
+          </div>
+          <div class="form-group">
+            <input type="file" id="theme">
+          </div>
+        </section>
+
+        <div class="form-bottom">
+          <button role="submit" class="btn btn-success btn-form float-xs-right">Качи</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

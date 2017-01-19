@@ -1,5 +1,11 @@
 <h6>WOPO © 2016</h6>
 <div class="links">
+  {{#if session.isAuthenticated}}
+    {{#link-to "developer.index"}}
+      Разработчици
+    {{/link-to}}
+  {{/if}}
+
   {{#link-to "about"}}
     Относно
   {{/link-to}}

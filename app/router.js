@@ -46,6 +46,7 @@ Router.map(function() {
   this.route('terms');
   this.route('resend-confirmation');
   this.route('email-update');
+  this.route('developer', function() {});
 });
 
 export default Router;
