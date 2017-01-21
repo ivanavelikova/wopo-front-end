@@ -1,5 +1,4 @@
 .media-container
-  @include clearfix()
   min-height: calc(100vh - 58px)
   margin-bottom: 58px
   padding: 0.75rem
@@ -42,21 +41,6 @@
     margin-top: 0.75rem
     padding-left: 0.75rem
     padding-right: 0.75rem
-
-    @include media-breakpoint-down(xs)
-      @include make-col(12)
-
-    @include media-breakpoint-only(sm)
-      @include make-col(6)
-
-    @include media-breakpoint-only(md)
-      @include make-col(4)
-
-    @include media-breakpoint-only(lg)
-      @include make-col(3)
-
-    @include media-breakpoint-up(xl)
-      @include make-col(2)
 
 .media-footer
   @include clearfix()

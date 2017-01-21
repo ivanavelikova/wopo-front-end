@@ -7,10 +7,10 @@ const {
 
 export default Ember.Component.extend({
   hideModal: observer('modalVisible', function () {
-    if (!this.get('modalVisible')) {
-      const modalTarget = this.get('modalTarget');
-      const modal = jQuery(`.modal.${modalTarget}`);
+    const modalTarget = this.get('modalTarget');
+    const modal = jQuery(`.modal.${modalTarget}`);
 
+    if (!this.get('modalVisible') && modal.data('bs.modal')._isShown) {
       modal.modal('hide');
     }
   }),
@@ -27,7 +27,7 @@ export default Ember.Component.extend({
       if (focusInput.length) {
         focusInput.focus();
       }
-      
+
       if (focusTextarea.length) {
         focusTextarea.focus();
       }

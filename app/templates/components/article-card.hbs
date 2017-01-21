@@ -1,11 +1,11 @@
-<div class="col-xl-4 col-md-6">
-  <div class="card card-block">
-    <div class="card-title">
-      <h4 title="{{data.title}}" class="text-xs-center">{{data.title}}</h4>
-    </div>
-    <div class="card-img">
-      <img class="img-fluid m-x-auto d-block" src="{{data.cover}}" alt="">
-    </div>
+<div class="card card-block">
+  <div class="card-title">
+    <h4 title="{{data.title}}" class="text-xs-center">{{data.title}}</h4>
+  </div>
+  <div class="card-img">
+    <img class="img-fluid m-x-auto d-block" src="{{data.cover}}" alt="">
+  </div>
+  <div class="card-block">
     <a href="{{concat portfolioDomain "/" data.path}}" target="_blank" class="card-link">Посети</a>
     <button class="btn btn-link card-link" data-toggle="modal" data-target=".modal.editArticles" {{action edit data.id}}>Редактирай</button>
     <button class="btn btn-link card-link" {{action delete data}}>Изтрий</button>

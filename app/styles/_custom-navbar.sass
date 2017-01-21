@@ -1,7 +1,9 @@
 .navbar
   background: #55585d
   line-height: 50px
+  height: 50px
   padding: 0 15px
+  display: block
 
   .navbar-brand
     @include clearfix()
@@ -38,8 +40,14 @@
       &:hover, &:focus
         opacity: 0.8
 
-  .navbar-nav.float-sm-right
-    text-align: right
+  .navbar-nav
+    flex-direction: row
+
+    &.float-sm-right
+      justify-content: flex-end
+      position: absolute
+      top: 0
+      right: 15px
 
   .nav-item + .nav-item
     margin: 0
@@ -120,17 +128,24 @@
       padding-right: 3px
 
 @include media-breakpoint-down(xs)
-  .navbar-nav
-    &:not(.nav-desktop)
-      text-align: center
+  .navbar
+    height: 100px
 
-    .nav-item
-      display: inline-block
-      float: none
+    .navbar-nav
+      &:not(.nav-desktop)
+        position: absolute
+        left: 0
+        right: 0
+        top: 50px
+        justify-content: center
 
-      .fa
-        font-size: 20px
-        padding: 0
+      .nav-item
+        display: inline-block
+        float: none
+
+        .fa
+          font-size: 20px
+          padding: 0
 
 @include media-breakpoint-down(sm)
   .dropdown.nav-item.options,

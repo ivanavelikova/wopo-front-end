@@ -1,7 +1,7 @@
 .statistics
   color: #fff
   margin-bottom: 25px
-  
+
   .details
     right: 20px
     position: absolute
@@ -24,54 +24,57 @@
   @include media-breakpoint-between(sm, md)
     column-count: 2
 
-.card.card-block
-  text-align: center
+.card
+  margin-bottom: 30px
 
-  .card-title,
-  .card-subtitle
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-    padding-bottom: 1rem
-    margin-bottom: 1rem
-    word-wrap: break-word
-    width: 100%
+  &.card-block
+    text-align: center
 
-    h4
+    .card-title,
+    .card-subtitle
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+      padding-bottom: 1rem
+      margin-bottom: 1rem
+      word-wrap: break-word
+      width: 100%
+
+      h4
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        line-height: initial
+        text-align: left
+        flex-grow: 1
+
+    .card-title
+      display: flex
+      flex-wrap: nowrap
+      align-items: center
+      flex-direction: row
+
+    h6.card-subtitle
       white-space: nowrap
       overflow: hidden
       text-overflow: ellipsis
-      line-height: initial
-      text-align: left
-      flex-grow: 1
 
-  .card-title
-    display: flex
-    flex-wrap: nowrap
-    align-items: center
-    flex-direction: row
+    .card-img
+      height: 200px
+      display: flex
+      align-items: center
+      margin-bottom: 1rem
 
-  h6.card-subtitle
-    white-space: nowrap
-    overflow: hidden
-    text-overflow: ellipsis
+      img
+        max-height: 200px
+        margin: 0 auto
 
-  .card-img
-    height: 200px
-    display: flex
-    align-items: center
-    margin-bottom: 1rem
+    .card-text
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
 
-    img
-      max-height: 200px
-      margin: 0 auto
-
-  .card-text
-    white-space: nowrap
-    overflow: hidden
-    text-overflow: ellipsis
-
-    &.border
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-      padding-bottom: 1rem
+      &.border
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+        padding-bottom: 1rem
 
 .media
   .progress,
@@ -113,3 +116,10 @@
         left: 0
         bottom: 0
         right: 0
+
+.card-link
+  padding: 0
+  border: none
+
+.card-block .card-block
+  padding: 0

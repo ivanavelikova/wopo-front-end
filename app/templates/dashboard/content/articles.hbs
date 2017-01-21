@@ -1,8 +1,8 @@
 {{title "Моите статии"}}
 <div class="page-title">
-  <h2 class="float-xs-left">Моите статии</h2>
+  <h2 class="float-left">Моите статии</h2>
   {{#x-offcanvas
-    buttonClasses="btn-secondary float-xs-right"
+    buttonClasses="btn-secondary float-right"
     buttonText="Покажи филтъра"
     title="Филтър"
   }}
@@ -27,7 +27,7 @@
     </div>
   {{/x-offcanvas}}
 
-  <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addArticles">Нова статия</div>
+  <div class="btn btn-success float-right" data-toggle="modal" data-target=".modal.addArticles">Нова статия</div>
 
   {{article-modal
     success=(action "add")

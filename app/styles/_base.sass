@@ -81,13 +81,16 @@ body
       .btn
         float: none
 
+        &:focus
+          box-shadow: none
+
 .page-title
   @include clearfix()
   padding-bottom: 10px
   margin-bottom: 20px
   border-bottom: 1px solid $gray-lightest
 
-  .btn.float-xs-right
+  .btn.float-right
     margin-left: 10px
 
 .section-title
@@ -125,6 +128,7 @@ blockquote
   padding-top: 0
   padding-bottom: 0
   line-height: 36px
+  cursor: pointer
 
 .cc-btn:hover, .cc-btn:focus
   text-decoration: none

@@ -89,7 +89,7 @@ export default Ember.Component.extend({
       }
 
       this.set('selectedMedia', url);
-      
+
       container.find('.media').removeClass('selected');
       $(media).addClass('selected');
     };
@@ -98,6 +98,7 @@ export default Ember.Component.extend({
 
     return new Dropzone('.media-container', {
       url: `${host}/media-manager`,
+      previewsContainer: '.media-container .row',
       maxFilesize: 2,
       uploadMultiple: false,
       createImageThumbnails: false,
@@ -111,8 +112,8 @@ export default Ember.Component.extend({
       }),
 
       previewTemplate: `
-        <div class="media">
-          <div class="card card-media">
+        <div class="media col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+          <div class="card card-block card-media">
             <div class="card-img-container">
               <img class="card-img" src="" alt="">
             </div>
@@ -137,7 +138,7 @@ export default Ember.Component.extend({
         if (typeof message !== 'string' && message.errors[0].detail) {
           message = message.errors[0].detail;
         }
-        
+
         media.addClass('error');
         media.removeClass('dz-processing');
         media.find('.error-message').html(message);
@@ -147,7 +148,7 @@ export default Ember.Component.extend({
         const media = $(file.previewElement);
 
         media.find('.card-img').attr('src', response.url);
-        
+
         media.removeClass('dz-processing');
         media.addClass('dz-success');
 
@@ -155,7 +156,7 @@ export default Ember.Component.extend({
 
         media.find('.delete').on('click', (e) => {
           e.stopPropagation();
-          
+
           this.removeFile(file);
         });
       },
@@ -169,7 +170,7 @@ export default Ember.Component.extend({
 
         const url = media.find('.card-img').attr('src');
         const path = url.replace(`${host}/`, '');
-        
+
         this
           .get('network')
           .delete(path, {}, true)
