@@ -5,7 +5,7 @@ export default Ember.Component.extend({
     const input = $('.tags-input');
 
     input.tagsinput({
-      tagClass: 'tag-primary'
+      tagClass: 'badge badge-primary'
     });
 
     const bootstrapInput = $('.bootstrap-tagsinput input');

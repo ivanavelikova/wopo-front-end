@@ -1,12 +1,12 @@
 {{title "Настройки на профила"}}
 <div class="page-title">
-  <h2 class="float-xs-left">Настройки на профила</h2>
+  <h2 class="float-left">Настройки на профила</h2>
 </div>
 
 <section class="form-section form-general-section">
   <form {{action "submitGeneral" on="submit"}}>
     <div class="section-title">
-      <h4 class="float-xs-left">Главни</h4>
+      <h4 class="float-left">Главни</h4>
     </div>
 
     {{#if showGeneralAlert}}
@@ -57,7 +57,7 @@
 
     {{!-- <section class="form-section">
       <div class="section-title">
-        <h4 class="float-xs-left">Държава</h4>
+        <h4 class="float-left">Държава</h4>
       </div>
       <div class="form-group">
         {{x-select2 options=countries}}
@@ -65,7 +65,7 @@
     </section>
     <section class="form-section">
       <div class="section-title">
-        <h4 class="float-xs-left">Език</h4>
+        <h4 class="float-left">Език</h4>
       </div>
       <div class="form-group">
         {{x-select2 options=languages}}
@@ -73,7 +73,7 @@
     </section> --}}
 
     <div class="form-bottom">
-      <button role="submit" class="btn btn-success btn-form float-xs-right">Запази</button>
+      <button role="submit" class="btn btn-success btn-form float-right">Запази</button>
     </div>
   </form>
 </section>
@@ -81,7 +81,7 @@
 <section class="form-section form-email-section">
   <form {{action "submitEmail" on="submit"}}>
     <div class="section-title">
-      <h4 class="float-xs-left">Смяна на e-mail</h4>
+      <h4 class="float-left">Смяна на e-mail</h4>
     </div>
 
     {{#if showEmailAlert}}
@@ -107,7 +107,7 @@
       </div>
     </div>
     <div class="form-bottom">
-      <button role="submit" class="btn btn-success btn-form float-xs-right">Смени</button>
+      <button role="submit" class="btn btn-success btn-form float-right">Смени</button>
     </div>
   </form>
 </section>
@@ -115,7 +115,7 @@
 <section class="form-section form-password-section">
   <form {{action "submitPassword" on="submit"}}>
     <div class="section-title">
-      <h4 class="float-xs-left">Смяна на парола</h4>
+      <h4 class="float-left">Смяна на парола</h4>
     </div>
 
     {{#if showPasswordAlert}}
@@ -157,16 +157,16 @@
       </div>
     </div>
     <div class="form-bottom">
-      <button role="submit" class="btn btn-success btn-form float-xs-right">Смени</button>
+      <button role="submit" class="btn btn-success btn-form float-right">Смени</button>
     </div>
   </form>
 </section>
 
 <section class="form-section form-delete-section">
   <div class="section-title">
-    <h4 class="float-xs-left">Изтриване на профила</h4>
+    <h4 class="float-left">Изтриване на профила</h4>
   </div>
-    
+
   {{#if showDeleteAlert}}
     <div class="alert alert-general alert-{{deleteAlert.type}}" role="alert">
       {{deleteAlert.content}}
@@ -181,10 +181,10 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
+          <h4 class="modal-title" id="deleteProfileLabel">Наистина ли искате да изтриете профила си?</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="deleteProfileLabel">Наистина ли искате да изтриете профила си?</h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Отказ</button>

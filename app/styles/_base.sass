@@ -93,9 +93,9 @@ body
   .btn.float-right
     margin-left: 10px
 
-.section-title
+.form-section .section-title
   @include clearfix()
-  padding-bottom: 15px
+  padding: 20px 0 !important
 
 .input-heading
   font-size: 18px
@@ -130,5 +130,23 @@ blockquote
   line-height: 36px
   cursor: pointer
 
+.btn-small
+  line-height: 30px
+
 .cc-btn:hover, .cc-btn:focus
   text-decoration: none
+
+.show > .dropdown-menu.daterangepicker
+  display: none
+
+.slider .tooltip
+  opacity: 1
+
+  &.tooltip-min
+    display: none
+
+  &.tooltip-max
+    display: none
+
+a.btn-primary:focus
+  color: #fff

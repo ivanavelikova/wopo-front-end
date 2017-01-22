@@ -1,7 +1,7 @@
 <section class="form-section">
   <div class="section-title">
-    <h5 class="float-xs-left">Трудов стаж</h5>
-    <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addWorkExperiences">Нов трудов стаж</div>
+    <h5 class="float-left">Трудов стаж</h5>
+    <div class="btn btn-success float-right" data-toggle="modal" data-target=".modal.addWorkExperiences">Нов трудов стаж</div>
 
     {{work-experience-modal
       success=(action "add")
@@ -14,7 +14,7 @@
       modalActionName="Добави"
     }}
   </div>
-  
+
   {{#if haveWorkExperiences}}
     <div class="row">
       {{#each workExperiences as |workExperience|}}

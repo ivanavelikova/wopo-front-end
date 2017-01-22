@@ -28,7 +28,7 @@ export default Ember.Component.extend({
         });
 
       input.tagsinput({
-        tagClass: 'tag-primary',
+        tagClass: 'badge badge-primary',
         typeaheadjs: {
           name: 'tags',
           displayKey: 'name',

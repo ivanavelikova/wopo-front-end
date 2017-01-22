@@ -5,16 +5,16 @@
       {{logo-text class="logo-text"}}
     {{/link-to}}
     <form {{action "submitForm" on="submit"}} class="auth-form">
-      <h2 class="text-xs-center">{{formName}}</h2>
+      <h2 class="text-center">{{formName}}</h2>
 
       {{#if showAlert}}
         <div class="alert alert-{{alert.type}}" role="alert">
           {{alert.content}}
         </div>
       {{/if}}
-      
+
       {{yield content}}
-      
+
       <button role="submit" class="btn btn-success btn-block" disabled={{disableForm}}>{{formActionName}}</button>
     </form>
     <div class="auth-bottom">

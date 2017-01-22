@@ -1,9 +1,9 @@
-<div class="col-xl-4 col-md-6">
-  <div class="card card-block">
-    <div class="card-title">
-      <h4 title="{{data.name}}" class="text-xs-center">{{data.name}}</h4>
-    </div>
-    <h6 class="card-subtitle text-muted" title="{{data.familiarity}}%">Запознатост: {{data.familiarity}}%</h6>
+<div class="card card-block">
+  <div class="card-title">
+    <h4 title="{{data.name}}" class="text-center">{{data.name}}</h4>
+  </div>
+  <h6 class="card-subtitle text-muted" title="{{data.familiarity}}%">Запознатост: {{data.familiarity}}%</h6>
+  <div class="card-block">
     {{#if hasBlock}}
       {{yield}}
     {{else}}

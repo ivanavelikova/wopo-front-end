@@ -1,7 +1,7 @@
 <section class="form-section">
   <div class="section-title">
-    <h5 class="float-xs-left">Образование и обучение</h5>
-    <div class="btn btn-success float-xs-right" data-toggle="modal" data-target=".modal.addEducations">Ново образование/обучение</div>
+    <h5 class="float-left">Образование и обучение</h5>
+    <div class="btn btn-success float-right" data-toggle="modal" data-target=".modal.addEducations">Ново образование/обучение</div>
 
     {{education-modal
       success=(action "add")
@@ -14,7 +14,7 @@
       modalActionName="Добави"
     }}
   </div>
-  
+
   {{#if haveEducations}}
     <div class="row">
       {{#each educations as |education|}}
