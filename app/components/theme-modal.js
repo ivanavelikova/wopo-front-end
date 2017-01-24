@@ -33,7 +33,7 @@ export default Ember.Component.extend({
     const headers = this._headers();
 
     new Dropzone('.dropzone', {
-      url: `${host}/themes/store`,
+      url: `${host}/themes`,
       maxFilesize: 200,
       uploadMultiple: false,
       createImageThumbnails: false,
