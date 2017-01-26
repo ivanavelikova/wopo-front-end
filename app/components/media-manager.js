@@ -6,10 +6,8 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  cookies: service(),
   store: service(),
   intl: service(),
-  session: service(),
   network: service(),
 
   selectedMedia: null,
@@ -70,7 +68,7 @@ export default Ember.Component.extend({
 
   _initDropzone () {
     const host = this.get('store').adapterFor('application').get('host');
-    const headers = this._headers();
+    const headers = this.get('network').headers(null, true);
     const container = $('.media-container');
 
     const selectMedia = (e) => {
@@ -199,22 +197,6 @@ export default Ember.Component.extend({
         media.find('.progress').val(progress);
       }
     });
-  },
-
-  _headers () {
-    const csrf = decodeURIComponent(this.get('cookies').read('XSRF-TOKEN'));
-    const token = this.get('session.data.authenticated.token');
-
-    let headers = {
-      'X-XSRF-TOKEN': csrf,
-      'Authorization': `Bearer ${token}`
-    };
-
-    if (this.get('intl').get('locale')) {
-      headers['X-Locale'] = this.get('intl').get('locale')[0];
-    }
-
-    return headers;
   },
 
   actions: {

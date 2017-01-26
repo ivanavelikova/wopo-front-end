@@ -21,7 +21,7 @@
         <div class="stepper-top">
           <div class="divider"></div>
           <div class="step {{if isFirst "active" "done"}}">
-            <span class="tag tag-pill tag-primary">
+            <span class="badge badge-pill badge-primary">
               {{#if isFirst}}
                 1
               {{else}}
@@ -31,7 +31,7 @@
             <span class="title">Тема</span>
           </div>
           <div class="step {{if isSecond "active" (if isThird "done" "locked")}}">
-            <span class="tag tag-pill tag-primary">
+            <span class="badge badge-pill badge-primary">
               {{#if isThird}}
                 {{fa-icon "check"}}
               {{else}}
@@ -41,7 +41,7 @@
             <span class="title">Съдържание</span>
           </div>
           <div class="step {{if isThird "active" "locked"}}">
-            <span class="tag tag-pill tag-primary">3</span>
+            <span class="badge badge-pill badge-primary">3</span>
             <span class="title">Завършете</span>
           </div>
         </div>
