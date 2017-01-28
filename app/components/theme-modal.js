@@ -1,12 +1,14 @@
 import Ember from 'ember';
+import Validations from '../validations/theme';
 
 const {
+  observer,
   inject: {
     service
   }
 } = Ember;
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(Validations, {
   store: service(),
   intl: service(),
   network: service(),
@@ -16,11 +18,32 @@ export default Ember.Component.extend({
     content: null
   },
 
+  data: {
+    uid: null,
+    name: null,
+    description: null
+  },
+
   uploading: false,
+  secondStep: false,
+  disableSubmit: false,
+
+  onModalVisibleChange: observer('modalVisible', function () {
+    this.set('data', {
+      name: null,
+      description: null
+    });
+
+    this.set('uploading', false);
+    this.set('secondStep', false);
+    this.set('disableSubmit', false);
+
+    $('.dropzone').removeClass('hidden-xs-up');
+  }),
 
   showAlert: Ember.computed('alert.{type,content}', function () {
     if (this.get('alert.type') !== null && this.get('alert.content') !== null) {
-      $(`.modal.${this.get('modalTarget')}`).animate({ scrollTop: 0 });
+      $('.modal.addTheme').animate({ scrollTop: 0 });
       return true;
     }
 
@@ -32,7 +55,7 @@ export default Ember.Component.extend({
     const headers = this.get('network').headers(null, true);
 
     new Dropzone('.dropzone', {
-      url: `${host}/themes`,
+      url: `${host}/themes/upload`,
       maxFilesize: 200,
       uploadMultiple: false,
       createImageThumbnails: false,
@@ -55,11 +78,11 @@ export default Ember.Component.extend({
         $('.dropzone').addClass('hidden-xs-up');
       },
 
-      success: () => {
+      success: (file, response) => {
         this.set('uploading', false);
-        $('.dropzone').removeClass('hidden-xs-up');
 
-        this.set('modalVisible', false);
+        this.set('data', response);
+        this.set('secondStep', true);
       },
 
       error: (file, message) => {
@@ -82,5 +105,53 @@ export default Ember.Component.extend({
         });
       }
     });
+  },
+
+  actions: {
+    submitForm () {
+      if (this.get('validations.isInvalid')) {
+        this.set('alert', {
+          type: 'info',
+          content: this.get('intl').t('errors.fill')
+        });
+
+        return;
+      }
+
+      $(':focus').blur();
+
+      this.set('disableSubmit', true);
+
+      const data = this.get('data');
+
+      this
+        .get('store')
+        .createRecord('theme', {
+          uid: data.uid,
+          name: data.name,
+          description: data.description
+        })
+        .save()
+        .then(() => {
+          setTimeout(() => {
+            this.set('modalVisible', false);
+            this.sendAction('reloadModel');
+          }, 500);
+        })
+        .catch(reason => {
+          let alertContent = this.get('intl').t('errors.serverFail');
+
+          if (reason.errors[0].detail) {
+            alertContent = reason.errors[0].detail;
+          }
+
+          this.set('disableSubmit', false);
+
+          this.set('alert', {
+            type: 'danger',
+            content: alertContent
+          });
+        });
+    }
   }
 });
