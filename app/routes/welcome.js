@@ -30,6 +30,10 @@ export default BaseRoute.extend(AuthenticatedRouteMixin, {
   actions: {
     didTransition () {
       this.controllerFor('welcome').init();
-    } 
+    },
+
+    reloadModel () {
+      this.refresh();
+    }
   }
 });

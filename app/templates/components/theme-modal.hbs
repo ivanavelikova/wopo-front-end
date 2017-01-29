@@ -6,6 +6,12 @@
 }}
   <form {{action "submitForm" on="submit"}}>
     <div class="modal-body">
+      {{#if (and custom (and (not uploading) (not secondStep)))}}
+        <div class="alert alert-info" role="alert">
+          Качените теми от Вас <strong>не</strong> се проверяват от екипа на <strong>wopo</strong>. Ако не знаете какво правите, моля използвайте <strong>Магазина за теми</strong>.
+        </div>
+      {{/if}}
+
       {{#if showAlert}}
         <div class="alert alert-{{alert.type}}" role="alert">
           {{alert.content}}

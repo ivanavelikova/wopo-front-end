@@ -63,6 +63,6 @@ export default Ember.Controller.extend({
           this.send('reloadModel');
           this.set('disableRemove', false);
         });
-    },
+    }
   }
 });

@@ -38,6 +38,14 @@ export default Ember.Controller.extend({
     }
   }),
 
+  themes: computed.sort('model.themes', function (a, b) {
+    if (parseInt(a.id) > parseInt(b.id)) {
+      return -1;
+    }
+
+    return 1;
+  }),
+
   init () {
     this._super(...arguments);
 
@@ -161,6 +169,10 @@ export default Ember.Controller.extend({
     thirdBack () {
       this.set('data.currentStep', 2);
       window.scrollTo(0, 0);
+    },
+
+    reloadModelAfterAddTheme () {
+      this.send('reloadModel');
     }
   }
 });

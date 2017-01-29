@@ -2,7 +2,20 @@
 {{nav-bar}}
 <div class="container">
   <div class="page-title">
-    <h2 class="float-xs-left">Магазин за теми</h2>
+    <h2 class="float-left">Магазин за теми</h2>
+
+    <button class="btn btn-success float-right" data-toggle="modal" data-target=".modal.addTheme">
+      Собствена тема
+    </button>
+
+    {{theme-modal
+      data=addTheme
+      modalVisible=addThemeModalVisible
+      alert=addThemeAlert
+      disableSubmit=disableSubmit
+      addTheme=(action 'addTheme')
+      custom=true
+    }}
   </div>
   <div class="row">
     {{#each themes as |theme|}}
@@ -25,6 +38,10 @@
           </div>
           <div class="card-block">
             <a href="{{theme.demo_url}}" class="card-link" target="_blank">Демо</a>
+
+            {{#if theme.custom}}
+              <button class="btn btn-link card-link" {{action "remove" theme}} disabled={{disableRemove}}>Изтрий</button>
+            {{/if}}
           </div>
         </div>
       </div>

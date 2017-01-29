@@ -6,5 +6,6 @@ export default DS.Model.extend({
   cover: DS.attr('string'),
   description: DS.attr('string'),
   installed: DS.attr('boolean'),
+  custom: DS.attr('boolean'),
   demo_url: DS.attr('string')
 });

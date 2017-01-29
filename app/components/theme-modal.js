@@ -13,11 +13,6 @@ export default Ember.Component.extend(Validations, {
   intl: service(),
   network: service(),
 
-  alert: {
-    type: null,
-    content: null
-  },
-
   data: {
     uid: null,
     name: null,
@@ -26,7 +21,6 @@ export default Ember.Component.extend(Validations, {
 
   uploading: false,
   secondStep: false,
-  disableSubmit: false,
 
   onModalVisibleChange: observer('modalVisible', function () {
     this.set('data', {
@@ -124,34 +118,7 @@ export default Ember.Component.extend(Validations, {
 
       const data = this.get('data');
 
-      this
-        .get('store')
-        .createRecord('theme', {
-          uid: data.uid,
-          name: data.name,
-          description: data.description
-        })
-        .save()
-        .then(() => {
-          setTimeout(() => {
-            this.set('modalVisible', false);
-            this.sendAction('reloadModel');
-          }, 500);
-        })
-        .catch(reason => {
-          let alertContent = this.get('intl').t('errors.serverFail');
-
-          if (reason.errors[0].detail) {
-            alertContent = reason.errors[0].detail;
-          }
-
-          this.set('disableSubmit', false);
-
-          this.set('alert', {
-            type: 'danger',
-            content: alertContent
-          });
-        });
+      this.sendAction('addTheme', data);
     }
   }
 });

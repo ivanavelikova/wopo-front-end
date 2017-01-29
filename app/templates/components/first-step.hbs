@@ -1,5 +1,20 @@
 {{#if show}}
   <div class="stepper-content">
+    <div class="clearfix stepper-top-buttons">
+      <button class="btn btn-success float-right" data-toggle="modal" data-target=".modal.addTheme">
+        Собствена тема
+      </button>
+
+      {{theme-modal
+        data=addTheme
+        modalVisible=addThemeModalVisible
+        alert=addThemeAlert
+        disableSubmit=disableSubmit
+        addTheme=(action 'addTheme')
+        custom=true
+      }}
+    </div>
+
     {{#if showAlert}}
       <div class="alert alert-{{alert.type}}" role="alert">
         {{alert.content}}
@@ -20,10 +35,16 @@
                 {{/if}}
               </button>
             </div>
-            <div class="card-img">
-              <img class="img-fluid m-x-auto d-block" src="{{theme.cover}}" alt="">
+            <div class="card-block">
+              <div class="card-img">
+                <img class="img-fluid m-x-auto d-block" src="{{theme.cover}}" alt="">
+              </div>
+              <a href="{{theme.demo_url}}" class="card-link" target="_blank">Демо</a>
+
+              {{#if theme.custom}}
+                <button class="btn btn-link card-link" {{action "remove" theme}} disabled={{disableRemove}}>Изтрий</button>
+              {{/if}}
             </div>
-            <a href="{{theme.demo_url}}" class="card-link" target="_blank">Демо</a>
           </div>
         </div>
       {{/each}}

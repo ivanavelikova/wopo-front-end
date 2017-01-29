@@ -9,8 +9,10 @@
 
     {{theme-modal
       data=addTheme
-      modalVisible=addSkillsModalVisible
-      reloadModel=(action 'addTheme')
+      modalVisible=addThemeModalVisible
+      alert=addThemeAlert
+      disableSubmit=disableSubmit
+      addTheme=(action 'addTheme')
     }}
   </div>
 
