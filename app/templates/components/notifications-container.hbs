@@ -1,55 +1,13 @@
-{{#link-to "index" class="notification"}}
-  <img src="https://goo.gl/IBvVuP" alt="Mertin Dervish" class="notification-picture img-rounded float-left">
-  <div class="notification-text">
-    <strong>Mertin Dervish</strong> ви последва.
-  </div>
-  <div class="notification-date">
-    преди 10 часа
-  </div>
-{{/link-to}}
-{{#link-to "index" class="notification"}}
-  <img src="https://goo.gl/IBvVuP" alt="Mertin Dervish" class="notification-picture img-rounded float-left">
-  <div class="notification-text">
-    <strong>Mertin Dervish</strong> хареса ваша публикация.
-  </div>
-  <div class="notification-date">
-    преди 10 часа
-  </div>
-{{/link-to}}
-{{#link-to "index" class="notification"}}
-  <img src="https://goo.gl/IBvVuP" alt="Mertin Dervish" class="notification-picture img-rounded float-left">
-  <div class="notification-text">
-    <strong>Mertin Dervish</strong> хареса ваша публикация.
-  </div>
-  <div class="notification-date">
-    преди 10 часа
-  </div>
-{{/link-to}}
-{{#link-to "index" class="notification"}}
-  <img src="https://goo.gl/IBvVuP" alt="Mertin Dervish" class="notification-picture img-rounded float-left">
-  <div class="notification-text">
-    <strong>Mertin Dervish</strong> хареса ваша публикация.
-  </div>
-  <div class="notification-date">
-    преди 10 часа
-  </div>
-{{/link-to}}
-{{#link-to "index" class="notification"}}
-  <img src="https://goo.gl/IBvVuP" alt="Mertin Dervish" class="notification-picture img-rounded float-left">
-  <div class="notification-text">
-    <strong>Mertin Dervish</strong> хареса ваша публикация.
-  </div>
-  <div class="notification-date">
-    преди 10 часа
-  </div>
-{{/link-to}}
-{{#link-to "index" class="notification"}}
-  <img src="https://goo.gl/IBvVuP" alt="Mertin Dervish" class="notification-picture img-rounded float-left">
-  <div class="notification-text">
-    <strong>Mertin Dervish</strong> хареса ваша публикация.
-  </div>
-  <div class="notification-date">
-    преди 10 часа
-  </div>
-{{/link-to}}
-<button type="button" class="btn btn-secondary btn-block notification-more">Виж повече</button>
+{{#each sortedNotifications as |notification|}}
+  {{#if notification.url}}
+    <a href="{{notification.url}}" class="notification">
+      {{x-notification notification=notification}}
+    </a>
+  {{else}}
+    <div class="notification">
+      {{x-notification notification=notification}}
+    </div>
+  {{/if}}
+{{/each}}
+
+<!-- <button type="button" class="btn btn-secondary btn-block notification-more">Виж повече</button> -->

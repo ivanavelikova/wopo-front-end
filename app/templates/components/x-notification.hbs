@@ -1,0 +1,9 @@
+{{#if notification.image_url}}
+  <img src="{{notification.image_url}}" alt="Mertin Dervish" class="notification-picture img-rounded float-left">
+{{/if}}
+<div class="notification-text">
+  {{{notification.message}}}
+</div>
+<div class="notification-date">
+  {{format-relative notification.created_at}}
+</div>
