@@ -21,6 +21,15 @@ export default Ember.Component.extend({
   }),
 
   didInsertElement () {
+    this.fetchNotifications();
+
+    $('.dropdown.notifications-desktop')
+      .on('show.bs.dropdown', () => {
+        this.fetchNotifications();
+      });
+  },
+
+  fetchNotifications () {
     this.get('store')
       .findAll('notification')
       .then(notifications => {
